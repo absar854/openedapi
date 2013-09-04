@@ -7,14 +7,16 @@ The OpenEd API lets you use the capabilities of the OpenEd engine for finding re
 
 All API access is over HTTPS, and accessed from the api.opened.io domain. All data is sent and received as JSON.  API calls which make changes require OAuth 2 authentication.
 
+RESOURCES
+=========
+
 Find Resources
 --------------
-
-Find resources based on:
+Search for resources based on:
 * ids - comma separated list of resource IDs
 * descriptive - searches title and description fields with fuzzy match
 * grade - restricts to specified grades (expressed as K,1, ..12)
-* standard - looks for resources aligned with specified standard (can be combined)
+* standard - looks for resources aligned with specified standard identifier (can be combined)
 * user - unique ID of user, for logging purposes
 * number of resources to return, defaults to 20
 
@@ -40,8 +42,7 @@ will return
 
 Show Resource 
 -------------
-
-Show information for a specific resource, based on the OpenEd resource ID (a unique integer)
+Display the attributes for a specific resource, based on the OpenEd resource ID (a unique integer)
 
 For example:
 
@@ -52,3 +53,26 @@ will return
 ```json
 {"area_id":1,"description":null,"embeddable":false,"id":183426,"imported_area_id":null,"imported_subject_id":null,"is_patched":null,"thumb":"https://opened.s3.amazonaws.com/pictures/183426/thumb/KhanAcademy.jpeg?1362719117","thumb_status":null,"title":"Systems of equations","youtube_id":null,"safe_url":"http://www.khanacademy.org/exercise/systems_of_equations","contribution_name":"KhanAcademyCommonCore","grade_idents":["8","9","10","11","12"],"standard_idents":["8.EE.8","8.EE.8.a","8.EE.8.b","8.EE.8.c","A.CED.3","A.REI.6"],"grades_range":"8-12","resource_type_title":"Exercise","area_title":"Mathematics","subject_titles":["Algebra"],"grades":[{"grade":"8"},{"grade":"9"},{"grade":"10"},{"grade":"11"},{"grade":"12"}],"standards":[{"identifier":"8.EE.8"},{"identifier":"8.EE.8.a"},{"identifier":"8.EE.8.b"},{"identifier":"8.EE.8.c"},{"identifier":"A.CED.3"},{"identifier":"A.REI.5"},{"identifier":"A.REI.6"}]}
 ```
+
+STANDARDS
+=========
+
+Search
+------
+Search for standards based on identifier (e.g. "K.CC.1") or keyword. 
+
+For example:
+` http://api.opened.io/standards/search.json?identifier=K.CC.1 `
+
+will return:
+```json
+{"id":21461,"fullname":null,"identifier":"K.CC.1","title":"Count to 100 by ones and by tens.","description":"Count to 100 by ones and by tens.","more_information":"","category":"Counting and Cardinality","grade_group":"Elementary","standard_group":"Common Core Math"}
+```
+
+Or
+` http://api.opened.io/standards/search.json?keyword=Algebra `
+will return:
+```json
+[{"id":21313,"fullname":"CC.9-12.F.IF.9","identifier":"F.IF.9","title":"Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions). ","description":"Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions). For example, given a graph of one quadratic function and an algebraic expression for another, say which has the larger maximum.","more_information":"","category":"Interpreting Functions","grade_group":"High School: Functions","standard_group":"Common Core Math"},{"id":21212,"fullname":"CC.8.F.2","identifier":"8.F.2","title":"Compare properties of two functions each represented in a different way. ","description":"Compare properties of two functions each represented in a different way \r\n(algebraically, graphically, numerically in tables, or by verbal descriptions). For example, given a linear function represented by a table of values and a linear function represented by an algebraic expression, determine which function has the greater rate of change.","more_information":null,"category":"Functions","grade_group":"Middle School","standard_group":"Common Core Math"},{"id":21246,"fullname":"CC.9-12.N.CN.9","identifier":"N.CN.9","title":"Know the Fundamental Theorem of Algebra; show that it is true for quadratic polynomials.","description":"Know the Fundamental Theorem of Algebra; show that it is true for quadratic polynomials.","more_information":"","category":"The Complex Number System","grade_group":"High School: Number and Quantity","standard_group":"Common Core Math"},{"id":24616,"fullname":null,"identifier":"HS.PS3.1","title":"Create a computational model to calculate the change in the energy of one component in a system when the  change in energy of the other component(s) and energy flows in and out of the system are known.","description":"Assessment is limited to basic algebraic expressions or computations; to systems of two or three components; and to thermal energy, kinetic energy, and/or the energies in gravitational, \r\nmagnetic, or electric fields.","more_information":"","category":"Energy (9-12)","grade_group":"High School","standard_group":"Common Core Language Arts"},{"id":9311,"fullname":"CC.9-12.A.REI.7","identifier":"A.REI.7","title":"Solve a simple system consisting of a linear equation and a quadratic equation in two variables algebraically and graphically.","description":"Solve a simple system consisting of a linear equation and a quadratic equation in two variables algebraically and graphically. For example, find the points of intersection between the line y = \u20133x and the circle x2 + y2 = 3.","more_information":"","category":"Reasoning With Equations And Inequalities","grade_group":"High School: Algebra","standard_group":"Common Core Math"},{"id":21209,"fullname":"CC.8.EE.8.b","identifier":"8.EE.8.b","title":"Solve systems of two linear equations in two variables algebraically, and estimate solutions by graphing the equations. Solve simple cases by inspection. ","description":"Solve systems of two linear equations in two variables algebraically, and estimate solutions by graphing the equations. Solve simple cases by inspection. For example, 3x + 2y = 5 and 3x + 2y = 6 have no solution because 3x + 2y cannot simultaneously be 5 and 6.","more_information":null,"category":"Expressions And Equations","grade_group":"Middle School","standard_group":"Common Core Math"},{"id":9396,"fullname":"CC.9-12.G.GPE.4","identifier":"G.GPE.4","title":"Use coordinates to prove simple geometric theorems algebraically. ","description":"Use coordinates to prove simple geometric theorems algebraically. For example, prove or disprove that a figure defined by four given points in the coordinate plane is a rectangle; prove or disprove that the point (1, sqrt 3) lies on the circle centered at the origin and containing the point (0, 2).","more_information":"","category":"Expressing Geometric Properties With Equations","grade_group":"High School: Geometry","standard_group":"Common Core Math"},{"id":9297,"fullname":"CC.9-12.A.APR.6","identifier":"A.APR.6","title":"Rewrite simple rational expressions in different forms.","description":"Rewrite simple rational expressions in different forms; write a(x)/b(x) in the form q(x) + r(x)/b(x), where a(x), b(x), q(x), and r(x) are polynomials with the degree of r(x) less than the degree of b(x), using inspection, long division, or, for the more complicated examples, a computer algebra system.","more_information":"","category":"Arithmetic With Polynomials And Rational Expressions","grade_group":"High School: Algebra","standard_group":"Common Core Math"},{"id":9194,"fullname":"CC.7.EE.4.a","identifier":"7.EE.4.a","title":"Solve word problems leading to equations of the form px + q = r and p(x + q) = r, where p, q, and r are specific rational numbers.","description":"Solve word problems leading to equations of the form px + q = r and p(x + q) = r, where p, q, and r are specific rational numbers. Solve equations of these forms fluently. Compare an algebraic solution to an arithmetic solution, identifying the sequence of the operations used in each approach. For example, the perimeter of a\r\nrectangle is 54 cm. Its length is 6 cm. What is its width?","more_information":"","category":"Expressions And Equations","grade_group":"Middle School","standard_group":"Common Core Math"},{"id":9338,"fullname":"CC.9-12.F.BF.3","identifier":"F.BF.3","title":"Identify the effect on the graph of replacing f(x) by f(x) + k, k f(x), f(kx), and f(x + k) for specific values of k (both positive and negative); find the value of k given the graphs. Experiment with cases and illustrate an explanation of the effects on the graph using technology. Include recognizing even and odd functions from their graphs and algebraic expressions for them.","description":"Identify the effect on the graph of replacing f(x) by f(x) + k, k f(x), f(kx), and f(x + k) for specific values of k (both positive and negative); find the value of k given the graphs. Experiment with cases and illustrate an explanation of the effects on the graph using technology. Include recognizing even and odd functions from their graphs and algebraic expressions for them.","more_information":"","category":"Building Functions","grade_group":"High School: Functions","standard_group":"Common Core Math"}] 
+```
+
