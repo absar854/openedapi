@@ -100,52 +100,325 @@ List all standard groups along with resource counts.
 For example:
 ` http://api.opened.io/standard_groups.json `
 
-will return:
+will return the full list below:
 
 ```json
-{"standard_groups":[{"id":2,"name":"Common Core Language Arts","title":"Common Core Language Arts","count":3844},{"id":7,"name":"Common Core Literacy:History/Social Studies, Science, and Technical Subjects","title":"Common Core Literacy:History/Social Studies, Science, and Technical Subjects","count":206},{"id":4,"name":"Common Core Math","title":"Common Core Math","count":9072},{"id":9,"name":"National Geography Standards","title":"National Geography Standards","count":78},{"id":5,"name":"New York Common Core Social Studies","title":"New York Common Core Social Studies","count":880},{"id":6,"name":"Next Generation Science Standards","title":"Next Generation Science Standards","count":603},{"id":1,"name":"Social Studies (California History Standards)","title":"Social Studies (California History Standards)","count":984}]}
+{
+  "standard_groups": [
+    {
+      "id": 2,
+      "name": "Common Core Language Arts",
+      "title": "Common Core Language Arts",
+      "count": 3844
+    },
+    {
+      "id": 7,
+      "name": "Common Core Literacy:History/Social Studies, Science, and Technical Subjects",
+      "title": "Common Core Literacy:History/Social Studies, Science, and Technical Subjects",
+      "count": 206
+    },
+    {
+      "id": 4,
+      "name": "Common Core Math",
+      "title": "Common Core Math",
+      "count": 9072
+    },
+    {
+      "id": 9,
+      "name": "National Geography Standards",
+      "title": "National Geography Standards",
+      "count": 78
+    },
+    {
+      "id": 5,
+      "name": "New York Common Core Social Studies",
+      "title": "New York Common Core Social Studies",
+      "count": 880
+    },
+    {
+      "id": 6,
+      "name": "Next Generation Science Standards",
+      "title": "Next Generation Science Standards",
+      "count": 603
+    },
+    {
+      "id": 1,
+      "name": "Social Studies (California History Standards)",
+      "title": "Social Studies (California History Standards)",
+      "count": 984
+    }
+  ]
+}
 ```
 
 Grade Groups
 ------------
-You can also list the grade groups that are available in a given standard group. It will the grade group along with the grades corresponding to that group.  For example:
+You can also list the grade groups that are available in a given standard group. It will the grade group along with the grades corresponding to that group.  
+
+For example:
 
 ` http://api.opened.io/grade_groups.json?standard_group=Common%20Core%20Math `
 
-will return:
+will return the full list below:
 
 ```json
-{"grade_groups":[{"grade_groups":{"created_at":"2012-10-02T11:41:05Z","display":"Elementary","gg_sort_key":1,"id":46,"ident":"K,1,2,3,4,5,6","name":"Elementary","standard_group_id":null,"updated_at":"2013-10-11T17:57:04Z"}},{"grade_groups":{"created_at":"2012-10-02T11:41:06Z","display":"Middle School","gg_sort_key":2,"id":47,"ident":"6,7,8,6-8","name":"Middle School","standard_group_id":null,"updated_at":"2013-10-11T17:57:04Z"}},{"grade_groups":{"created_at":"2012-10-02T11:41:22Z","display":"High School: Algebra","gg_sort_key":null,"id":49,"ident":"A","name":"High School: Algebra","standard_group_id":null,"updated_at":"2012-12-09T17:15:29Z"}},{"grade_groups":{"created_at":"2012-10-02T11:41:22Z","display":"High School: Functions","gg_sort_key":null,"id":50,"ident":"F","name":"High School: Functions","standard_group_id":null,"updated_at":"2012-12-09T17:16:22Z"}},{"grade_groups":{"created_at":"2012-10-02T11:41:22Z","display":"High School: Geometry","gg_sort_key":null,"id":51,"ident":"G","name":"High School: Geometry","standard_group_id":null,"updated_at":"2012-12-09T17:16:12Z"}},{"grade_groups":{"created_at":"2012-10-02T11:41:23Z","display":"High School: Number and Quantity","gg_sort_key":null,"id":52,"ident":"NQ","name":"High School: Number and Quantity","standard_group_id":null,"updated_at":"2013-02-13T15:57:48Z"}},{"grade_groups":{"created_at":"2012-10-02T11:41:23Z","display":"High School: Statistics & Probability ","gg_sort_key":null,"id":53,"ident":"SP","name":"High School: Statistics & Probability ","standard_group_id":null,"updated_at":"2013-02-13T15:53:28Z"}}]}
+{
+  "grade_groups": [
+    {
+      "grade_groups": {
+        "created_at": "2012-10-02T11:41:05Z",
+        "display": "Elementary",
+        "gg_sort_key": 1,
+        "id": 46,
+        "ident": "K,1,2,3,4,5,6",
+        "name": "Elementary",
+        "standard_group_id": null,
+        "updated_at": "2013-10-11T17:57:04Z"
+      }
+    },
+    {
+      "grade_groups": {
+        "created_at": "2012-10-02T11:41:06Z",
+        "display": "Middle School",
+        "gg_sort_key": 2,
+        "id": 47,
+        "ident": "6,7,8,6-8",
+        "name": "Middle School",
+        "standard_group_id": null,
+        "updated_at": "2013-10-11T17:57:04Z"
+      }
+    },
+    {
+      "grade_groups": {
+        "created_at": "2012-10-02T11:41:22Z",
+        "display": "High School: Algebra",
+        "gg_sort_key": null,
+        "id": 49,
+        "ident": "A",
+        "name": "High School: Algebra",
+        "standard_group_id": null,
+        "updated_at": "2012-12-09T17:15:29Z"
+      }
+    },
+    {
+      "grade_groups": {
+        "created_at": "2012-10-02T11:41:22Z",
+        "display": "High School: Functions",
+        "gg_sort_key": null,
+        "id": 50,
+        "ident": "F",
+        "name": "High School: Functions",
+        "standard_group_id": null,
+        "updated_at": "2012-12-09T17:16:22Z"
+      }
+    },
+    {
+      "grade_groups": {
+        "created_at": "2012-10-02T11:41:22Z",
+        "display": "High School: Geometry",
+        "gg_sort_key": null,
+        "id": 51,
+        "ident": "G",
+        "name": "High School: Geometry",
+        "standard_group_id": null,
+        "updated_at": "2012-12-09T17:16:12Z"
+      }
+    },
+    {
+      "grade_groups": {
+        "created_at": "2012-10-02T11:41:23Z",
+        "display": "High School: Number and Quantity",
+        "gg_sort_key": null,
+        "id": 52,
+        "ident": "NQ",
+        "name": "High School: Number and Quantity",
+        "standard_group_id": null,
+        "updated_at": "2013-02-13T15:57:48Z"
+      }
+    },
+    {
+      "grade_groups": {
+        "created_at": "2012-10-02T11:41:23Z",
+        "display": "High School: Statistics & Probability ",
+        "gg_sort_key": null,
+        "id": 53,
+        "ident": "SP",
+        "name": "High School: Statistics & Probability ",
+        "standard_group_id": null,
+        "updated_at": "2013-02-13T15:53:28Z"
+      }
+    }
+  ]
+}
 ```
 
 Categories
 ----------
 You can list the categories (also known as "strands") based on several criteria. It will also return a count of resources.  
 * standard_group - shows all categories within a standard group
-* grade_group - restricts the category to a grade group, such as Elementary (coming soon)
+* grade_group - restricts the categories to those associated with a specific grade group, such as Elementary (coming soon)
+* grade - restricts the categories to those associated with specific grade groups that have that grade (coming soon)
 
 For example:
 
 ` http://api.opened.io/categories.json?standard_group=Common%20Core%20Math `
 
-will return these categories:
+will return these categories (artificially limited to first six):
 
 ```json
-{"categories":[{"id":424,"title":"A Child\u2019s Place in Time and Space","grade_group":"Elementary","count":46},{"id":489,"title":"Biological Evolution: Unity and Diversity (K-5)","grade_group":"Elementary","count":37},{"id":427,"title":"California: A Changing State","grade_group":"Elementary","count":54},{"id":470,"title":"Civic Ideals and Practices","grade_group":"Elementary","count":72},{"id":426,"title":"Continuity and Change - Cultural Landscape of California, American Indians, and Impact of New Immigrants","grade_group":"Elementary","count":55},{"id":260,"title":"Counting and Cardinality","grade_group":"Elementary","count":231},{"id":518,"title":"Development, Movement, and Interaction of Cultures","grade_group":"Elementary","count":24},{"id":482,"title":"Earth and Human Activity (K-5)","grade_group":"Elementary","count":40},{"id":458,"title":"Earth and Space Science 3: Earth and Human Activity (Elementary)","grade_group":"Elementary","count":24},{"id":486,"title":"Earth\u2019s Place in the Universe (K-5)","grade_group":"Elementary","count":16},{"id":473,"title":"Economic Systems","grade_group":"Elementary","count":57},{"id":488,"title":"Ecosystems: Interactions, Energy, and Dynamics (K-5)","grade_group":"Elementary","count":15},{"id":478,"title":"Energy (K-5)","grade_group":"Elementary","count":31},{"id":490,"title":"Engineering Design (K-5)","grade_group":"Elementary","count":17},{"id":450,"title":"Engineering, Technology, and Applications of Science 1:Engineering Design (Elementary)","grade_group":"Elementary","count":6},{"id":451,"title":"Engineering, Technology, and Applications of Science 2: Links Among Engineering, Technology, Science, and Society (Elementary)","grade_group":"Elementary","count":8},{"id":572,"title":"Environment and Society (Elementary)","grade_group":"Elementary","count":5},{"id":480,"title":"From Molecules to Organisms: Structures and Processes (K-5)","grade_group":"Elementary","count":43},{"id":471,"title":"Geography, Humans, and the Environment (K-3)","grade_group":"Elementary","count":74},{"id":115,"title":"Geometry (Elementary)","grade_group":"Elementary","count":382},{"id":519,"title":"Governance and Citizenship in New York","grade_group":"Elementary","count":14},{"id":485,"title":"Heredity: Inheritance and Variation of Traits (K-5)","grade_group":"Elementary","count":8},{"id":476,"title":"History of the United States and New York","grade_group":"Elementary","count":26},{"id":569,"title":"Human Systems (Elementary)","grade_group":"Elementary","count":9},{"id":469,"title":"Individual Development and Cultural Identity","grade_group":"Elementary","count":48},{"id":161,"title":"Language Standards (Elementary)","grade_group":"Elementary","count":707},{"id":423,"title":"Learning and Working Now and Long Ago - Introduce the Concepts of Courage, Self-Control, Justice, Heroism, Leadership, Deliberation, Individual Responsibility and Empathy","grade_group":"Elementary","count":33},{"id":439,"title":"Life Science 1: From Molecules to Organisms:Structures and Processes (Elementary)","grade_group":"Elementary","count":11},{"id":440,"title":"Life Science 2: Ecosystems: Interactions, Energy, and Dynamics (Elementary)","grade_group":"Elementary","count":6},{"id":436,"title":"Life Science 3: Heredity: Inheritance and Variance of Traits (Elementary)","grade_group":"Elementary","count":3},{"id":441,"title":"Life Science 4: Biological Evolution: Unity and Diversity (Elementary)","grade_group":"Elementary","count":9},{"id":487,"title":"Matter and Its Interactions (K-5)","grade_group":"Elementary","count":16},{"id":263,"title":"Measurement and Data","grade_group":"Elementary","count":1113},{"id":477,"title":"Motion and Stability: Forces and Interactions (K-5)","grade_group":"Elementary","count":21},{"id":520,"title":"New York Economy Contributes to the Country and the World","grade_group":"Elementary","count":10},{"id":266,"title":"Number and Operations - Fractions","grade_group":"Elementary","count":655},{"id":262,"title":"Number and Operations in Base Ten","grade_group":"Elementary","count":907},{"id":261,"title":"Operations and Algebraic Thinking","grade_group":"Elementary","count":995},{"id":425,"title":"People Who Make a Difference","grade_group":"Elementary","count":31},{"id":93,"title":"Physical Science 1: Matter and Its Interactions (Elementary)","grade_group":"Elementary","count":14},{"id":94,"title":"Physical Science 2: Motion and Stability: Forces and Interactions (Elementary)","grade_group":"Elementary","count":26},{"id":95,"title":"Physical Science 3: Energy (Elementary)","grade_group":"Elementary","count":22},{"id":96,"title":"Physical Science 4: Waves and Their Applications in Technologies for Information Transfer (Elementary)","grade_group":"Elementary","count":12},{"id":566,"title":"Physical Systems (Elementary)","grade_group":"Elementary","count":5},{"id":563,"title":"Places and Regions (Elementary)","grade_group":"Elementary","count":7},{"id":150,"title":"Reading: Foundational Skills (Elementary)","grade_group":"Elementary","count":506},{"id":151,"title":"Reading: Informational Text (Elementary)","grade_group":"Elementary","count":316},{"id":149,"title":"Reading: Literature (Elementary)","grade_group":"Elementary","count":599},{"id":285,"title":"Speaking and Listening (Elementary)","grade_group":"Elementary","count":218},{"id":474,"title":"The Empire State Identity","grade_group":"Elementary","count":11},{"id":475,"title":"The Geography of the United States and New York","grade_group":"Elementary","count":9},{"id":575,"title":"The Uses of Geography (Elementary)","grade_group":"Elementary","count":5},{"id":560,"title":"The World in Spatial Terms (Elementary)","grade_group":"Elementary","count":7},{"id":472,"title":"Time, Continuity, and Change (K-4)","grade_group":"Elementary","count":60},{"id":80,"title":"United States History and Geography: Making a New Nation","grade_group":"Elementary","count":111},{"id":479,"title":"Waves and their Applications in Technologies for Information Transfer (K-5)","grade_group":"Elementary","count":23},{"id":154,"title":"Writing (Elementary)","grade_group":"Elementary","count":329},{"id":525,"title":"America on the World Stage: Imperialism, Isolationism, and Intervention (1890-1918)","grade_group":"Middle School","count":13},{"id":497,"title":"Biological Evolution: Unity and Diversity (6-8)","grade_group":"Middle School","count":9},{"id":517,"title":"Creation, Expansion, and Interaction of Economic Systems","grade_group":"Middle School","count":15},{"id":500,"title":"Earth and Human Activity (6-8)","grade_group":"Middle School","count":24},{"id":460,"title":"Earth and Space Science 3: Earth and Human Activity (Middle School)","grade_group":"Middle School","count":9},{"id":498,"title":"Earth\u2019s Place in the Universe (6-8)","grade_group":"Middle School","count":5},{"id":499,"title":"Earth\u2019s Systems (6-8)","grade_group":"Middle School","count":8},{"id":495,"title":"Ecosystems: Interactions, Energy, and Dynamics (6-8)","grade_group":"Middle School","count":6},{"id":493,"title":"Energy (6-8)","grade_group":"Middle School","count":10},{"id":501,"title":"Engineering Design (6-8)","grade_group":"Middle School","count":9},{"id":455,"title":"Engineering, Technology, and Applications of Science 1:Engineering Design (Middle School)","grade_group":"Middle School","count":6},{"id":454,"title":"Engineering, Technology, and Applications of Science 2: Links Among Engineering, Technology, Science and Society (Middle School)","grade_group":"Middle School","count":7},{"id":573,"title":"Environment and Society (Middle School)","grade_group":"Middle School","count":9},{"id":269,"title":"Expressions And Equations","grade_group":"Middle School","count":913},{"id":494,"title":"From Molecules to Organisms: Structures and Processes (6-8)","grade_group":"Middle School","count":28},{"id":121,"title":"Functions","grade_group":"Middle School","count":137},{"id":514,"title":"Geography, Humans, and the Environment (5-6)","grade_group":"Middle School","count":10},{"id":322,"title":"Geometry (Middle School)","grade_group":"Middle School","count":532},{"id":496,"title":"Heredity: Inheritance and Variation of Traits (6-8)","grade_group":"Middle School","count":4},{"id":570,"title":"Human Systems (Middle School)","grade_group":"Middle School","count":14},{"id":524,"title":"Industrial Society and Progressive Reforms (1870-1920)","grade_group":"Middle School","count":26},{"id":321,"title":"Language Standards (Middle School)","grade_group":"Middle School","count":254},{"id":526,"title":"Life in the United States Between the World Wars (1910-1930s)","grade_group":"Middle School","count":21},{"id":446,"title":"Life Science 1: From Molecules to Organisms:Structures and Processes (Middle School)","grade_group":"Middle School","count":11},{"id":447,"title":"Life Science 2: Ecosystems: Interactions, Energy, and Dynamics (Middle School)","grade_group":"Middle School","count":7},{"id":448,"title":"Life Science 3: Heredity: Inheritance and Variance of Traits (Middle School)","grade_group":"Middle School","count":4},{"id":449,"title":"Life Science 4: Biological Evolution: Unity and Diversity (Middle School)","grade_group":"Middle School","count":7},{"id":491,"title":"Matter and Its Interactions (6-8)","grade_group":"Middle School","count":12},{"id":492,"title":"Motion and Stability: Forces and Interactions (6-8)","grade_group":"Middle School","count":22},{"id":103,"title":"Physical Science 1: Matter and Its Interactions (Middle School)","grade_group":"Middle School","count":8},{"id":463,"title":"Physical Science 2: Motion and Stability: Forces and Interaction (Middle School)","grade_group":"Middle School","count":10},{"id":464,"title":"Physical Science 3: Energy (Middle School)","grade_group":"Middle School","count":16},{"id":465,"title":"Physical Science 4: Waves and their Applications in Technologies for Information Transfer (Middle School)","grade_group":"Middle School","count":11},{"id":567,"title":"Physical Systems (Middle School)","grade_group":"Middle School","count":8},{"id":564,"title":"Places and Regions (Middle School)","grade_group":"Middle School","count":9},{"id":516,"title":"Power, Authority, and Governance","grade_group":"Middle School","count":17},{"id":268,"title":"Ratios And Proportional Relationships","grade_group":"Middle School","count":432},{"id":326,"title":"Reading: Informational (Middle School)","grade_group":"Middle School","count":192},{"id":554,"title":"Reading: Literacy in History/Social Studies (6-8)","grade_group":"Middle School","count":18},{"id":555,"title":"Reading: Literacy in Science and Technical Subjects (6-8)","grade_group":"Middle School","count":12},{"id":317,"title":"Reading: Literature (Middle School)","grade_group":"Middle School","count":352},{"id":523,"title":"Sectionalism, Division, and Reunion (1850s - 1877)","grade_group":"Middle School","count":27},{"id":327,"title":"Speaking and Listening (Middle School)","grade_group":"Middle School","count":148},{"id":270,"title":"Statistics And Probability","grade_group":"Middle School","count":340},{"id":528,"title":"The Cold War and the Changing Global Role of the United States (1945-1991)","grade_group":"Middle School","count":7},{"id":125,"title":"The Number System","grade_group":"Middle School","count":534},{"id":527,"title":"The United States Assumes Worldwide Responsibilities (1930s -1950s)","grade_group":"Middle School","count":8},{"id":576,"title":"The Uses of Geography (Middle School)","grade_group":"Middle School","count":6},{"id":561,"title":"The World in Spatial Terms (Middle School)","grade_group":"Middle School","count":11},{"id":521,"title":"Three Worlds Meet and Colonization of the Americas (Beginnings to 1750s)","grade_group":"Middle School","count":7},{"id":515,"title":"Time, Continuity, and Change (5-6)","grade_group":"Middle School","count":8},{"id":529,"title":"United States at the Start of the 21st Century","grade_group":"Middle School","count":5},{"id":431,"title":"United States History and Geography: Growth and Conflict","grade_group":"Middle School","count":166},{"id":522,"title":"War for Independence and Formation of a New Nation","grade_group":"Middle School","count":15},{"id":483,"title":"Waves and their Applications in Technologies for Information Transfer (6-8)","grade_group":"Middle School","count":3},{"id":429,"title":"World History and Geography: Ancient Civilizations","grade_group":"Middle School","count":82},{"id":430,"title":"World History and Geography:  Medieval and Early Modern Times","grade_group":"Middle School","count":79},{"id":556,"title":"Writing: Literacy in History/Social Studies, Science, and Technical Subjects (6-8)","grade_group":"Middle School","count":24},{"id":328,"title":"Writing (Middle School)","grade_group":"Middle School","count":326},{"id":543,"title":"America in the Age of Increasing Globalization 1990-present","grade_group":"High School","count":43},{"id":534,"title":"An Age of Expanding Connections 500-1450 C.E.","grade_group":"High School","count":72},{"id":509,"title":"Biological Evolution: Unity and Diversity (9-12)","grade_group":"High School","count":20},{"id":533,"title":"Classical Societies 500 B.C.E. - 500 C.E.","grade_group":"High School","count":15},{"id":537,"title":"Contemporary Global Issues, 20th Century to Present","grade_group":"High School","count":28},{"id":536,"title":"Crisis and Achievement in the 20th Century 1914-1990","grade_group":"High School","count":2},{"id":512,"title":"Earth and Human Activity (9-12)","grade_group":"High School","count":11},{"id":462,"title":"Earth and Space Science 3: Earth and Human Activity (High School)","grade_group":"High School","count":17},{"id":510,"title":"Earth\u2019s Place in the Universe (9-12)","grade_group":"High School","count":20},{"id":511,"title":"Earth\u2019s Systems (9-12)","grade_group":"High School","count":28},{"id":549,"title":"Economics: Living in a Global Economy","grade_group":"High School","count":2},{"id":552,"title":"Economics: Money, Finance, and Personal Finance","grade_group":"High School","count":33},{"id":553,"title":"Economics: Setting Fiscal and Monetary Policy","grade_group":"High School","count":20},{"id":551,"title":"Economics: The Enterprise System","grade_group":"High School","count":14},{"id":550,"title":"Economics: The United States Economic System","grade_group":"High School","count":5},{"id":507,"title":"Ecosystems: Interactions, Energy, and Dynamics (9-12)","grade_group":"High School","count":11},{"id":504,"title":"Energy (9-12)","grade_group":"High School","count":9},{"id":513,"title":"Engineering Design (9-12)","grade_group":"High School","count":13},{"id":452,"title":"Engineering, Technology, and Applications of Science 1:Engineering Design (High School)","grade_group":"High School","count":7},{"id":453,"title":"Engineering, Technology, and Applications of Science 2: Links Among Engineering, Technology, Science, and Society (High School)","grade_group":"High School","count":8},{"id":574,"title":"Environment and Society (High School)","grade_group":"High School","count":8},{"id":506,"title":"From Molecules to Organisms: Structures and Processes (9-12)","grade_group":"High School","count":40},{"id":508,"title":"Heredity: Inheritance and Variation of Traits (9-12)","grade_group":"High School","count":14},{"id":571,"title":"Human Systems (High School)","grade_group":"High School","count":11},{"id":540,"title":"Industrialization, Urbanization, and Calls for Reform 1850s - 1914","grade_group":"High School","count":6},{"id":315,"title":"Language Standards (High School)","grade_group":"High School","count":150},{"id":442,"title":"Life Science 1: From Molecules to Organisms:Structures and Processes (High School))","grade_group":"High School","count":14},{"id":443,"title":"Life Science 2: Ecosystems: Interactions, Energy, and Dynamics (High School)","grade_group":"High School","count":21},{"id":444,"title":"Life Science 3: Heredity: Inheritance and Variance of Traits (High School)","grade_group":"High School","count":10},{"id":445,"title":"Life Science 4: Biological Evolution: Unity and Diversity (High School)","grade_group":"High School","count":15},{"id":502,"title":"Matter and Its Interactions (9-12)","grade_group":"High School","count":15},{"id":503,"title":"Motion and Stability: Forces and Interactions (9-12)","grade_group":"High School","count":20},{"id":547,"title":"Participation in Government: Active Citizenship and Constitutional Protections","grade_group":"High School","count":9},{"id":544,"title":"Participation in Government: Philosophical Foundations and Comparative Perspectives","grade_group":"High School","count":2},{"id":548,"title":"Participation in Government: Public Policy and Political Participation","grade_group":"High School","count":3},{"id":545,"title":"Participation in Government: Rights, Responsibilities, and Duties of Citizenship","grade_group":"High School","count":16},{"id":546,"title":"Participation in Government: Voting and Participation in the Electoral Process","grade_group":"High School","count":4},{"id":110,"title":"Physical Science 1: Matter and Its Interactions (High School)","grade_group":"High School","count":27},{"id":466,"title":"Physical Science 2: Motion and Stability: Forces and Interaction (High School)","grade_group":"High School","count":10},{"id":467,"title":"Physical Science 3: Energy (High School)","grade_group":"High School","count":15},{"id":468,"title":"Physical Science 4: Waves and their Applications in Technologies for Information Transfer (High School)","grade_group":"High School","count":13},{"id":568,"title":"Physical Systems (High School)","grade_group":"High School","count":1},{"id":565,"title":"Places and Regions (High School)","grade_group":"High School","count":3},{"id":422,"title":"Principles of American Democracy","grade_group":"High School","count":78},{"id":433,"title":"Principles of Economics","grade_group":"High School","count":52},{"id":254,"title":"Reading: Informational (High School)","grade_group":"High School","count":144},{"id":557,"title":"Reading: Literacy in History/Social Studies (9-12)","grade_group":"High School","count":46},{"id":558,"title":"Reading: Literacy in Science and Technical Subjects (9-12)","grade_group":"High School","count":58},{"id":253,"title":"Reading: Literature (High School)","grade_group":"High School","count":144},{"id":164,"title":"Speaking and Listening (High School)","grade_group":"High School","count":64},{"id":535,"title":"The Age of Revolutions, Industrialization, and Empires 1750-1914","grade_group":"High School","count":14},{"id":538,"title":"The Constitutional Foundations of American Society 1607-1800","grade_group":"High School","count":16},{"id":539,"title":"The Constitution Tested: Expansion, Nationalism, and Sectionalism 1800-1877","grade_group":"High School","count":40},{"id":532,"title":"The First Civilizations 3500-500 B.C.E.","grade_group":"High School","count":6},{"id":577,"title":"The Uses of Geography (High School)","grade_group":"High School","count":4},{"id":562,"title":"The World in Spatial Terms (High School)","grade_group":"High School","count":4},{"id":542,"title":"Uncertain Times - Cold War Abroad and Social Change at Home 1945-1990","grade_group":"High School","count":10},{"id":421,"title":"United States History and Geography:  Continuity and Change in the Twentieth Century","grade_group":"High School","count":153},{"id":541,"title":"United States in an Age of Global Crisis 1900-1945","grade_group":"High School","count":13},{"id":505,"title":"Waves and Their Applications in Technologies for Information Transfer (9-12)","grade_group":"High School","count":13},{"id":420,"title":"World History, Culture, and Geography: The Modern World","grade_group":"High School","count":105},{"id":256,"title":"Writing (High School)","grade_group":"High School","count":219},{"id":559,"title":"Writing: Literacy in History/Social Studies, Science, and Technical Subjects (9-12)","grade_group":"High School","count":59},{"id":274,"title":"Arithmetic With Polynomials And Rational Expressions","grade_group":"High School: Algebra","count":141},{"id":127,"title":"Creating Equations","grade_group":"High School: Algebra","count":199},{"id":275,"title":"Reasoning With Equations And Inequalities","grade_group":"High School: Algebra","count":386},{"id":273,"title":"Seeing Structure In Expressions","grade_group":"High School: Algebra","count":148},{"id":130,"title":"Building Functions","grade_group":"High School: Functions","count":164},{"id":131,"title":"Interpreting Functions","grade_group":"High School: Functions","count":296},{"id":276,"title":"Linear, Quadratic, And Exponential Models","grade_group":"High School: Functions","count":109},{"id":133,"title":"Trigonometric Functions","grade_group":"High School: Functions","count":133},{"id":134,"title":"Circles","grade_group":"High School: Geometry","count":74},{"id":135,"title":"Congruence","grade_group":"High School: Geometry","count":179},{"id":278,"title":"Expressing Geometric Properties With Equations","grade_group":"High School: Geometry","count":105},{"id":279,"title":"Geometric Measurement And Dimension","grade_group":"High School: Geometry","count":42},{"id":280,"title":"Modeling With Geometry","grade_group":"High School: Geometry","count":17},{"id":277,"title":"Similarity, Right Triangles, And Trigonometry","grade_group":"High School: Geometry","count":238},{"id":271,"title":"Quantities","grade_group":"High School: Number and Quantity","count":71},{"id":141,"title":"The Complex Number System","grade_group":"High School: Number and Quantity","count":130},{"id":142,"title":"The Real Number System","grade_group":"High School: Number and Quantity","count":95},{"id":272,"title":"Vector And Matrix Quantities","grade_group":"High School: Number and Quantity","count":151},{"id":283,"title":"Conditional Probability And The Rules Of Probability","grade_group":"High School: Statistics & Probability ","count":161},{"id":281,"title":"Interpreting Categorical And Quantitative Data","grade_group":"High School: Statistics & Probability ","count":172},{"id":282,"title":"Making Inferences And Justifying Conclusions","grade_group":"High School: Statistics & Probability ","count":66},{"id":284,"title":"Using Probability To Make Decisions","grade_group":"High School: Statistics & Probability ","count":97}]}
+{
+  "categories": [
+    {
+      "id": 424,
+      "title": "A Child\u2019s Place in Time and Space",
+      "grade_group": "Elementary",
+      "count": 46
+    },
+    {
+      "id": 489,
+      "title": "Biological Evolution: Unity and Diversity (K-5)",
+      "grade_group": "Elementary",
+      "count": 37
+    },
+    {
+      "id": 427,
+      "title": "California: A Changing State",
+      "grade_group": "Elementary",
+      "count": 54
+    },
+    {
+      "id": 470,
+      "title": "Civic Ideals and Practices",
+      "grade_group": "Elementary",
+      "count": 72
+    },
+    {
+      "id": 426,
+      "title": "Continuity and Change - Cultural Landscape of California, American Indians, and Impact of New Immigrants",
+      "grade_group": "Elementary",
+      "count": 55
+    },
+    {
+      "id": 260,
+      "title": "Counting and Cardinality",
+      "grade_group": "Elementary",
+      "count": 231
+    }
+  ]
+}
 ```
 
-Standards List
---------------
+Standards
+---------
 
 Get the list of standards with number of aligned resources based on parameters:
 
-category - just the standards for a given standard category
-standard_group_id - just the standards for a given standard group
+* category - just the standards for a given standard category
+* standard_group_id - just the standards for a given standard group
+* grade_group - just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
+* grade - just the standards relevant to a given grade (K-12), generally combined with standard group or category
 
-For example: https://api.opened.io/standards.json?category=557
+For example: 
+
+` https://api.opened.io/standards.json?category=260 `
+
+returns: 
 
 ```json
-{"standards":[{"id":25459,"identifier":"9-10.RH.1","title":"Cite specific textual evidence to support analysis of primary and secondary sources, attending to such features as the date and origin of the information.","description":"Cite specific textual evidence to support analysis of primary and secondary sources, attending\r\nto such features as the date and origin of the information.","key_words":"text evidence, primary sources, secondary sources, origin","more_information":"","count":1},{"id":25460,"identifier":"9-10.RH.2","title":"Determine the central ideas or information of a primary or secondary source; provide an accurate summary of how key events or ideas develop over the course of the text.","description":"Determine the central ideas or information of a primary or secondary source; provide an accurate\r\nsummary of how key events or ideas develop over the course of the text.","key_words":"central ideas, primary sources, secondary sources, key ideas","more_information":"","count":1},{"id":25461,"identifier":"9-10.RH.3","title":"Analyze in detail a series of events described in a text; determine whether earlier events caused later ones or simply preceded them. ","description":"Analyze in detail a series of events described in a text; determine whether earlier events caused\r\nlater ones or simply preceded them. ","key_words":"","more_information":"","count":2},{"id":25462,"identifier":"9-10.RH.4","title":"Determine the meaning of words and phrases as they are used in a text, including vocabulary describing political, social, or economic aspects of history/social studies.","description":"Determine the meaning of words and phrases as they are used in a text, including vocabulary\r\ndescribing political, social, or economic aspects of history/social studies.","key_words":"vocabulary, social studies, history","more_information":"","count":3},{"id":25463,"identifier":"9-10.RH.5","title":"Analyze how a text uses structure to emphasize key points or advance an explanation or analysis.","description":"Analyze how a text uses structure to emphasize key points or advance an explanation or analysis.","key_words":"text structure, key points","more_information":"","count":7},{"id":25464,"identifier":"9-10.RH.6","title":"Compare the point of view of two or more authors for how they treat the same or similar topics, including which details they include and emphasize in their respective accounts.","description":"Compare the point of view of two or more authors for how they treat the same or similar\r\ntopics, including which details they include and emphasize in their respective accounts.","key_words":"point of view, same topic","more_information":"","count":3},{"id":25465,"identifier":"9-10.RH.7","title":"Integrate quantitative or technical analysis (e.g., charts, research data) with qualitative analysis in print or digital text.","description":"Integrate quantitative or technical analysis (e.g.,charts, research data) with qualitative analysis in\r\nprint or digital text.","key_words":"technical analysis, charts, research data, tables","more_information":"","count":1},{"id":25466,"identifier":"9-10.RH.8","title":"Assess the extent to which the reasoning and evidence in a text support the author\u2019s claims.","description":"Assess the extent to which the reasoning and evidence in a text support the author\u2019s claims.","key_words":"","more_information":"","count":3},{"id":25467,"identifier":"9-10.RH.9","title":"Compare and contrast treatments of the same topic in several primary and secondary sources.","description":"Compare and contrast treatments of the same topic in several primary and secondary sources.","key_words":"same topic, different sources, historical text, primary sources, secondary sources","more_information":"","count":4},{"id":25468,"identifier":"9-10.RH.10","title":"By the end of grade 10, read and comprehend history/social studies texts in the grades 9\u201310 text complexity band independently and proficiently.","description":"By the end of grade 10, read and comprehend history/social studies texts in the grades 9\u201310 text\r\ncomplexity band independently and proficiently.","key_words":"","more_information":"","count":2},{"id":25469,"identifier":"11-12.RH.1","title":"Cite specific textual evidence to support analysis of primary and secondary sources, connecting insights gained from specific details to an understanding of the text as a whole.","description":"Cite specific textual evidence to support analysis of primary and secondary sources, connecting\r\ninsights gained from specific details to an understanding of the text as a whole.","key_words":"history, social studies, primary sources, secondary sources, reading, literacy, text evidence","more_information":"","count":1},{"id":25470,"identifier":"11-12.RH.2","title":"Determine the central ideas or information of a primary or secondary source; provide an accurate summary that makes clear the relationships among the key details and ideas.","description":"Determine the central ideas or information of a primary or secondary source; provide an accurate\r\nsummary that makes clear the relationships among the key details and ideas.","key_words":"central ideas, primary sources, secondary sources, historical summary","more_information":"","count":4},{"id":25471,"identifier":"11-12.RH.3","title":"Evaluate various explanations for actions or events and determine which explanation best accords with textual evidence, acknowledging where the text leaves matters uncertain.","description":"Evaluate various explanations for actions or events and determine which explanation best accords\r\nwith textual evidence, acknowledging where the text leaves matters uncertain.","key_words":"multiple explanations, history, events, interpretation of history","more_information":"","count":1},{"id":25472,"identifier":"11-12.RH.4","title":"Determine the meaning of words and phrases as they are used in a text, including analyzing how an author uses and refines the meaning of a key term over the course of a text (e.g., how Madison defines faction in Federalist No. 10).","description":"Determine the meaning of words and phrases as they are used in a text, including analyzing how an\r\nauthor uses and refines the meaning of a key term over the course of a text (e.g., how Madison defines faction in Federalist No. 10).","key_words":"key terms, historical text","more_information":"","count":1},{"id":25473,"identifier":"11-12.RH.5","title":"Analyze in detail how a complex primary source is structured, including how key sentences, paragraphs, and larger portions of the text contribute to the whole. ","description":"Analyze in detail how a complex primary source is structured, including how key sentences,\r\nparagraphs, and larger portions of the text contribute to the whole. ","key_words":"structure of historical text, sentences, paragraphs, primary source ","more_information":"","count":3},{"id":25474,"identifier":"11-12.RH.6","title":"Evaluate authors\u2019 differing points of view on the same historical event or issue by assessing the authors\u2019 claims, reasoning, and evidence.","description":"Evaluate authors\u2019 differing points of view on the same historical event or issue by assessing the\r\nauthors\u2019 claims, reasoning, and evidence.","key_words":"different point of views, same historical event","more_information":"","count":1},{"id":25475,"identifier":"11-12.RH.7","title":"Integrate and evaluate multiple sources of information presented in diverse formats and media (e.g., visually, quantitatively, as well as in words) in order to address a question or solve a problem.","description":"Integrate and evaluate multiple sources of information presented in diverse formats and media\r\n(e.g., visually, quantitatively, as well as in words) in order to address a question or solve a problem.","key_words":"diverse sources, multiple sources, historical texts","more_information":"","count":2},{"id":25476,"identifier":"11-12.RH.8","title":"Evaluate an author\u2019s premises, claims, and evidence by corroborating or challenging them with other information. ","description":"Evaluate an author\u2019s premises, claims, and evidence by corroborating or challenging them with other\r\ninformation. ","key_words":"challenging claims, historical text, evaluating evidence","more_information":"","count":1},{"id":25477,"identifier":"11-12.RH.9","title":"Integrate information from diverse sources, both primary and secondary, into a coherent understanding of an idea or event, noting discrepancies among sources.","description":"Integrate information from diverse sources, both primary and secondary, into a coherent\r\nunderstanding of an idea or event, noting discrepancies among sources.","key_words":"multiple sources, historical text, primary sources, secondary sources, discrepancies among sources","more_information":"","count":2},{"id":25478,"identifier":"11-12.RH.10","title":"By the end of grade 12, read and comprehend history/social studies texts in the grades 11\u2013CCR text complexity band independently and proficiently.","description":"By the end of grade 12, read and comprehend history/social studies texts in the grades 11\u2013CCR text\r\ncomplexity band independently and proficiently.","key_words":"history text, social studies text, reading","more_information":"","count":5}]}
+{
+  "standards": [
+    {
+      "id": 21461,
+      "identifier": "K.CC.1",
+      "title": "Count to 100 by ones and by tens.",
+      "description": "Count to 100 by ones and by tens.",
+      "key_words": "counting,numbers,digits,count by tens, count by ones, count to 100, k.cc.1\r\n",
+      "more_information": "",
+      "count": 128
+    },
+    {
+      "id": 20916,
+      "identifier": "K.CC.2",
+      "title": "Count forward beginning from a given number within the known sequence (instead of having to begin at 1).",
+      "description": "Count forward beginning from a given number within the known sequence (instead of having to begin at 1).",
+      "key_words": "counting,count forward, numbers, count, k.cc.2",
+      "more_information": "",
+      "count": 47
+    },
+    {
+      "id": 20917,
+      "identifier": "K.CC.3",
+      "title": "Write numbers from 0 to 20. Represent a number of objects with a written numeral 0-20 (with 0 representing a count of no objects).",
+      "description": "Write numbers from 0 to 20. Represent a number of objects with a written numeral 0-20 (with 0 representing a count of no objects).",
+      "key_words": "write numbers, make numbers, count, 0-20, count, number, k.cc.3",
+      "more_information": "",
+      "count": 32
+    },
+    {
+      "id": 20918,
+      "identifier": "K.CC.4",
+      "title": "Understand the relationship between numbers and quantities; connect counting to cardinality.",
+      "description": "Understand the relationship between numbers and quantities; connect counting to cardinality.",
+      "key_words": "number, quantity, counting, cardinality, count objects, k.cc.4",
+      "more_information": "",
+      "count": 91
+    },
+    {
+      "id": 21484,
+      "identifier": "K.CC.4.a",
+      "title": "When counting objects, say the number names in the standard order, pairing each object with one and only one number name and each number name with one and only one object.",
+      "description": "When counting objects, say the number names in the standard order, pairing each object with one and only one number name and each number name with one and only one object.",
+      "key_words": "count, counting, count objects, number, name numbers, match numbers, k.cc.4a, k.cc.4.a",
+      "more_information": "Students implement correct counting procedures by pointing to one object at a time (one-to-one correspondence), using one counting word for every object.",
+      "count": 43
+    },
+    {
+      "id": 20920,
+      "identifier": "K.CC.4.b",
+      "title": "Understand that the last number name said tells the number of objects counted. The number of objects is the same regardless of their arrangement or the order in which they were counted.",
+      "description": "Understand that the last number name said tells the number of objects counted. The number of objects is the same regardless of their arrangement or the order in which they were counted.",
+      "key_words": "counting, count, count objects, how many are there, how many, k.cc.4.b, k.cc.4b",
+      "more_information": "Students implement correct counting procedures by pointing to one object at a time (one-to-one correspondence), using one counting word for every object (synchrony/ one-to-one tagging), while keeping track of objects that have and have not been counted.",
+      "count": 39
+    },
+    {
+      "id": 20921,
+      "identifier": "K.CC.4.c",
+      "title": "Understand that each successive number name refers to a quantity that is one larger.",
+      "description": "Understand that each successive number name refers to a quantity that is one larger.",
+      "key_words": "count, counting, numbers, count objects, add 1, plus 1, 1 more, inclusion, successive number",
+      "more_information": "Students should know that if they have three objects, that in order to make four, they do not need to start all over again. Students should also be able to answer \"How many would you have if we added one more?\"",
+      "count": 30
+    },
+    {
+      "id": 8941,
+      "identifier": "K.CC.5",
+      "title": "Count to answer \u201chow many?\u201d questions about as many as 20 things arranged in a line, a rectangular array, or a circle, or as many as 10 things in a scattered configuration; given a number from 1\u201320, count out that many objects.",
+      "description": "Count to answer \u201chow many?\u201d questions about as many as 20 things arranged in a line, a rectangular array, or a circle, or as many as 10 things in a scattered configuration; given a number from 1\u201320, count out that many objects.",
+      "key_words": "count objects, count, counting, count 0-20, how many, count to 20, K.CC.5",
+      "more_information": "Students should be able to count objects using strategies like touching, moving or lining them up.",
+      "count": 65
+    },
+    {
+      "id": 8942,
+      "identifier": "K.CC.6",
+      "title": "Identify whether the number of objects in one group is greater than, less than, or equal to the number of objects in another group, e.g., by using matching and counting strategies.",
+      "description": "Identify whether the number of objects in one group is greater than, less than, or equal to the number of objects in another group, e.g., by using matching and counting strategies.",
+      "key_words": "comparing numbers, counting, count, compare, more or less, compare, k.cc.6",
+      "more_information": "Students use their counting ability to compare sets of objects (0-10). ",
+      "count": 24
+    },
+    {
+      "id": 8943,
+      "identifier": "K.CC.7",
+      "title": "Compare two numbers between 1 and 10 presented as written numerals.",
+      "description": "Compare two numbers between 1 and 10 presented as written numerals.",
+      "key_words": "comparing numbers, compare, numbers, more or less, compare numerals, written numbers, k.cc.7",
+      "more_information": "Comparing written numbers only, not objects.",
+      "count": 14
+    }
+  ]
+}
 ```
 
 AREA/SUBJECT TAXONOMY
@@ -154,9 +427,42 @@ OpenEd categorizes all resources in an area/subject taxonomy.  The top level is 
 
 Areas List
 ----------
-Areas with number of assigned resources for area and/or for subjects in area. For example: https://api.opened.io/areas.json
+Areas with number of assigned resources for area and/or for subjects in area. For example: 
+
+` https://api.opened.io/areas.json `
+
+returns the following areas:
+
 ```json
-{"areas":[{"id":1,"title":"Mathematics","count":7460},{"id":2,"title":"Language Arts","count":3929},{"id":3,"title":"Social Studies","count":1172},{"id":4,"title":"Science","count":837},{"id":5,"title":"Other","count":32}]}
+{
+  "areas": [
+    {
+      "id": 1,
+      "title": "Mathematics",
+      "count": 7460
+    },
+    {
+      "id": 2,
+      "title": "Language Arts",
+      "count": 3929
+    },
+    {
+      "id": 3,
+      "title": "Social Studies",
+      "count": 1172
+    },
+    {
+      "id": 4,
+      "title": "Science",
+      "count": 837
+    },
+    {
+      "id": 5,
+      "title": "Other",
+      "count": 32
+    }
+  ]
+}
 ```
 
 Subjects List
@@ -166,5 +472,38 @@ Get the list of subjects with number of assigned resources based on parameters:
 
 For example: https://openedengine-ember10-staging.herokuapp.com/subjects.json?area=1
 ```json
-{"subjects":[{"id":6,"title":"Measurement & Data","count":1041},{"id":1,"title":"Geometry","count":1277},{"id":4,"title":"Trigonometry","count":84},{"id":3,"title":"Statistics and Probability","count":583},{"id":2,"title":"Algebra","count":2039},{"id":14,"title":"Number Sense and Operations","count":3013}]}
+{
+  "subjects": [
+    {
+      "id": 6,
+      "title": "Measurement & Data",
+      "count": 1041
+    },
+    {
+      "id": 1,
+      "title": "Geometry",
+      "count": 1277
+    },
+    {
+      "id": 4,
+      "title": "Trigonometry",
+      "count": 84
+    },
+    {
+      "id": 3,
+      "title": "Statistics and Probability",
+      "count": 583
+    },
+    {
+      "id": 2,
+      "title": "Algebra",
+      "count": 2039
+    },
+    {
+      "id": 14,
+      "title": "Number Sense and Operations",
+      "count": 3013
+    }
+  ]
+}
 ```
