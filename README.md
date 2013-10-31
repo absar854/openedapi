@@ -30,22 +30,190 @@ Find resources based on:
 
 For example:
 
-` https://api.opened.io/resources.json?descriptive=Quadratic%20Equations&limit=3 `
+` https://api.opened.io/resources.json?descriptive=Fibonacci%20sequence&limit=3 `
 
 will return a JSON object like the following
 
 ```json
-{"resources":[{"standard_idents":["A.REI.4.b"],"grade_idents":["9","10","11","12"],"grades_range":"9-12","contribution_name":"KhanAcademyCommonCore","description":"This instructor in this video, Sal Khan, discusses the discriminant of quadratic equations. Mr. Khan uses\u00a0computer software\u00a0(with different colors)\u00a0to illustrate his points. Sal Khan is the recipient of the 2009\u00a0Microsoft Tech Award in Education. The viewer may want to open the video to 'full screen' as the instructor fits a lot of information on a dark screen.","embeddable":true,"resource_type":"video","id":47955,"thumb":"https://opened.s3.amazonaws.com/pictures/47955/thumb/47955.jpg?1377094886","title":"Discriminant of quadratic equations","share_url":"http://www.opened.io/#/share/47955","rating":3,"my_rating":null,"safe_url":"https://www.youtube.com/watch?v=JBSDQLZtjFo"},{"standard_idents":[],"grade_idents":["9","10","11","12"],"grades_range":"9-12","contribution_name":"YouTube","description":"The instructor in this video, Sal Khan,\u00a0uses a graphing calculator to solve quadratic equations.\u00a0Mr. Khan uses\u00a0computer software\u00a0(with different colors)\u00a0to illustrate his points. Sal Khan is the recipient of the 2009\u00a0Microsoft Tech Award in Education. The viewer may want to open the video to 'full screen' as the instructor fits a lot of information on a dark screen.","embeddable":true,"resource_type":"video","id":115841,"thumb":"https://opened.s3.amazonaws.com/pictures/115841/thumb/default.jpg?1359196847","title":"Solving Quadratic Equations by Graphing","share_url":"http://www.opened.io/#/share/115841","rating":3,"my_rating":null,"safe_url":"https://www.youtube.com/watch?v=JHUju_Qkqbg"},{"standard_idents":[],"grade_idents":[],"grades_range":"","contribution_name":"Learnist","description":"You won't just be factoring numbers -- you will also be factoring algebraic expressions, including quadratic equations.","embeddable":true,"resource_type":"video","id":364985,"thumb":"https://opened.s3.amazonaws.com/pictures/364985/thumb/FmFJG8JeQkk.?1374559722","title":"Strategies for Quadratic Equations","share_url":"http://www.opened.io/#/share/364985","rating":3,"my_rating":null,"safe_url":"https://www.youtube.com/watch?v=FmFJG8JeQkk"}]}
+{
+  "resources": [
+    {
+      "standard_idents": [
+        "F.IF.3"
+      ],
+      "grade_idents": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "grades_range": "6-12",
+      "contribution_name": "PBS",
+      "description": "Apply the Fibonacci Sequence and find its relationship to a piano keyboard. Explore various relationships between music and the Fibonacci Sequence.",
+      "embeddable": false,
+      "resource_type": "other",
+      "id": 101504,
+      "thumb": "https://opened.s3.amazonaws.com/pictures/101504/thumb/pbs-logo.png?1358125703",
+      "title": "The Fibonacci Keyboard",
+      "share_url": "http://www.opened.io/#/share/101504",
+      "rating": 3,
+      "my_rating": null,
+      "safe_url": "http://www.pbs.org/jazz/classroom/fibonacci.htm"
+    },
+    {
+      "standard_idents": [
+      ],
+      "grade_idents": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "grades_range": "5-12",
+      "contribution_name": "Learnist",
+      "description": "Hank introduces us to the most beautiful numbers in nature - the Fibonacci sequence.",
+      "embeddable": true,
+      "resource_type": "video",
+      "id": 110037,
+      "thumb": "https://opened.s3.amazonaws.com/pictures/110037/thumb/wTlw7fNcO-0.?1359197625",
+      "title": "The Fibonacci Sequence: Nature's Code",
+      "share_url": "http://www.opened.io/#/share/110037",
+      "rating": 3,
+      "my_rating": null,
+      "safe_url": "https://www.youtube.com/watch?v=wTlw7fNcO-0"
+    },
+    {
+      "standard_idents": [
+      ],
+      "grade_idents": [
+      ],
+      "grades_range": "",
+      "contribution_name": "KhanAcademy",
+      "description": "Introduction to the Fibonacci Sequence and a programming challenge",
+      "embeddable": true,
+      "resource_type": "video",
+      "id": 368646,
+      "thumb": "https://opened.s3.amazonaws.com/pictures/368646/thumb/Bdbc1ZC-vhw.?1374716351",
+      "title": "Exercise - Write a Fibonacci Function",
+      "share_url": "http://www.opened.io/#/share/368646",
+      "rating": 3,
+      "my_rating": null,
+      "safe_url": "https://www.youtube.com/watch?v=Bdbc1ZC-vhw&feature=youtube_gdata_player"
+    }
+  ]
+}
 ```
 
 As another example you can search for resources matching a specific standard or standards with the following:
 
-` https://api.opened.io/resources.json?standard=K.CC.1&limit=3 `
+` https://api.opened.io/resources.json?standard=A.APR.4&limit=3 `
 
 will return
 
 ```json
-{"resources":[{"standard_idents":["K.CC.1","K.CC.4"],"grade_idents":["K"],"grades_range":"K","contribution_name":"WatchKnowLearnCommonCore","description":"In this classic Sesame Street cartoon, the Bellhop has to find the parents of two lost kids. \u00a0Betty and Bobby Blobby are lost in the lobby.\u00a0","embeddable":true,"resource_type":"video","id":110710,"thumb":"https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449","title":"The Bellhop Counts to 2","share_url":"http://www.opened.io/#/share/110710","rating":3,"my_rating":null,"safe_url":"https://www.youtube.com/watch?v=xUUkvLvw8-g"},{"standard_idents":["K.CC.1","K.MD.3","2.MD.8","2.NBT.2"],"grade_idents":["K","1","2","3","4","5"],"grades_range":"K-5","contribution_name":"WatchKnowLearnCommonCore","description":"Before we can get kids working on word problems, we have to make sure they're solid on coin value. \u00a0This video introduces the \u00a0four most frequently used U.S. coins and discusses their value while providing handy visuals. \u00a0","embeddable":true,"resource_type":"video","id":202896,"thumb":"https://opened.s3.amazonaws.com/pictures/202896/thumb/-SGDAMKtHTE.?1367974320","title":"The Coin Song","share_url":"http://www.opened.io/#/share/202896","rating":3,"my_rating":null,"safe_url":"https://www.youtube.com/watch?v=-SGDAMKtHTE"},{"standard_idents":["K.CC.1","K.MD.3","2.MD.8"],"grade_idents":["K","1","2","3","4"],"grades_range":"K-4","contribution_name":"WatchKnowLearnCommonCore","description":"This very short song introduces the penny, nickel, dime, and quarter, and how you count with each of these. The music is only passable.","embeddable":true,"resource_type":"video","id":110745,"thumb":"https://opened.s3.amazonaws.com/pictures/110745/thumb/110745.jpg?1377325481","title":"The Coin Song - about U.S. coins","share_url":"http://www.opened.io/#/share/110745","rating":3,"my_rating":null,"safe_url":"https://www.youtube.com/watch?v=Wk_6-pFkugU"}]}
+{
+  "resources": [
+    {
+      "standard_idents": [
+        "A.APR.4"
+      ],
+      "grade_idents": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "grades_range": "9-12",
+      "contribution_name": "OpenEd",
+      "description": "Proving polynomial identities",
+      "embeddable": true,
+      "resource_type": "video",
+      "id": 350261,
+      "thumb": "https://opened.s3.amazonaws.com/pictures/350261/thumb/open-uri20130814-2-1rqhb8a..?1376516273",
+      "title": "1. Polynomials - Introduction of Identities - YouTube",
+      "share_url": "http://www.opened.io/#/share/350261",
+      "rating": 3,
+      "my_rating": null,
+      "safe_url": "http://m.youtube.com/watch?v=RrMlR3KJFtA"
+    },
+    {
+      "standard_idents": [
+        "A.APR.4"
+      ],
+      "grade_idents": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "grades_range": "9-12",
+      "contribution_name": "OpenEd",
+      "description": "Description of the standard and a worksheet to give students with the answers provided. ",
+      "embeddable": false,
+      "resource_type": "other",
+      "id": 350260,
+      "thumb": "https://opened.s3.amazonaws.com/pictures/350260/thumb/Black_Eye.png?1376518509",
+      "title": "Common Core Standards : A-APR.4",
+      "share_url": "http://www.opened.io/#/share/350260",
+      "rating": 3,
+      "my_rating": null,
+      "safe_url": "http://www.shmoop.com/common-core-standards/ccss-hs-a-apr-4.html"
+    },
+    {
+      "standard_idents": [
+        "A.APR.4"
+      ],
+      "grade_idents": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "grades_range": "9-12",
+      "contribution_name": "ShmoopCommonCore",
+      "description": "4. Prove polynomial identities and use them to describe numerical relationships. For example, the polynomial identity (x2 + y2)2 = (x2 \u00e2\u0080\u0093 y2)2 + (2xy)2 can be used to generate Pythagorean triples.",
+      "embeddable": false,
+      "resource_type": "other",
+      "id": 398923,
+      "thumb": "https://opened.s3.amazonaws.com/pictures/398923/thumb/open-uri20130814-2-1lzbljc..?1376516091",
+      "title": "Common Core Standards : A-APR.4: Links",
+      "share_url": "http://www.opened.io/#/share/398923",
+      "rating": 3,
+      "my_rating": null,
+      "safe_url": "http://www.shmoop.com/common-core-standards/ccss-hs-a-apr-4.html#links"
+    },
+    {
+      "standard_idents": [
+        "A.APR.4"
+      ],
+      "grade_idents": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "grades_range": "9-12",
+      "contribution_name": "OpenEd",
+      "description": "Important algebraic identities. ",
+      "embeddable": true,
+      "resource_type": "video",
+      "id": 350262,
+      "thumb": "https://opened.s3.amazonaws.com/pictures/350262/thumb/Black_Eye.png?1376518519",
+      "title": "Polynomials - Important Algebraic Identities (1 of 2) - Part-1 - YouTube",
+      "share_url": "http://www.opened.io/#/share/350262",
+      "rating": 3,
+      "my_rating": null,
+      "safe_url": "http://m.youtube.com/watch?v=v55EFYqu5JQ"
+    }
+  ]
+}
 ```
 
 You should use the share_url attribute as the URL to display to your users.   The underlying resource is safe_url, but it is (ironically) "unsafe" (the underlying resources can move).  If you use share_url OpenEd manages underlying URLs movements.
@@ -73,8 +241,24 @@ In the body of the post method the resources hash is provided in JSON form. Each
  For example:
 
 ```json
-{"resources":[{"url":"http://yoursite.com/yourawesomevideo.mp4","title":"My Awesome Counting Video","description":"Vun octopus arm, two octopus arms..three vunderful octopus arms",standard_idents":["K.CC.1","K.CC.4"],"grades_range":"K-1","contribution_name":"YourSite","description","resource_type":"video","rating":"5"}]}
-```
+{
+  "resources": [
+    {
+      "url": "http://yoursite.com/yourawesomevideo.mp4",
+      "title": "My Awesome Counting Video",
+      "description": "Vun octopus arm, two octopus arms..three vunderful octopus arms",
+      "standard_idents": [
+        "K.CC.1",
+        "K.CC.4"
+      ],
+      "grades_range": "K-1",
+      "contribution_name": "YourSite",
+      "description",
+      "resource_type": "video",
+      "rating": "5"
+    }
+  ]
+}```
 
 [Not Implemented Yet]
 
