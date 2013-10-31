@@ -1,7 +1,7 @@
 OpenEd API
 ==========
 
-OpenEd is the world's largest educational resource catalog.  It is the only site completely focused on aligning educational resources to standards.   
+OpenEd is the world's largest educational resource catalog, currently with over 250,000 videos, games and other resources.  It is the only site completely focused on aligning educational resources to standards.   
 
 The OpenEd API lets you use the capabilities of the OpenEd engine for finding resources and providing information about educational standards (Common Core and otherwise) inside your own apps and websites.
 
@@ -13,12 +13,12 @@ RESOURCES
 Find Resources
 --------------
 Search for resources based on:
-* ids - comma separated list of resource IDs
-* descriptive - searches title and description fields with fuzzy match
+* descriptive - searches title and description fields with fuzzy match, need to URL-encode strings with spaces and special characters
 * grade - restricts to specified grades (expressed as K,1, ..12)
 * standard - looks for resources aligned with specified standard identifier (can be combined)
 * user - unique ID of user, for logging purposes
 * limit - number of resources to return, defaults to 20
+* ids - comma separated list of resource IDs
 
 For example:
 
@@ -57,8 +57,47 @@ will return
 STANDARDS
 =========
 
-Search
-------
+OpenEd also allows you to search for information on standards themselves (in addition to finding resources for standards).  Standards are organized into "standard groups" such as "Common Core Math" and "Common Core Language Arts".  Within a standard group there are "grade groups" such as "Elementary" and "Middle School".  Each grade group has a set of "categories" (sometimes known as "strands"), such as "Geometry". Within categories there are individual standards. This method of organizing standards was created by the Common Core State Standards, but we use it to structure all standard groups.  
+
+Standard Groups
+---------------
+List all standard groups.
+
+For example:
+` http://api.opened.io/standard_groups.json `
+
+will return:
+
+```json
+{"standard_groups":[{"id":2,"name":"Common Core Language Arts","title":"Common Core Language Arts","count":3844},{"id":7,"name":"Common Core Literacy:History/Social Studies, Science, and Technical Subjects","title":"Common Core Literacy:History/Social Studies, Science, and Technical Subjects","count":206},{"id":4,"name":"Common Core Math","title":"Common Core Math","count":9072},{"id":9,"name":"National Geography Standards","title":"National Geography Standards","count":78},{"id":5,"name":"New York Common Core Social Studies","title":"New York Common Core Social Studies","count":880},{"id":6,"name":"Next Generation Science Standards","title":"Next Generation Science Standards","count":603},{"id":1,"name":"Social Studies (California History Standards)","title":"Social Studies (California History Standards)","count":984}]}
+```
+
+Grade Groups
+------------
+You can also list the grade groups that are available in a given standard group. For example:
+
+` http://api.opened.io/grade_groups.json?standard_group=Common%20Core%20Math `
+
+will return:
+
+```json
+{"grade_groups":[{"grade_groups":{"created_at":"2012-10-02T11:41:05Z","display":"Elementary","gg_sort_key":1,"id":46,"ident":"K,1,2,3,4,5,6","name":"Elementary","standard_group_id":null,"updated_at":"2013-10-11T17:57:04Z"}},{"grade_groups":{"created_at":"2012-10-02T11:41:06Z","display":"Middle School","gg_sort_key":2,"id":47,"ident":"6,7,8,6-8","name":"Middle School","standard_group_id":null,"updated_at":"2013-10-11T17:57:04Z"}},{"grade_groups":{"created_at":"2012-10-02T11:41:22Z","display":"High School: Algebra","gg_sort_key":null,"id":49,"ident":"A","name":"High School: Algebra","standard_group_id":null,"updated_at":"2012-12-09T17:15:29Z"}},{"grade_groups":{"created_at":"2012-10-02T11:41:22Z","display":"High School: Functions","gg_sort_key":null,"id":50,"ident":"F","name":"High School: Functions","standard_group_id":null,"updated_at":"2012-12-09T17:16:22Z"}},{"grade_groups":{"created_at":"2012-10-02T11:41:22Z","display":"High School: Geometry","gg_sort_key":null,"id":51,"ident":"G","name":"High School: Geometry","standard_group_id":null,"updated_at":"2012-12-09T17:16:12Z"}},{"grade_groups":{"created_at":"2012-10-02T11:41:23Z","display":"High School: Number and Quantity","gg_sort_key":null,"id":52,"ident":"NQ","name":"High School: Number and Quantity","standard_group_id":null,"updated_at":"2013-02-13T15:57:48Z"}},{"grade_groups":{"created_at":"2012-10-02T11:41:23Z","display":"High School: Statistics & Probability ","gg_sort_key":null,"id":53,"ident":"SP","name":"High School: Statistics & Probability ","standard_group_id":null,"updated_at":"2013-02-13T15:53:28Z"}}]}
+```
+
+Categories
+----------
+You can list the categories (also known as "strands") based on several criteria:
+* standard_group - shows all categories within a standard group
+* grade_group - shows all categories within a grade group (typically combined with a standard group)
+
+For example:
+
+` http://api.opened.io/categories.json?standard_group=Common%20Core%20Math `
+
+will return a long list of categories (not shown here)
+
+Standards
+---------
 Search for standards based on identifier (e.g. "K.CC.1") or keyword. 
 
 For example:
