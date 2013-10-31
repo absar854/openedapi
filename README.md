@@ -50,8 +50,8 @@ will return
 
 You should use the share_url attribute as the URL to display to your users.   The underlying resource is safe_url, but it is (ironically) "unsafe" (the underlying resources can move).  If you use share_url OpenEd manages underlying URLs movements.
 
-Add Resources to Catalog
-------------------------
+Add Resources to OpenEd
+-----------------------
 [This call requires OAuth2 authentication]
 
 You can also add resources to the OpenEd catalog in bulk. This requires a list of URLs of existing resources, hosted somewhere.  
@@ -65,7 +65,7 @@ In the body of the post method the resources hash is provided in JSON form. Each
 * title - what do you want to call the resource. It doesn't have to match what you have on your site - REQUIRED
 * description - more information about the resource.  You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resirces
 * standard_idents - the list of standards aligned to the resource.  You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
-* grades_range - in the form "<lowgrade>-<highgrade>", e.g. "K-4"
+* grades_range - in the form "lowgrade-highgrade", e.g. "K-4"
 * contribution_name - your site as the contributor so we can give you credit
 * resource_type - Either "video", "game", "assessment", or "other"
 * rating - The rating of the resource on a scale of "1" to "5" if you have one on your site 
@@ -78,8 +78,8 @@ In the body of the post method the resources hash is provided in JSON form. Each
 
 [Not Implemented Yet]
 
-Upload Resource to Site
------------------------
+Upload Resource to OpenEd
+-------------------------
 [This call requires OAuth2 authentication]
 
 This uploads the actual resource binary itself to OpenEd.  We use YouTube to host videos.  We have our own server space for other resources.
