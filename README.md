@@ -188,29 +188,6 @@ will return
       "rating": 3,
       "my_rating": null,
       "safe_url": "http://www.shmoop.com/common-core-standards/ccss-hs-a-apr-4.html#links"
-    },
-    {
-      "standard_idents": [
-        "A.APR.4"
-      ],
-      "grade_idents": [
-        "9",
-        "10",
-        "11",
-        "12"
-      ],
-      "grades_range": "9-12",
-      "contribution_name": "OpenEd",
-      "description": "Important algebraic identities. ",
-      "embeddable": true,
-      "resource_type": "video",
-      "id": 350262,
-      "thumb": "https://opened.s3.amazonaws.com/pictures/350262/thumb/Black_Eye.png?1376518519",
-      "title": "Polynomials - Important Algebraic Identities (1 of 2) - Part-1 - YouTube",
-      "share_url": "http://www.opened.io/#/share/350262",
-      "rating": 3,
-      "my_rating": null,
-      "safe_url": "http://m.youtube.com/watch?v=v55EFYqu5JQ"
     }
   ]
 }
