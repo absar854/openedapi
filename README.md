@@ -68,13 +68,15 @@ In the body of the post method the resources hash is provided in JSON form. Each
 * grades_range - in the form "<lowgrade>-<highgrade>", e.g. "K-4"
 * contribution_name - your site as the contributor so we can give you credit
 * resource_type - Either "video", "game", "assessment", or "other"
-* rating - The rating of the resource if you have it. 
+* rating - The rating of the resource on a scale of "1" to "5" if you have one on your site 
 
  For example:
 
 ```json
 {"resources":[{"url":"http://yoursite.com/yourawesomevideo.mp4","title":"My Awesome Counting Video","description":"Vun octopus arm, two octopus arms..three vunderful octopus arms",standard_idents":["K.CC.1","K.CC.4"],"grades_range":"K-1","contribution_name":"YourSite","description","resource_type":"video","rating":"5"}]}
 ```
+
+[Not Implemented Yet]
 
 Upload Resource to Site
 -----------------------
