@@ -52,16 +52,36 @@ You should use the share_url attribute as the URL to display to your users.   Th
 
 Add Resources to Catalog
 ------------------------
+[This call requires OAuth2 authentication]
+
 You can also add resources to the OpenEd catalog in bulk. This requires a list of URLs of existing resources, hosted somewhere.  
 
-This call requires OAuth2 authentication.  
-[Not implemented yet]
+The add method takes a hash with a "resources" array similar to what you see above on search. It will be invoked as follows:
+
+` https://api.opened.io/resources/add.json `
+
+In the body of the post method the resources hash is provided in JSON form. Each resource in the hash can have the following attributes:
+* url - where is the resource hosted - REQUIRED
+* title - what do you want to call the resource. It doesn't have to match what you have on your site - REQUIRED
+* description - more information about the resource.  You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resirces
+* standard_idents - the list of standards aligned to the resource.  You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
+* grades_range - in the form "<lowgrade>-<highgrade>", e.g. "K-4"
+* contribution_name - your site as the contributor so we can give you credit
+* resource_type - Either "video", "game", "assessment", or "other"
+* rating - The rating of the resource if you have it. 
+
+ For example:
+
+```json
+{"resources":[{"url":"http://yoursite.com/yourawesomevideo.mp4","title":"My Awesome Counting Video","description":"Vun octopus arm, two octopus arms..three vunderful octopus arms",standard_idents":["K.CC.1","K.CC.4"],"grades_range":"K-1","contribution_name":"YourSite","description","resource_type":"video","rating":"5"}]}
+```
 
 Upload Resource to Site
 -----------------------
+[This call requires OAuth2 authentication]
+
 This uploads the actual resource binary itself to OpenEd.  We use YouTube to host videos.  We have our own server space for other resources.
 
-This call requires OAuth2 authentication.  
 [Not Implemented Yet]
 
 MANAGING STANDARDS
