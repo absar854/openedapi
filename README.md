@@ -631,7 +631,11 @@ Subjects List
 Get the list of subjects with number of assigned resources based on parameters:
 * area - just the subjects for a given area 
 
-For example: https://openedengine-ember10-staging.herokuapp.com/subjects.json?area=1
+For example:
+` https://api.opened.io/subjects.json?area=1 `
+
+returns:
+
 ```json
 {
   "subjects": [
