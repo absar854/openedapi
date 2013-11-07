@@ -25,7 +25,7 @@ Find resources based on:
 * area - looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
 * subject - looks for resources assigned with specified subject by subject.id or subject.title
 * grade - restricts to specified grades (expressed as K,1, .. 12)
-* ids - comma separated list of resource IDs (will skip all given filters)
+* ids - comma separated list of resource IDs (will ignore all other supplied filters)
 * limit - resources to return, default to 50
 
 For example:
@@ -195,6 +195,12 @@ will return
 
 You should use the share_url attribute as the URL to display to your users.   The underlying resource is safe_url, but it is (ironically) "unsafe" (the underlying resources can move).  If you use share_url OpenEd manages underlying URLs movements.
 
+Resource Show
+-------------
+Show the specified resource. Provide the resource identifier as the resource ID number followed by ".json".  For example:
+
+` https://api.opened.io/resources/101054.json `
+
 Add Resources to OpenEd
 -----------------------
 [This call requires OAuth2 authentication]
@@ -210,10 +216,12 @@ In the body of the post method the resources hash is provided in JSON form. Each
 * title - what do you want to call the resource. It doesn't have to match what you have on your site - REQUIRED
 * description - more information about the resource.  You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resirces
 * standard_idents - the list of standards aligned to the resource.  You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
+* subjects - the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource
 * grades_range - in the form "lowgrade-highgrade", e.g. "K-4"
-* contribution_name - your site as the contributor so we can give you credit
-* resource_type - Either "video", "game", "assessment", or "other"
+* contribution_name - your site as the contributor so we can give you credit. Defaults to OAuth username. 
+* resource_type - Either "video", "game", "assessment", or "other".  Default to "other" if it is not identified as a video
 * rating - The rating of the resource on a scale of "1" to "5" if you have one on your site 
+* thumbnail - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is either a link or hex encoded binary data.
 
  For example:
 
@@ -232,6 +240,7 @@ In the body of the post method the resources hash is provided in JSON form. Each
       "contribution_name": "YourSite",
       "resource_type": "video",
       "rating": "5"
+      "thumbnail": "http://yoursite.com/pics/awesomevideothumb.jpg"
     }
   ]
 }
