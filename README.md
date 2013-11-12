@@ -203,11 +203,11 @@ Show the specified resource. Provide the resource identifier as the resource ID 
 
 Add Resources to OpenEd
 -----------------------
-[This call requires OAuth2 authentication]
+[This call requires OAuth2 authentication, see below]
 
 You can also add resources to the OpenEd catalog in bulk. This requires a list of URLs of existing resources, hosted somewhere.  
 
-The add method takes a hash with a "resources" array similar to what you see above on search. It will be invoked as follows:
+The add method takes a hash with an attributes similar to what you see above on search. It will be invoked as follows:
 
 ` https://api.opened.io/resources/add.json `
 
@@ -216,37 +216,33 @@ In the body of the post method the resources hash is provided in JSON form. Each
 * title - what do you want to call the resource. It doesn't have to match what you have on your site - REQUIRED
 * description - more information about the resource.  You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resirces
 * standard_idents - the list of standards aligned to the resource.  You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
-* subjects - the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource
-* grades_range - in the form "lowgrade-highgrade", e.g. "K-4"
-* contribution_name - your site as the contributor so we can give you credit. Defaults to OAuth username. 
+* grades_range - in the form "lowgrade-highgrade", e.g. "K-4" from "K" to "12", or just "K" if both of lowgrade and highgrade is "K"
+* contribution_name - your site as the contributor so we can give you credit. Defaults to "OpenEd" contribution.
 * resource_type - Either "video", "game", "assessment", or "other".  Default to "other" if it is not identified as a video
 * rating - The rating of the resource on a scale of "1" to "5" if you have one on your site 
-* thumbnail - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is either a link or hex encoded binary data.
+* image - A link to image that acts as a preview of the video.
+* subjects - the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource (https://api.opened.io/subjects.json)
 
  For example:
 
 ```json
 {
-  "resources": [
-    {
-      "url": "http://yoursite.com/yourawesomevideo.mp4",
-      "title": "My Awesome Counting Video",
-      "description": "Vun octopus arm, two octopus arms..three vunderful octopus arms",
-      "standard_idents": [
-        "K.CC.1",
-        "K.CC.4"
-      ],
-      "grades_range": "K-1",
-      "contribution_name": "YourSite",
-      "resource_type": "video",
-      "rating": "5"
-      "thumbnail": "http://yoursite.com/pics/awesomevideothumb.jpg"
-    }
-  ]
+  "url": "http://yoursite.com/yourawesomevideo.mp4",
+  "title": "My Awesome Counting Video",
+  "description": "Vun octopus arm, two octopus arms..three vunderful octopus arms",
+  "standard_idents": [
+    "K.CC.1",
+    "K.CC.4"
+  ],
+  "grades_range": "K-1",
+  "contribution_name": "YourSite",
+  "resource_type": "video",
+  "rating": 5
+  "image": "http://yoursite.com/pics/awesomevideothumb.jpg"
 }
 ```
 
-[Not Implemented Yet]
+[In the testing phase]
 
 Upload Resource to OpenEd
 -------------------------
@@ -679,5 +675,43 @@ returns:
       "count": 3013
     }
   ]
+}
+```
+
+OAUTH2
+======
+
+Resource Owner Password Credentials Flow
+----------------------------------------
+
+See for details http://tools.ietf.org/html/rfc6749#section-4.3
+You can use the one of Client Libraries http://oauth.net/2/
+
+Or you can try to add something using cURL
+
+Call to get access token
+
+` curl -X POST -d "client_id=[CLIENT_ID]&amp;client_secret=[CLIENT_SECRET]&amp;grant_type=password&amp;username=[USERNAME]&amp;password=[PASSWORD]" [API_ENDPOINT]/oauth/token `
+
+returns:
+
+```json
+{
+  "access_token": "[TOKEN]",
+  "token_type":"bearer",
+  "expires_in":7200,
+  "refresh_token": "[REFRESH_TOKEN]"
+}
+```
+
+Now you can add resources to catalog using access_token like this:
+
+` curl -X POST --header "Authorization: Bearer [TOKEN]" -d "url=http://example123.com/&amp;title=Test\ title" [API_ENDPOINT]/resources/add.json `
+
+if resource was added it will returns:
+
+```json
+{
+  "notice": "Resource was added successfully"
 }
 ```
