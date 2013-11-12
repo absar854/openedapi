@@ -238,7 +238,7 @@ In the body of the post method the resources hash is provided in JSON form. Each
       "contribution_name": "YourSite",
       "resource_type": "video",
       "rating": "5"
-      "thumbnail": "http://yoursite.com/pics/awesomevideothumb.jpg"
+      "image": "http://yoursite.com/pics/awesomevideothumb.jpg"
     }
 ```
 
