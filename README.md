@@ -711,7 +711,8 @@ if resource was added it will returns:
 
 ```json
 {
-  "notice": "Resource was added successfully"
+  "notice": "Resource was added successfully",
+  "id": 1
 }
 ```
 
