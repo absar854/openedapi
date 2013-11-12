@@ -675,3 +675,41 @@ returns:
   ]
 }
 ```
+
+OAUTH2
+======
+
+Resource Owner Password Credentials Flow
+----------------------------------------
+
+See for details http://tools.ietf.org/html/rfc6749#section-4.3
+You can use the one of Client Libraries http://oauth.net/2/
+
+Or you can try to add something using cURL
+
+Call to get access token
+
+` curl -X POST -d "client_id=[CLIENT_ID]&amp;client_secret=[CLIENT_SECRET]&amp;grant_type=password&amp;username=[USERNAME]&amp;password=[PASSWORD]" [API_ENDPOINT]/oauth/token `
+
+returns:
+
+```json
+{
+  "access_token": "[TOKEN]",
+  "token_type":"bearer",
+  "expires_in":7200,
+  "refresh_token": "[REFRESH_TOKEN]"
+}
+```
+
+Now you can add resources to catalog using access_token like this:
+
+` curl -X POST --header "Authorization: Bearer [TOKEN]" -d "url=http://example123.com/&amp;title=Test\ title" [API_ENDPOINT]/resources/add.json `
+
+if resource was added it will returns:
+
+```json
+{
+  "notice": "Resource was added successfully"
+}
+```
