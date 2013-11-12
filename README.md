@@ -675,3 +675,8 @@ returns:
   ]
 }
 ```
+
+APPLYING FOR AN API ACCOUNT TO USE WITH OAUTH
+=============================================
+Please send an email to api@opened.io with your existing username (e.g. email for your OpenEd account).  We will enable it for API access.
+
