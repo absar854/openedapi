@@ -221,7 +221,7 @@ In the body of the post method the resources hash is provided in JSON form. Each
 * contribution_name - your site as the contributor so we can give you credit. Defaults to OAuth username. 
 * resource_type - Either "video", "game", "assessment", or "other".  Default to "other" if it is not identified as a video
 * rating - The rating of the resource on a scale of "1" to "5" if you have one on your site 
-* image - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is either a link or hex encoded binary data.
+* image - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
 
  For example:
 
