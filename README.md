@@ -237,7 +237,7 @@ In the body of the post method the resources hash is provided in JSON form. Each
       "grades_range": "K-1",
       "contribution_name": "YourSite",
       "resource_type": "video",
-      "rating": "5"
+      "rating": "5",
       "image": "http://yoursite.com/pics/awesomevideothumb.jpg"
     }
 ```
@@ -711,7 +711,8 @@ if resource was added it will returns:
 
 ```json
 {
-  "notice": "Resource was added successfully"
+  "notice": "Resource was added successfully",
+  "id": 1
 }
 ```
 
