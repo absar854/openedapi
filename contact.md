@@ -10,9 +10,7 @@ Address
 -------
 We are located in downtown Los Gatos, below Willow Street Pizza, and steps from the Apple Store.  
 
-OpenEd
-
-20 South Santa Cruz Avenue, Suite 107
-
-Los Gatos, CA 95030
+OpenEd  
+20 South Santa Cruz Avenue, Suite 107  
+Los Gatos, CA 95030  
 
