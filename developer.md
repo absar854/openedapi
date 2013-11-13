@@ -1,5 +1,5 @@
-OPENED DEVELOPERS
-=================
+OpenEd Developer Resources
+==========================
 
 OpenEd was created to foster usage of educational resources by K-12 teachers.  Particularly resources to help teach to standards.  A great way to foster such usage and magnify the value that OpenEd is delivering is to make our API available to other ed tech developers and companies.  To that end Offers an API for resource search, contribution and standard information.  OpenEd also makes the entire OpenEd site as open source. 
 
