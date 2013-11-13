@@ -7,14 +7,14 @@ OpenEd API
 ----------
 The API allows developers to find resources based on standards or keywords.  It also allows developers to get more information on the Common Core and other standards themselves. Finally it allows developers to submit resources for consideration to the catalog.
 
-See details of the API at http://github.com/openedinc/openedapi
+See details of the API on [GitHub](http://github.com/openedinc/openedapi)
 
 To submit resources or make other changes or additions to the OpenEd catalog you will need an ID. First set up an OpenEd account with your email.  Then from that email write to api@opened.io to get authorized.  Note that the OpenEd API is rate limited to 25,000 API calls per day from a particular ID. If you need more volume please contact us. 
 
 Open Source Website
 -------------------
-OpenEd has now made its entire website available open source via MIT License. You can see it at http://github.com/openedinc/opened.io  . 
+OpenEd has now made its entire website available open source via MIT License on [GitHub](http://github.com/openedinc/opened.io). 
 
 More Information
 ----------------
-Check out the Google Group at https://groups.google.com/forum/#!forum/openedapi for breaking announcements and to provide feedback
+Check out the [Google Group](https://groups.google.com/forum/#!forum/openedapi_ for breaking announcements and to provide feedback
