@@ -17,7 +17,7 @@ OpenEd has now made its entire website available open source via MIT License on 
 
 More Information
 ----------------
-Check out the [Google Group](https://groups.google.com/forum/#!forum/openedapi_ for breaking announcements and to provide feedback
+Check out the [Google Group](https://groups.google.com/forum/#!forum/openedapi) for breaking announcements and to provide feedback
 
 Partners Using OpenEd
 ---------------------
