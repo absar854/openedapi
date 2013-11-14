@@ -22,7 +22,8 @@ Check out the [Google Group](https://groups.google.com/forum/#!forum/openedapi) 
 Partners Using OpenEd
 ---------------------
 
- [<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSfjbp0C8t5eFAUhYLD48v9Nc9O5bkTx8ag66WjMrtqHywo5UZP">](http://blendspace.com/) | offers 
+[<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSfjbp0C8t5eFAUhYLD48v9Nc9O5bkTx8ag66WjMrtqHywo5UZP">](http://blendspace.com/) | offers 
+[<img src="https://s3.amazonaws.com/edcanvas.assets/blendspace-logo.png">](http://blendspace.com/) | offers 
 search of OpenEd's catalog of resources from their interface
 [<img src="http://edcite.com/images/edciteNew175.png"/>](http://edcite.com) | searches OpenEd 
 catalog for standards (coming)
