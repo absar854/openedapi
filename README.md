@@ -119,6 +119,7 @@ will return
 
 ```json
 {
+  "meta": {"resources_total_count":19,"resources_page_count":3,"resources_per_page":3},
   "resources": [
     {
       "standard_idents": [
