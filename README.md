@@ -36,6 +36,7 @@ will return a JSON object like the following
 
 ```json
 {
+  "meta": {"resources_total_count":19,"resources_page_count":3,"resources_per_page":3},
   "resources": [
     {
       "standard_idents": [
@@ -119,7 +120,7 @@ will return
 
 ```json
 {
-  "meta": {"resources_total_count":19,"resources_page_count":3,"resources_per_page":3},
+  "meta":{"resources_total_count":6,"resources_page_count":3,"resources_per_page":3},
   "resources": [
     {
       "standard_idents": [
