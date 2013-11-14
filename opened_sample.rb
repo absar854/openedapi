@@ -1,3 +1,5 @@
 require 'rest_client'
 
-RestClient.get 'https://api.opened.io/resources.json?descriptive=Fibonacci%20sequence&limit=3'
+r=RestClient.get 'https://api.opened.io/resources.json?descriptive=Fibonacci%20sequence&limit=3'
+
+puts r["meta"]
