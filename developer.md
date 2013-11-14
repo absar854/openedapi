@@ -22,11 +22,7 @@ Check out the [Google Group](https://groups.google.com/forum/#!forum/openedapi) 
 Partners Using OpenEd
 ---------------------
 
-[<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSfjbp0C8t5eFAUhYLD48v9Nc9O5bkTx8ag66WjMrtqHywo5UZP">](http://blendspace.com/) | offers 
-[<img src="https://s3.amazonaws.com/edcanvas.assets/blendspace-logo.png">](http://blendspace.com/) | offers 
-search of OpenEd's catalog of resources from their interface
-[<img src="http://edcite.com/images/edciteNew175.png"/>](http://edcite.com) | searches OpenEd 
-catalog for standards (coming)
-[<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQLYA-fflR0XDf9-4cPoYSa5HbXmLL2KMf6Hn4KerwAP7pNYPfvlA"/>](http://nutmegeducation.com)| Nutmeg calls the OpenEd API to provide resources for particular 
-standards
-[UClass](http://uclass.org) | UClass provides their lesson plans as resources in the OpenEd catalog
+|[<img src="https://s3.amazonaws.com/edcanvas.assets/blendspace-logo.png">](http://blendspace.com/)|offers search of OpenEd's catalog of resources from their interface|  
+|[<img src="http://edcite.com/images/edciteNew175.png"/>](http://edcite.com) | searches OpenEd catalog for standards-based resources|  
+|[<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQLYA-fflR0XDf9-4cPoYSa5HbXmLL2KMf6Hn4KerwAP7pNYPfvlA"/>](http://nutmegeducation.com)| Nutmeg calls the OpenEd API to provide resources for particular standards|  
+|[UClass](http://uclass.org) | UClass provides their lesson plans as resources in the OpenEd catalog|
