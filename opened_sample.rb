@@ -1,5 +1,14 @@
 require 'rest_client'
+require 'json'
 
-r=RestClient.get 'https://api.opened.io/resources.json?descriptive=Fibonacci%20sequence&limit=3'
+phrase="Fibonacci%20sequence"
+limit=10
+response=RestClient.get 'https://api.opened.io/resources.json?descriptive=#{phrase}&limit=#{limit}'
+result=JSON.parse(result)
 
-puts r["meta"]
+p "Resources return\n=============="
+resources=result["resources"]
+resources.each do |r|
+  p "Resource: #{r['title']}: #{r['share_url']}"
+end
+
