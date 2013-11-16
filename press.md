@@ -1,4 +1,4 @@
-PRESS
+Press
 =====
 
 Although we have just recently launched there are several good articles out there about OpenEd.  

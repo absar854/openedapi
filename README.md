@@ -27,6 +27,7 @@ Find resources based on:
 * grade - restricts to specified grades (expressed as K,1, .. 12)
 * ids - comma separated list of resource IDs (will ignore all other supplied filters)
 * limit - resources to return, default to 50
+* contribution_name - the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
 
 For example:
 
