@@ -1,0 +1,55 @@
+FORMAT: 1A
+HOST: http://api.opened.io
+
+# OpenEd
+The **OpenEd API** allows you to search for educational resources based on keywords or Common Core standardsOpenEd is the world's largest educational resource catalog, currently with over 250,000 videos, games and other resources. It is the only site completely focused on aligning educational resources to standards.
+
+The **OpenEd API** lets you use the capabilities of the OpenEd engine for finding resources and providing information about educational standards (Common Core and otherwise) inside your own apps and websites.
+
+All API access is over HTTPS, and accessed from the api.opened.io domain. All data is sent and received as JSON. API calls which make changes require OAuth 2 authentication.
+
+OpenEd allows videos to be searchable with the following REST API, from any app, web or otherwise.
+
+## Manage Resources [/resources]
+
+### Search Resources [GET]
+
+Find resources based on:
+
+* descriptive - searches title, description, area_title and subject_title with Solr fulltext search
+* standard_group_id - looks for resources aligned with specified standards are in the standard_group by standard_group.id
+* category - looks for resources aligned with specified standards are in the category by category.id or category.title
+* standard - looks for resources aligned with specified standard by standard.id (the internal object ID) or standard.identifier (the Common Core ID)
+* area - looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
+* subject - looks for resources assigned with specified subject by subject.id or subject.title
+* grade - restricts to specified grades (expressed as K,1, .. 12)
+* ids - comma separated list of resource IDs (will ignore all other supplied filters)
+* limit - resources to return, default to 50
+* contribution_name - the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
+
+
++ Response 200 (application/json)
+
+        {
+        "meta": {"resources_total_count":19,"resources_page_count":3,"resources_per_page":3},
+        "resources": [
+        {
+            "standard_idents": [
+            "F.IF.3"
+            ],
+            "grades_range": "6-12",
+            "contribution_name": "PBS",
+            "description": "Apply the Fibonacci Sequence and find its relationship to a piano keyboard. Explore various relationships between music and the Fibonacci Sequence.",
+            "embeddable": false,
+            "resource_type": "other",
+            "id": 101504,
+            "thumb": "https://opened.s3.amazonaws.com/pictures/101504/thumb/pbs-logo.png?1358125703",
+            "title": "The Fibonacci Keyboard",
+            "share_url": "http://www.opened.io/#/share/101504",
+            "rating": 3,
+            "my_rating": null,
+            "safe_url": "http://www.pbs.org/jazz/classroom/fibonacci.htm"
+        }
+        ]
+        }
+        
