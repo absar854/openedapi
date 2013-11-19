@@ -11,7 +11,7 @@ All API access is over HTTPS, and accessed from the api.opened.io domain. All da
 
 OpenEd allows videos to be searchable with the following REST API, from any app, web or otherwise.
 
-# Manage Resources [/resources]
+# Manage Resources [/resources{?descriptive,category,limit}]
 
 ## Search Resources [GET]
 
@@ -28,9 +28,11 @@ Find resources based on:
 * limit - resources to return, default to 50
 * contribution_name - the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
 
-+ Request 
 
-        https://api.opened.io/resources.json?descriptive=Fibonacci%20sequence&limit=3
++ Parameters
+    + descriptive (optional, string, `Fibonacci Sequence`) ... Filters title, description, area_title and subject_title with Solr fulltext search
+    + category (optional, string) ... Looks for resources aligned with specified standards are in the category by category.id or category.title
+    + limit (optional, number) ... Maximum number of results to return.
 
 + Response 200 (application/json)
 
@@ -441,3 +443,5 @@ grade - just the standards relevant to a given grade (K-12), generally combined 
         }
         ]
         }
+        
+
