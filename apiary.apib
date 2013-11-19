@@ -274,3 +274,52 @@ It will also return a count of resources.
 * standard_group - shows all categories within a standard group
 * grade_group - restricts the categories to those associated with a specific grade group, such as Elementary (coming soon)
 * grade - restricts the categories to those associated with specific grade groups that have that grade (coming soon)
+
++ Request
+
+        http://api.opened.io/categories.json?standard_group=Common%20Core%20Math
+        
++ Response 200 (application/json)
+
+        {
+        "categories": [
+        {
+        "id": 424,
+        "title": "A Child\u2019s Place in Time and Space",
+        "grade_group": "Elementary",
+        "count": 46
+        },
+        {
+        "id": 489,
+        "title": "Biological Evolution: Unity and Diversity (K-5)",
+        "grade_group": "Elementary",
+        "count": 37
+        },
+        {
+        "id": 427,
+        "title": "California: A Changing State",
+        "grade_group": "Elementary",
+        "count": 54
+        },
+        {
+        "id": 470,
+        "title": "Civic Ideals and Practices",
+        "grade_group": "Elementary",
+        "count": 72
+        },
+        {
+        "id": 426,
+        "title": "Continuity and Change - Cultural Landscape of California, American Indians, and Impact of New Immigrants",
+        "grade_group": "Elementary",
+        "count": 55
+        },
+        {
+        "id": 260,
+        "title": "Counting and Cardinality",
+        "grade_group": "Elementary",
+        "count": 231
+        }
+        ]
+        }
+    
+
