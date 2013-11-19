@@ -10,9 +10,9 @@ All API access is over HTTPS, and accessed from the api.opened.io domain. All da
 
 OpenEd allows videos to be searchable with the following REST API, from any app, web or otherwise.
 
-## Manage Resources [/resources]
+# Manage Resources [/resources]
 
-### Search Resources [GET]
+## Search Resources [GET]
 
 Find resources based on:
 
@@ -27,29 +27,55 @@ Find resources based on:
 * limit - resources to return, default to 50
 * contribution_name - the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
 
-
 + Response 200 (application/json)
 
         {
-        "meta": {"resources_total_count":19,"resources_page_count":3,"resources_per_page":3},
         "resources": [
         {
-            "standard_idents": [
-            "F.IF.3"
-            ],
-            "grades_range": "6-12",
-            "contribution_name": "PBS",
-            "description": "Apply the Fibonacci Sequence and find its relationship to a piano keyboard. Explore various relationships between music and the Fibonacci Sequence.",
-            "embeddable": false,
-            "resource_type": "other",
-            "id": 101504,
-            "thumb": "https://opened.s3.amazonaws.com/pictures/101504/thumb/pbs-logo.png?1358125703",
-            "title": "The Fibonacci Keyboard",
-            "share_url": "http://www.opened.io/#/share/101504",
-            "rating": 3,
-            "my_rating": null,
-            "safe_url": "http://www.pbs.org/jazz/classroom/fibonacci.htm"
+        "standard_idents": [
+        "F.IF.3"
+        ],
+        "grades_range": "6-12",
+        "contribution_name": "PBS",
+        "description": "Apply the Fibonacci Sequence and find its relationship to a piano keyboard. Explore various relationships between music and the Fibonacci Sequence.",
+        "embeddable": false,
+        "resource_type": "other",
+        "id": 101504,
+        "thumb": "https://opened.s3.amazonaws.com/pictures/101504/thumb/pbs-logo.png?1358125703",            
+        "title": "The Fibonacci Keyboard",
+        "share_url": "http://www.opened.io/#/share/101504",
+        "rating": 3,
+        "my_rating": null,
+        "safe_url": "http://www.pbs.org/jazz/classroom/fibonacci.htm"
         }
         ]
         }
-        
+
+## Add Resources [POST]
+
+Attributes of resource to add. For example: 
+
++ Request (application/json)
+
+        {
+        "url": "http://yoursite.com/yourawesomevideo.mp4",
+        "title": "My Awesome Counting Video",
+        "description": "Vun octopus arm, two octopus arms..three vunderful octopus arms",
+        "standard_idents": [
+        "K.CC.1",
+        "K.CC.4"
+        ],
+        "grades_range": "K-1",
+        "contribution_name": "YourSite",
+        "resource_type": "video",
+        "rating": "5",
+        "image": "http://yoursite.com/pics/awesomevideothumb.jpg"
+        }
+       
+
++ Response 200 
+    
+
+
+
+
