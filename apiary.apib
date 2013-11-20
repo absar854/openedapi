@@ -46,22 +46,21 @@ Find resources based on these parameters:
         ]
         }
 
-## Add Resource [/resources/add.json/{url}{title}]
+## Add Resource [/resources/add.json]
 
 Add resources to the OpenEd catalog.  Based supplying following attributes:
 
-+ Parameters
-    + url (required,string,`http://yoursite.com/yourawesomevideo.mp4`)... where is the resource hosted 
-    + title (required,"My Wonderful Counting Video")... what do you want to call the resource. It doesn't have to match what you have on your site
-
+<!-- + Parameters won't take the parameters below because they aren't in URI template, but they cant be because its post-->
+<!--   + url (required,string,`http://yoursite.com/yourawesomevideo.mp4`)... where is the resource hosted -->
+<!--   + title (required,"My Wonderful Counting Video")... what do you want to call the resource. It doesn't have to match what you have on your site -->
 
 ### Make Resource [POST]
 
 + Request (application/json)
 
         {
-        "url": url,
-        "title": title,
+        "url": "http://mysite.com/myvideo.mp4",
+        "title": "Great counting video",
         }
        
 + Response 200
