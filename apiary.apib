@@ -105,9 +105,6 @@ To navigate the standards hierarchies you first need to get the list of standard
 
 Retrieve full list of standard groups 
 
-+ Request 
-
-        http://api.opened.io/standard_groups.json
 
 + Response 200 (application/json)
 
@@ -127,20 +124,15 @@ Retrieve full list of standard groups
         }
         }
         
-## Grade Groups [/grade_groups]
+## Grade Groups [/grade_groups.json{?standard_group}]
 
 ### GET
   
 Get the list of grade groups, typically for a particular standard group.
 
-Takes the following optional parameter.  
-
-* standard_group (title, `Common Core Math`) ... The title of the standard group you want grade groups for
-
-+ Request 
-
-        http://api.opened.io/grade_groups.json?standard_group=Common%20Core%20Math
-        
++Parameters
+    + standard_group (title, `Common Core Math`) ... The title of the standard group you want grade groups for
+       
 + Response 200 (application/json)
 
         {
@@ -233,20 +225,17 @@ Takes the following optional parameter.
         }
     
         
-## Categories [/categories]
+## Categories [/categories{?standard_group,grade_group,grade}]
 
 ### GET
 You can list the categories (also known as "strands") based on several criteria. 
 It will also return a count of resources.
 
-* standard_group - shows all categories within a standard group
-* grade_group - restricts the categories to those associated with a specific grade group, such as Elementary (coming soon)
-* grade - restricts the categories to those associated with specific grade groups that have that grade (coming soon)
++ Parameters
+    + standard_group (string) ... shows all categories within a standard group
+    + grade_group (string) ... restricts the categories to those associated with a specific grade group, such as Elementary (coming soon)
+    + grade(stiring) ... restricts the categories to those associated with specific grade groups that have that grade (coming soon)
 
-+ Request
-
-        http://api.opened.io/categories.json?standard_group=Common%20Core%20Math
-        
 + Response 200 (application/json)
 
         {
@@ -290,20 +279,18 @@ It will also return a count of resources.
         ]
         }
 
-## Standards [/standards]
+## Standards [/standards.json{?category,standard_group_id,grade_group,grade}]
 
 ### GET
 
 Get the list of standards with number of aligned resources based on parameters:
 
-category - just the standards for a given standard category
-standard_group_id - just the standards for a given standard group
-grade_group - just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
-grade - just the standards relevant to a given grade (K-12), generally combined with standard group or category
++Parameters 
+    + category(number,260) ... just the standards for a given standard category
+    + standard_group_id(number) ... just the standards for a given standard group
+    + grade_group(string) ... just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
+    + grade(string) ... just the standards relevant to a given grade (K-12), generally combined with standard group or category
     
-+ Request
-
-        https://api.opened.io/standards.json?category=260
 
 + Response 200 (application/json)
 
@@ -406,6 +393,87 @@ grade - just the standards relevant to a given grade (K-12), generally combined 
 
 OpenEd categorizes all resources in an area/subject taxonomy. The top level is areas such as Math and Language Arts. The next level is subject such as Geometry or Writing.
 
-##
+##  Areas [/areas.json]
+
+### GET
+
++ Response 200 (application/json)
+
+        {
+        "areas": [
+        {
+        "id": 1,
+        "title": "Mathematics",
+        "count": 7460
+        },
+        {
+        "id": 2,
+        "title": "Language Arts",
+        "count": 3929
+        },
+        {
+        "id": 3,
+        "title": "Social Studies",
+        "count": 1172
+        },
+        {
+        "id": 4,
+        "title": "Science",
+        "count": 837
+        },
+        {
+        "id": 5,
+        "title": "Other",
+        "count": 32
+        }
+        ]
+        }
+        
+## Subjects [/subjects.json{?area}]
+
+### GET
+
+Get the list of subjects based on supplied area
+
++Parameters
+    +Area(number,1)... the area you want subjects for
+    
++ Response 200
+
+        {
+        "subjects": [
+        {
+        "id": 6,
+        "title": "Measurement & Data",
+        "count": 1041
+        },
+        {
+        "id": 1,
+        "title": "Geometry",
+        "count": 1277
+        },
+        {
+        "id": 4,
+        "title": "Trigonometry",
+        "count": 84
+        },
+        {
+        "id": 3,
+        "title": "Statistics and Probability",
+        "count": 583
+        },
+        {
+        "id": 2,
+        "title": "Algebra",
+        "count": 2039
+        },
+        {
+        "id": 14,
+        "title": "Number Sense and Operations",
+        "count": 3013
+        }
+        ]
+        }
+
 
 
