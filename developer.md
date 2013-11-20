@@ -24,3 +24,6 @@ Partners Using OpenEd
 [<img src="http://edcite.com/images/edciteNew175.png"/>](http://edcite.com) - searches OpenEd catalog for standards-based resources   
 [<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQLYA-fflR0XDf9-4cPoYSa5HbXmLL2KMf6Hn4KerwAP7pNYPfvlA"/>](http://nutmegeducation.com) - Nutmeg calls the OpenEd API to provide resources for particular standards  
 [UClass](http://uclass.org) - UClass provides their lesson plans as resources in the OpenEd catalog  
+[<img src="http://www.themeefy.com/assets/img/xlogo_lp.png.pagespeed.ic.VTlOzuCKi-.png"/>](http://themeefy.com)
+[<img src="http://www.zoozil.com/images/zoozilLogo2.png"/>](http://zoozil.com)
+[<img src="https://pbs.twimg.com/profile_images/378800000664312607/69d36a9528baf2917ef10e342af2040d_bigger.png"/>](http://www.youtube.com/virtualschool)
