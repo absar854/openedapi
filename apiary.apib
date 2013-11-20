@@ -48,39 +48,32 @@ Find resources based on these parameters:
 
 ## Add Resource [/resources/add.json]
 
+- url 
+
 Add resources to the OpenEd catalog.  Based supplying following attributes:
 
-* url - where is the resource hosted - REQUIRED
-* title - what do you want to call the resource. It doesn't have to match what you have on your site - REQUIRED
-* description - more information about the resource. You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resirces
-* standard_idents - the list of standards aligned to the resource. You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
-* subjects - the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource
-* grades_range - in the form "lowgrade-highgrade", e.g. "K-4"
-* contribution_name - your site as the contributor so we can give you credit. Defaults to OAuth username.
-* resource_type - Either "video", "game", "assessment", or "other". Default to "other" if it is not identified as a video
-* rating - The rating of the resource on a scale of "1" to "5" if you have one on your site
-* image - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
++ Parameters
+    + url (required,string,"http://yoursite.com/yourawesomevideo.mp4")... where is the resource hosted 
+    + title (required,"My Wonderful Counting Video")... what do you want to call the resource. It doesn't have to match what you have on your site
+    + description (string)... more information about the resource. You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resirces
+    + standard_idents (string)... the list of standards aligned to the resource. You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
+    + subjects (string) ... the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource
+    + grades_range (string) ... in the form "lowgrade-highgrade", e.g. "K-4"
+    + contribution_name (string) ... your site as the contributor so we can give you credit. Defaults to OAuth username.
+    + resource_type (string) ... Either "video", "game", "assessment", or "other". Default to "other" if it is not identified as a video
+    + rating (string,"3") ... The rating of the resource on a scale of "1" to "5" if you have one on your site
+    + image (string)... An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
 
 ### Make Resource [POST]
 
 + Request (application/json)
 
         {
-        "url": "http://yoursite.com/yourawesomevideo.mp4",
-        "title": "My Awesome Counting Video",
-        "description": "Vun octopus arm, two octopus arms..three vunderful octopus arms",
-        "standard_idents": [
-        "K.CC.1",
-        "K.CC.4"
-        ],
-        "grades_range": "K-1",
-        "contribution_name": "YourSite",
-        "resource_type": "video",
-        "rating": "5",
-        "image": "http://yoursite.com/pics/awesomevideothumb.jpg"
+        "url": url,
+        "title": title,
         }
        
-+ Response 201 
++ Response 200
     
 ## Specific Resource [/resources/{id}.json]
 Show specified resource
