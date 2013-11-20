@@ -18,7 +18,6 @@ OpenEd allows videos to be searchable with the following REST API, from any app,
 Find resources based on:
 
 * descriptive - searches title, description, area_title and subject_title with Solr fulltext search
-* standard_group_id - looks for resources aligned with specified standards are in the standard_group by standard_group.id
 * category - looks for resources aligned with specified standards are in the category by category.id or category.title
 * standard - looks for resources aligned with specified standard by standard.id (the internal object ID) or standard.identifier (the Common Core ID)
 * area - looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
@@ -27,7 +26,6 @@ Find resources based on:
 * ids - comma separated list of resource IDs (will ignore all other supplied filters)
 * limit - resources to return, default to 50
 * contribution_name - the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
-
 
 + Parameters
     + descriptive (optional, string, `Fibonacci Sequence`) ... Filters title, description, area_title and subject_title with Solr fulltext search
