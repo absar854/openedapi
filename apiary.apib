@@ -1,0 +1,411 @@
+FORMAT: 1A
+HOST: http://api.opened.io
+
+# OpenEd
+
+OpenEd is the world's largest educational resource catalog, currently with over 250,000 videos, games and other resources. It is the only site completely focused on aligning educational resources to standards.
+
+The **OpenEd API** lets you use the capabilities of the OpenEd engine for finding resources and providing information about educational standards (Common Core and otherwise) inside your own apps and websites.
+
+All API access is over HTTPS, and accessed from the api.opened.io domain. All data is sent and received as JSON. API calls which make changes require OAuth 2 authentication.
+
+OpenEd allows videos to be searchable with the following REST API, from any app, web or otherwise.
+
+# Manage Resources [/resources.json{?descriptive,category,limit}]
+
+## Search Resources [GET]
+
+Find resources based on these parameters:
+
++ Parameters 
+    + descriptive (optional, string, `Fibonacci Sequence`) ... Filters title, description, area_title and subject_title with Solr fulltext search
+    + category (optional, string) ... Looks for resources aligned with specified standards are in the category by category.id or category.title
+    + limit (optional, number) ... Maximum number of results to return.
+
++ Response 200 (application/json)
+
+        {
+        "resources": [
+        {
+        "standard_idents": [
+        "F.IF.3"
+        ],
+        "grades_range": "6-12",
+        "contribution_name": "PBS",
+        "description": "Apply the Fibonacci Sequence and find its relationship to a piano keyboard. Explore various relationships between music and the Fibonacci Sequence.",
+        "embeddable": false,
+        "resource_type": "other",
+        "id": 101504,
+        "thumb": "https://opened.s3.amazonaws.com/pictures/101504/thumb/pbs-logo.png?1358125703",            
+        "title": "The Fibonacci Keyboard",
+        "share_url": "http://www.opened.io/#/share/101504",
+        "rating": 3,
+        "my_rating": null,
+        "safe_url": "http://www.pbs.org/jazz/classroom/fibonacci.htm"
+        }
+        ]
+        }
+
+## Add Resource [/resources/add.json]
+
+Add resources to the OpenEd catalog.  Based supplying following attributes:
+
+<!-- + Parameters won't take the parameters below because they aren't in URI template, but they cant be because its post-->
+<!--   + url (required,string,`http://yoursite.com/yourawesomevideo.mp4`)... where is the resource hosted -->
+<!--   + title (required,"My Wonderful Counting Video")... what do you want to call the resource. It doesn't have to match what you have on your site -->
+
+### Make Resource [POST]
+
++ Request (application/json)
+
+        {
+        "url": "http://mysite.com/myvideo.mp4",
+        "title": "Great counting video"
+        }
+   
+       
++ Response 200
+    
+## Specific Resource [/resources/{id}.json]
+Show specified resource
+
++ Parameters
+    + id (number, `110710`) ... An unique identifier of the resource
+
+### [GET]
++ Response 200 (application/json)
+    
+        {"resource":
+        {"standard_idents":[],"grade_idents":[],"grades_range":"",
+        "contribution_name":"History",
+        "description":"Timothy Dickinson tells the story of President Garfield's untimely death.",
+        "featured":false,
+        "embeddable":true,
+        "resource_type":"video","id":101054,
+        "thumb":"https://opened.s3.amazonaws.com/pictures/101054/thumb/101054.jpg?1379136967",
+        "title":"Death of President Garfield",
+        "share_url":"http://www.opened.io/#/share/101054","rating":3,"my_rating":null,
+        "safe_url":"http://servicesaetn-a.akamaihd.net/pservice/embed-player/?siteId=hist&tPid=21116055"}
+        }           
+        }   
+            
+# Group Standards
+
+OpenEd also allows you to search for information on standards themselves (in addition to finding resources for standards). 
+Standards are organized into "standard groups" such as "Common Core Math" and "Common Core Language Arts". 
+Within a standard group there are "grade groups" such as "Elementary" and "Middle School". 
+Each grade group has a set of "categories" (sometimes known as "strands"), such as "Geometry". 
+Within categories there are individual standards. This method of organizing standards was created by the Common Core State Standards, 
+but we use it to structure all standard groups.
+
+## Standard Groups [/standard_groups]
+To navigate the standards hierarchies you first need to get the list of standard groups.
+
+### GET
+
+Retrieve full list of standard groups 
+
++ Request 
+
+        http://api.opened.io/standard_groups.json
+
++ Response 200 (application/json)
+
+        {
+        "standard_groups": [
+        {
+        "id": 2,
+        "name": "Common Core Language Arts",
+        "title": "Common Core Language Arts",
+        "count": 3844
+        },
+        {
+        "id": 4,
+        "name": "Common Core Math",
+        "title": "Common Core Math",
+        "count": 9072
+        }
+        }
+        
+## Grade Groups [/grade_groups]
+
+### GET
+  
+Get the list of grade groups, typically for a particular standard group.
+
+Takes the following optional parameter.  
+
+* standard_group (title, `Common Core Math`) ... The title of the standard group you want grade groups for
+
++ Request 
+
+        http://api.opened.io/grade_groups.json?standard_group=Common%20Core%20Math
+        
++ Response 200 (application/json)
+
+        {
+        "grade_groups": [
+        {
+        "grade_groups": {
+        "created_at": "2012-10-02T11:41:05Z",
+        "display": "Elementary",
+        "gg_sort_key": 1,
+        "id": 46,
+        "ident": "K,1,2,3,4,5,6",
+        "name": "Elementary",
+        "standard_group_id": null,
+        "updated_at": "2013-10-11T17:57:04Z"
+        }
+        },
+        {
+        "grade_groups": {
+        "created_at": "2012-10-02T11:41:06Z",
+        "display": "Middle School",
+        "gg_sort_key": 2,
+        "id": 47,
+        "ident": "6,7,8,6-8",
+        "name": "Middle School",
+        "standard_group_id": null,
+        "updated_at": "2013-10-11T17:57:04Z"
+        }
+        },
+        {
+        "grade_groups": {
+        "created_at": "2012-10-02T11:41:22Z",
+        "display": "High School: Algebra",
+        "gg_sort_key": null,
+        "id": 49,
+        "ident": "A",
+        "name": "High School: Algebra",
+        "standard_group_id": null,
+        "updated_at": "2012-12-09T17:15:29Z"
+        }
+        },
+        {
+        "grade_groups": {
+        "created_at": "2012-10-02T11:41:22Z",
+        "display": "High School: Functions",
+        "gg_sort_key": null,
+        "id": 50,
+        "ident": "F",
+        "name": "High School: Functions",
+        "standard_group_id": null,
+        "updated_at": "2012-12-09T17:16:22Z"
+        }
+        },
+        {
+        "grade_groups": {
+        "created_at": "2012-10-02T11:41:22Z",
+        "display": "High School: Geometry",
+        "gg_sort_key": null,
+        "id": 51,
+        "ident": "G",
+        "name": "High School: Geometry",
+        "standard_group_id": null,
+        "updated_at": "2012-12-09T17:16:12Z"
+        }
+        },
+        {
+        "grade_groups": {
+        "created_at": "2012-10-02T11:41:23Z",
+        "display": "High School: Number and Quantity",
+        "gg_sort_key": null,
+        "id": 52,
+        "ident": "NQ",
+        "name": "High School: Number and Quantity",
+        "standard_group_id": null,
+        "updated_at": "2013-02-13T15:57:48Z"
+        }
+        },
+        {
+        "grade_groups": {
+        "created_at": "2012-10-02T11:41:23Z",
+        "display": "High School: Statistics & Probability ",
+        "gg_sort_key": null,
+        "id": 53,
+        "ident": "SP",
+        "name": "High School: Statistics & Probability ",
+        "standard_group_id": null,
+        "updated_at": "2013-02-13T15:53:28Z"
+        }
+        }
+        ]
+        }
+    
+        
+## Categories [/categories]
+
+### GET
+You can list the categories (also known as "strands") based on several criteria. 
+It will also return a count of resources.
+
+* standard_group - shows all categories within a standard group
+* grade_group - restricts the categories to those associated with a specific grade group, such as Elementary (coming soon)
+* grade - restricts the categories to those associated with specific grade groups that have that grade (coming soon)
+
++ Request
+
+        http://api.opened.io/categories.json?standard_group=Common%20Core%20Math
+        
++ Response 200 (application/json)
+
+        {
+        "categories": [
+        {
+        "id": 424,
+        "title": "A Child\u2019s Place in Time and Space",
+        "grade_group": "Elementary",
+        "count": 46
+        },
+        {
+        "id": 489,
+        "title": "Biological Evolution: Unity and Diversity (K-5)",
+        "grade_group": "Elementary",
+        "count": 37
+        },
+        {
+        "id": 427,
+        "title": "California: A Changing State",
+        "grade_group": "Elementary",
+        "count": 54
+        },
+        {
+        "id": 470,
+        "title": "Civic Ideals and Practices",
+        "grade_group": "Elementary",
+        "count": 72
+        },
+        {
+        "id": 426,
+        "title": "Continuity and Change - Cultural Landscape of California, American Indians, and Impact of New Immigrants",
+        "grade_group": "Elementary",
+        "count": 55
+        },
+        {
+        "id": 260,
+        "title": "Counting and Cardinality",
+        "grade_group": "Elementary",
+        "count": 231
+        }
+        ]
+        }
+
+## Standards [/standards]
+
+### GET
+
+Get the list of standards with number of aligned resources based on parameters:
+
+category - just the standards for a given standard category
+standard_group_id - just the standards for a given standard group
+grade_group - just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
+grade - just the standards relevant to a given grade (K-12), generally combined with standard group or category
+    
++ Request
+
+        https://api.opened.io/standards.json?category=260
+
++ Response 200 (application/json)
+
+        {
+        "standards": [
+        {
+        "id": 21461,
+        "identifier": "K.CC.1",
+        "title": "Count to 100 by ones and by tens.",
+        "description": "Count to 100 by ones and by tens.",
+        "key_words": "counting,numbers,digits,count by tens, count by ones, count to 100, k.cc.1\r\n",
+        "more_information": "",
+        "count": 128
+        },
+        {
+        "id": 20916,
+        "identifier": "K.CC.2",
+        "title": "Count forward beginning from a given number within the known sequence (instead of having to begin at 1).",
+        "description": "Count forward beginning from a given number within the known sequence (instead of having to begin at 1).",
+        "key_words": "counting,count forward, numbers, count, k.cc.2",
+        "more_information": "",
+        "count": 47
+        },
+        {
+        "id": 20917,
+        "identifier": "K.CC.3",
+        "title": "Write numbers from 0 to 20. Represent a number of objects with a written numeral 0-20 (with 0 representing a count of no objects).",
+        "description": "Write numbers from 0 to 20. Represent a number of objects with a written numeral 0-20 (with 0 representing a count of no objects).",
+        "key_words": "write numbers, make numbers, count, 0-20, count, number, k.cc.3",
+        "more_information": "",
+        "count": 32
+        },
+        {
+        "id": 20918,
+        "identifier": "K.CC.4",
+        "title": "Understand the relationship between numbers and quantities; connect counting to cardinality.",
+        "description": "Understand the relationship between numbers and quantities; connect counting to cardinality.",
+        "key_words": "number, quantity, counting, cardinality, count objects, k.cc.4",
+        "more_information": "",
+        "count": 91
+        },
+        {
+        "id": 21484,
+        "identifier": "K.CC.4.a",
+        "title": "When counting objects, say the number names in the standard order, pairing each object with one and only one number name and each number name with one and only one object.",
+        "description": "When counting objects, say the number names in the standard order, pairing each object with one and only one number name and each number name with one and only one object.",
+        "key_words": "count, counting, count objects, number, name numbers, match numbers, k.cc.4a, k.cc.4.a",
+        "more_information": "Students implement correct counting procedures by pointing to one object at a time (one-to-one correspondence), using one counting word for every object.",
+        "count": 43
+        },
+        {
+        "id": 20920,
+        "identifier": "K.CC.4.b",
+        "title": "Understand that the last number name said tells the number of objects counted. The number of objects is the same regardless of their arrangement or the order in which they were counted.",
+        "description": "Understand that the last number name said tells the number of objects counted. The number of objects is the same regardless of their arrangement or the order in which they were counted.",
+        "key_words": "counting, count, count objects, how many are there, how many, k.cc.4.b, k.cc.4b",
+        "more_information": "Students implement correct counting procedures by pointing to one object at a time (one-to-one correspondence), using one counting word for every object (synchrony/ one-to-one tagging), while keeping track of objects that have and have not been counted.",
+        "count": 39
+        },
+        {
+        "id": 20921,
+        "identifier": "K.CC.4.c",
+        "title": "Understand that each successive number name refers to a quantity that is one larger.",
+        "description": "Understand that each successive number name refers to a quantity that is one larger.",
+        "key_words": "count, counting, numbers, count objects, add 1, plus 1, 1 more, inclusion, successive number",
+        "more_information": "Students should know that if they have three objects, that in order to make four, they do not need to start all over again. Students should also be able to answer \"How many would you have if we added one more?\"",
+        "count": 30
+        },
+        {
+        "id": 8941,
+        "identifier": "K.CC.5",
+        "title": "Count to answer \u201chow many?\u201d questions about as many as 20 things arranged in a line, a rectangular array, or a circle, or as many as 10 things in a scattered configuration; given a number from 1\u201320, count out that many objects.",
+        "description": "Count to answer \u201chow many?\u201d questions about as many as 20 things arranged in a line, a rectangular array, or a circle, or as many as 10 things in a scattered configuration; given a number from 1\u201320, count out that many objects.",
+        "key_words": "count objects, count, counting, count 0-20, how many, count to 20, K.CC.5",
+        "more_information": "Students should be able to count objects using strategies like touching, moving or lining them up.",
+        "count": 65
+        },
+        {
+        "id": 8942,
+        "identifier": "K.CC.6",
+        "title": "Identify whether the number of objects in one group is greater than, less than, or equal to the number of objects in another group, e.g., by using matching and counting strategies.",
+        "description": "Identify whether the number of objects in one group is greater than, less than, or equal to the number of objects in another group, e.g., by using matching and counting strategies.",
+        "key_words": "comparing numbers, counting, count, compare, more or less, compare, k.cc.6",
+        "more_information": "Students use their counting ability to compare sets of objects (0-10). ",
+        "count": 24
+        },
+        {
+        "id": 8943,
+        "identifier": "K.CC.7",
+        "title": "Compare two numbers between 1 and 10 presented as written numerals.",
+        "description": "Compare two numbers between 1 and 10 presented as written numerals.",
+        "key_words": "comparing numbers, compare, numbers, more or less, compare numerals, written numbers, k.cc.7",
+        "more_information": "Comparing written numbers only, not objects.",
+        "count": 14
+        }
+        ]
+        }
+        
+# Group Area and Subject Taxonomy
+
+OpenEd categorizes all resources in an area/subject taxonomy. The top level is areas such as Math and Language Arts. The next level is subject such as Geometry or Writing.
+
+##
+
+
