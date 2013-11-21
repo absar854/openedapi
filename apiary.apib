@@ -11,9 +11,11 @@ All API access is over HTTPS, and accessed from the api.opened.io domain. All da
 
 OpenEd allows videos to be searchable with the following REST API, from any app, web or otherwise.
 
-# Manage Resources [/resources.json{?descriptive,category,limit}]
+# Group Resources
 
-## Search Resources [GET]
+## Search Resource [/resources.json{?descriptive,category,limit}]
+
+### GET 
 
 Find resources based on these parameters:
 
@@ -59,7 +61,7 @@ Add resources to the OpenEd catalog.  Based on supplying following attributes:
 <!--  + url (required,string,`http://yoursite.com/yourawesomevideo.mp4`)... where is the resource hosted -->
 <!--  + title (required,"My Wonderful Counting Video")... what do you want to call the resource. It doesn't have to match what you have on your site-->
 
-### Make Resource [POST]
+### [POST]
 
 + Request (application/json)
 
@@ -69,8 +71,10 @@ Add resources to the OpenEd catalog.  Based on supplying following attributes:
         }
        
 + Response 200
+
     
 ## Specific Resource [/resources/{id}.json]
+
 Show specified resource
 
 + Parameters
