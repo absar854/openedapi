@@ -73,6 +73,7 @@ Partners Using OpenEd
     </div>
     <div class="caption">
       <h3>Themeefy</h3>
+      <p>Themeefy uses the OpenEd API to access OpenEd's catalog resources as a premium feature for their users. </p>
     </div>
   </li>
   <li class="span7">
@@ -83,6 +84,7 @@ Partners Using OpenEd
     </div>
     <div class="caption">
       <h3>Zoozil</h3>
+      <p>Zoozil Media exposes their reading-related resources on OpenEd by contributing their resources to the OpenEd catalog via the API</p>
     </div>      
   </li>
   <li class="span7">
@@ -93,6 +95,8 @@ Partners Using OpenEd
     </div>
     <div class="caption">
       <h3>FuseSchool</h3>
+      <p>UK-based FuseSchool is contributing their 3000 STEM resources to the OpenEd catalog via the OpenEd API
     </div>
   </li>
 </ul>
+
