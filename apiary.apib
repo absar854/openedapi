@@ -184,7 +184,7 @@ Retrieve full list of standard groups
 Get the list of grade groups, typically for a particular standard group.
 
 +Parameters
-    + standard_group (title, `Common Core Math`) ... The title of the standard group you want grade groups for
+    + standard_group (optional, title, `Common Core Math`) ... The title of the standard group you want grade groups for
        
 + Response 200 (application/json)
 
@@ -285,9 +285,9 @@ You can list the categories (also known as "strands") based on several criteria.
 It will also return a count of resources.
 
 + Parameters
-    + standard_group (string) ... shows all categories within a standard group
-    + grade_group (string) ... restricts the categories to those associated with a specific grade group, such as Elementary (coming soon)
-    + grade(stiring) ... restricts the categories to those associated with specific grade groups that have that grade (coming soon)
+    + standard_group (optional, string) ... shows all categories within a standard group
+    + grade_group (optional, string) ... restricts the categories to those associated with a specific grade group, such as Elementary (coming soon)
+    + grade(optional, string) ... restricts the categories to those associated with specific grade groups that have that grade (coming soon)
 
 + Response 200 (application/json)
 
@@ -339,10 +339,10 @@ It will also return a count of resources.
 Get the list of standards with number of aligned resources based on parameters:
 
 +Parameters 
-    + category(number,260) ... just the standards for a given standard category
-    + standard_group_id(number) ... just the standards for a given standard group
-    + grade_group(string) ... just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
-    + grade(string) ... just the standards relevant to a given grade (K-12), generally combined with standard group or category
+    + category(optional, number,260) ... just the standards for a given standard category
+    + standard_group_id(optional, number) ... just the standards for a given standard group
+    + grade_group(optional, string) ... just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
+    + grade(optional, string) ... just the standards relevant to a given grade (K-12), generally combined with standard group or category
     
 
 + Response 200 (application/json)
