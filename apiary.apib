@@ -121,13 +121,12 @@ Each grade group has a set of "categories" (sometimes known as "strands"), such 
 Within categories there are individual standards. This method of organizing standards was created by the Common Core State Standards, 
 but we use it to structure all standard groups.
 
-## Standard Groups [/standard_groups]
+## Standard Groups [/standard_groups.json]
 To navigate the standards hierarchies you first need to get the list of standard groups.
 
 ### GET
 
 Retrieve full list of standard groups 
-
 
 + Response 200 (application/json)
 
@@ -145,6 +144,7 @@ Retrieve full list of standard groups
         "title": "Common Core Math",
         "count": 9072
         }
+        ]
         }
         
 ## Grade Groups [/grade_groups.json{?standard_group}]
@@ -248,7 +248,7 @@ Get the list of grade groups, typically for a particular standard group.
         }
     
         
-## Categories [/categories{?standard_group,grade_group,grade}]
+## Categories [/categories.json{?standard_group,grade_group,grade}]
 
 ### GET
 You can list the categories (also known as "strands") based on several criteria. 
