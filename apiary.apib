@@ -20,7 +20,7 @@ OpenEd allows videos to be searchable with the following REST API, from any app,
 Find resources based on:
 
 + Parameters 
-    + descriptive (optional, string, `3D%20shapes`) ... Filters title, description, area_title and subject_title with Solr fulltext search
+    + descriptive (optional, string, `3D`) ... Filters title, description, area_title and subject_title with Solr fulltext search
     + limit (optional, number,`1`) ... Maximum number of results to return.
     + standard_group_id (optional,number,`4`) ... looks for resources aligned with specified standards in the standard_group by standard_groups ID
     + category (optional,string,`Geometry%20%28Elementary%29`) ...  looks for resources aligned with specified standards are in the category by category.id or category.title
@@ -32,32 +32,18 @@ Find resources based on:
     
 + Response 200 (application/json; charset=utf-8)
 
-        {
-            "meta": 
-            {
-                "resources_total_count": 19,
-                "resources_page_count": 1,
-                "resources_per_page": 1
-            },
-            "resources": 
-            [
-                {
-                    "standard_idents": ["F.IF.3"],
-                    "grade_idents": [ "6", "7", "8", "9", "10","11","12"],
-                    "grades_range": "6-12",
-                    "contribution_name": "PBS",
-                    "description": "Apply the Fibonacci Sequence and find its relationship to a piano keyboard. Explore various relationships between music and the Fibonacci Sequence.",
-                    "featured": "false",
-                    "embeddable": "false",
-                    "resource_type": "other",
-                    "id": 101504,
-                    "thumb": "https://opened.s3.amazonaws.com/pictures/101504/thumb/pbs-logo.png?1358125703",
-                    "title": "The Fibonacci Keyboard",
-                    "share_url": "http://www.opened.io/#/share/101504",
-                    "rating": 3,
-                    "my_rating": "null",
-                    "safe_url": "http://www.pbs.org/jazz/classroom/fibonacci.htm"
-                }
+        {"meta":
+            {"resources_total_count":1,"resources_page_count":1,"resources_per_page":1},
+            "resources":[
+                {"standard_idents":["K.G.2","K.G.3"],"grade_idents":["K","1","2","3","4","5"],"grades_range":"K-5",
+                "contribution_name":"YouTube",
+                "description":"Mr. Smith sings a cute song to teach kids 3D shapes. He helps build real world connections while students learn the cube, rectangular prism, cylinder, sphere, and pyramid. This is a good resource to help introduce and/or review this important skill.",
+                "featured":false,"embeddable":true,"resource_type":"video","id":178375,
+                "thumb":"https://opened.s3.amazonaws.com/pictures/178375/thumb/default.jpg?1359909018",
+                "title":"Teacher Tipster-3D Shapes Song-Teaching 3 Dimensional Shapes",
+                "share_url":"http://www.opened.io/#/share/178375","rating":4,
+                "my_rating":null,
+                "safe_url":"https://www.youtube.com/watch?v=2PiRhCwzg5E"}
             ]
         }
 
