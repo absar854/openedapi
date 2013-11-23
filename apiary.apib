@@ -22,13 +22,13 @@ Find resources based on:
 + Parameters 
     + descriptive (optional, string, `Fibonacci Sequence`) ... Filters title, description, area_title and subject_title with Solr fulltext search
     + limit (optional, number,`1`) ... Maximum number of results to return.
-    + standard_group_id (optional,number,`2`) ... looks for resources aligned with specified standards in the standard_group by standard_groups ID
-    + category (optional,string,`Counting and Cardinality`) ...  looks for resources aligned with specified standards are in the category by category.id or category.title
-    + standard (optional,string,`K.CC.1`) ... looks for resources aligned with specified standard by standard.id (the internal object ID) or standard.identifier (the Common Core ID)
+    + standard_group_id (optional,number,`4`) ... looks for resources aligned with specified standards in the standard_group by standard_groups ID
+    + category (optional,string,`Geometry%20%28Elementary%29`) ...  looks for resources aligned with specified standards are in the category by category.id or category.title
+    + standard (optional,string,`K.G.2`) ... looks for resources aligned with specified standard by standard.id (the internal object ID) or standard.identifier (the Common Core ID)
     + area (optional,string`Math`) ... looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
     + subject (optional,string`Geometry`) ... looks for resources assigned with specified subject by subject.id or subject.title
     + grade (optional,string,`K`) ... restricts to specified grades (expressed as K,1, .. 12)
-    + contribution_name (optional,string,`KhanAcademy`) ...  the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
+    + contribution_name (optional,string,`YouTube`) ...  the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
     
 + Response 200 (application/json; charset=utf-8)
 
