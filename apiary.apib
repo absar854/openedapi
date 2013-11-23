@@ -107,7 +107,7 @@ To navigate the standards hierarchies you first need to get the list of standard
 
 Retrieve full list of standard groups 
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
             "standard_groups": [
@@ -167,7 +167,7 @@ Get the list of grade groups, typically for a particular standard group.
 + Parameters
     + standard_group (optional, title, `Common Core Math`) ... The title of the standard group you want grade groups for
        
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
         "grade_groups": [
@@ -269,7 +269,7 @@ It will also return a count of resources.
     + standard_group (optional, string, `Common Core Math`) ... shows all categories within a standard group
     + grade_group (optional, string, `Elementary`) ... restricts the categories to those associated with a specific grade group, such as Elementary (coming soon)
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
         "categories": [
@@ -631,7 +631,7 @@ Get the list of standards with number of aligned resources based on parameters:
     + grade(optional, string) ... just the standards relevant to a given grade (K-12), generally combined with standard group or category
     
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
         "standards": [
@@ -736,7 +736,7 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
 
 ### GET
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
         "areas": [
@@ -777,7 +777,7 @@ Get the list of subjects based on supplied area
 +Parameters
     +Area(number,1)... the area you want subjects for
     
-+ Response 200
++ Response 200 (application/json; charset=utf-8)
 
         {
         "subjects": [
