@@ -708,7 +708,7 @@ returns:
 
 Now you can add resources to catalog using access_token like this:
 
-` curl -X POST --header "Authorization: Bearer [TOKEN]" -d "url=http://example123.com/&amp;title=Test\ title" [API_ENDPOINT]/resources/add.json `
+` curl -X POST --header "Authorization: Bearer [TOKEN]" -d "url=http://mysite.com/myvideo.mp4&title=My%20Cool%20Video" https://api.opened.io/resources/add.json `
 
 if resource was added it will returns:
 
