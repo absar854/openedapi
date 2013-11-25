@@ -5,7 +5,7 @@ OpenEd was created to foster usage of educational resources by K-12 teachers.  P
 
 OpenEd API
 ----------
-The API allows developers to find resources based on standards or keywords.  It also allows developers to get more information on the Common Core and other standards themselves. Finally it allows developers to submit resources for consideration to the catalog. You can see details of the API on [GitHub](http://github.com/openedinc/openedapi)
+The API allows developers to find resources based on standards or keywords.  It also allows developers to get more information on the Common Core and other standards themselves. Finally it allows developers to submit resources for consideration to the catalog. You can see details of the API on [Apiary](http://docs.apiary.opened.io)
 
 To submit resources or make other changes or additions to the OpenEd catalog you will need an ID. First set up an OpenEd account with your email.  Then from that email write to api@opened.io to get authorized.  Note that the OpenEd API is rate limited to 25,000 API calls per day from a particular ID. If you need more volume please [contact us](mailto:api@opened.io). 
 
