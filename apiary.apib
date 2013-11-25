@@ -90,23 +90,30 @@ You will need to use OAuth to supply post resources.  Write to use at api@opened
         }
 
 ### [POST]
+Now use the [TOKEN] you received received to submit your resource as shown.  
 
 + Request (application/json)
 
-        {
-            "url": "http://yoursite.com/yourawesomevideo.mp4",
-            "title": "My Awesome Counting Video",
-            "description": "Vun octopus arm, two octopus arms..three vunderful octopus arms",
-            "standard_idents": [
-            "K.CC.1",
-            "K.CC.4"
-            ],
-            "grades_range": "K-1",
-            "contribution_name": "YourSite",
-            "resource_type": "video",
-            "rating": "5",
-            "image": "http://yoursite.com/pics/awesomevideothumb.jpg"
-        }
+    + Headers
+    
+            Authorization: Bearer [TOKEN]
+            
+    + Body
+        
+            {
+                "url": "http://yoursite.com/yourawesomevideo.mp4",
+                "title": "My Awesome Counting Video",
+                "description": "Vun octopus arm, two octopus arms..three vunderful octopus arms",
+                "standard_idents": [
+                "K.CC.1",
+                "K.CC.4"
+                ],
+                "grades_range": "K-1",
+                "contribution_name": "YourSite",
+                "resource_type": "video",
+                "rating": "5",
+                "image": "http://yoursite.com/pics/awesomevideothumb.jpg"
+            }
        
 + Response 200
 
