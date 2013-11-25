@@ -51,17 +51,18 @@ Find resources based on:
             ]
         }
 
-## OAuth Request for Adding Resources [/resources/]
+## OAuth Request for Adding Resources [/oauth/token]
 
-### Request Token [POST]
+### Request Access Token [POST]
 You will need to use OAuth to supply post resources.  Write to us at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret.
   
 + Request (application/json)
 
         {
+            "grant_type": "password",
             "client_id": [CLIENT_ID],
             "client_secret": [CLIENT_SECRET],
-            "grant_type": "password",
+            "password": "password",
             "username": [YOUREMAIL]
         }
 
