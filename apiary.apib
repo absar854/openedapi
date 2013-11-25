@@ -51,9 +51,34 @@ Find resources based on:
             ]
         }
 
+## OAuth Request for Adding Resources [/resources/]
+
+### Request Token [POST]
+You will need to use OAuth to supply post resources.  Write to us at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret.
+  
++ Request (application/json)
+
+        {
+            "client_id": [CLIENT_ID],
+            "client_secret": [CLIENT_SECRET],
+            "grant_type": "password",
+            "username": [YOUREMAIL]
+        }
+
++ Response 200
+
+        {
+            "access_token": "[TOKEN]",
+            "token_type":"bearer",
+            "expires_in":7200,
+            "refresh_token": "[REFRESH_TOKEN]"
+        }
+
+
 ## Add Resource [/resources/add.json]
 
 Add resources to the OpenEd catalog, based on supplying following attributes:
+
 * url - where is the resource hosted - REQUIRED
 * title - what do you want to call the resource. It doesn't have to match what you have on your site - REQUIRED
 * description - more information about the resource. You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resirces
@@ -70,24 +95,6 @@ Add resources to the OpenEd catalog, based on supplying following attributes:
 <!--  + url (required,string,`http://yoursite.com/yourawesomevideo.mp4`)... where is the resource hosted -->
 <!--  + title (required,"My Wonderful Counting Video")... what do you want to call the resource. It doesn't have to match what you have on your site-->
 
-### Using OAuth [POST[
-You will need to use OAuth to supply post resources.  Write to use at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret.
-+ Request (application/json)
-        {
-            "client_id": [CLIENT_ID],
-            "client_secret": [CLIENT_SECRET],
-            "grant_type": "password",
-            "username": [YOUREMAIL]
-        }
-
-+ Response 200
-
-        {
-            "access_token": "[TOKEN]",
-            "token_type":"bearer",
-            "expires_in":7200,
-            "refresh_token": "[REFRESH_TOKEN]"
-        }
 
 ### [POST]
 Now use the [TOKEN] you received received to submit your resource as shown.  
