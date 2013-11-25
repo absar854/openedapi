@@ -693,7 +693,11 @@ Or you can try to add something using cURL
 
 Call to get access token
 
-` curl -X POST -d "client_id=[CLIENT_ID]&amp;client_secret=[CLIENT_SECRET]&amp;grant_type=password&amp;username=[USERNAME]&amp;password=[PASSWORD]" [API_ENDPOINT]/oauth/token `
+```
+curl [API_ENDPOINT]/oauth/token \
+-X POST \
+-d 'grant_type=password&client_id=[CLIENT_ID]&client_secret=[CLIENT_SECRET]&username=[USERNAME]&password=[PASSWORD]'
+```
 
 returns:
 
@@ -708,10 +712,11 @@ returns:
 
 Now you can add resources to catalog using access_token like this:
 
-```json
-curl -X POST --header "Authorization: Bearer [TOKEN]" 
--d "url=http://mysite.com/myvideo.mp4&title=My%20Cool%20Video" 
-https://api.opened.io/resources/add.json
+```
+curl [API_ENDPOINT]/resources/add.json \
+-X POST \
+-H "Authorization: Bearer [TOKEN]" \ 
+-d 'url=http://mysite.com/myvideo.mp4&title=My Cool Video'
 ```
 
 if resource was added it will returns:
