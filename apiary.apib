@@ -7,9 +7,12 @@ OpenEd is the world's largest educational resource catalog, currently with over 
 
 The **OpenEd API** lets you use the capabilities of the OpenEd engine for finding resources and providing information about educational standards (Common Core and otherwise) inside your own apps and websites.
 
-All API access is over HTTPS, and accessed from the api.opened.io domain. All data is sent and received as JSON. API calls which make changes require OAuth 2 authentication.
+All API access is over HTTPS, and accessed from the https://opened.apiary.io host. All data is sent and received as JSON. 
 
-OpenEd allows videos to be searchable with the following REST API, from any app, web or otherwise.
+API calls which make changes (currently just resource add) require OAuth2 authentication. Write to us at api@opened.io to receive an OAuth credentials. Usage of OAuth is described below.
+
+The **OpenEd API** focuses on searching and adding resources, getting information on standards, and managing OpenEd's own area/subject taxonomy.  These are all documented below. Please leave us
+any feedback or questions right here on Apiary pages or on the [OpenEd API Google Group](https://groups.google.com/forum/#!forum/openedapi)
 
 # Group Resources
 
@@ -51,17 +54,18 @@ Find resources based on:
             ]
         }
 
-## OAuth Request for Adding Resources [/resources/]
+## OAuth Request for Adding Resources [/oauth/token]
 
-### Request Token [POST]
+### Request Access Token [POST]
 You will need to use OAuth to supply post resources.  Write to us at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret.
   
 + Request (application/json)
 
         {
+            "grant_type": "password",
             "client_id": [CLIENT_ID],
             "client_secret": [CLIENT_SECRET],
-            "grant_type": "password",
+            "password": "password",
             "username": [YOUREMAIL]
         }
 
@@ -792,5 +796,30 @@ Get the list of subjects based on supplied area
         ]
         }
 
+# Group API Commons 
 
+## Manifest
 
+Here is the API Commons Manifest for the OpenEd API.
+
+    {
+        "apis": [
+            {
+                "name": "OpenEd API",
+                "description": "Search for resources for standards or by topic.  Get information on standards.  Get information on our area/subject taxonomy of resources.",
+                "image": "https://pbs.twimg.com/profile_images/378800000580251314/04fe1856596c096c1b5da337946aba45_bigger.png",
+                "keywords": "ed tech, resources, videos, games, K-12, flipped classroom, Common Core",
+                "license": "http://opensource.org/licenses/MIT",
+                "attribution": "OpenEd, Inc.",
+                "url": "http://docs.opened.apiary.io",
+                "definitions": [
+                    {
+                        "type": "[API Blueprint]",
+                        "url": "https://github.com/apiaryio/api-blueprint"
+                    }
+                ]
+            }
+        ],
+        "tags": "api-commons-manifest",
+        "updated": "11/30/2013"
+    }
