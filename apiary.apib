@@ -16,7 +16,7 @@ any feedback or questions right here on Apiary pages or on the [OpenEd API Googl
 
 # Group Resources
 
-## Search Resource [/resources.json{?descriptive,limit,standard_group_id,category,standard,area,subject,grade,contribution_name}]
+## Search Resource [/resources.json{?descriptive,limit,offset,standard_group,category,standard,area,subject,grade,grade_group,contribution_name}]
 
 ### GET
 
@@ -24,26 +24,30 @@ Find resources based on:
 
 + Parameters 
     + descriptive (optional, string, `3D`) ... Filters title, description, area_title and subject_title with Solr fulltext search
-    + limit (optional, number,`1`) ... Maximum number of results to return.
-    + standard_group_id (optional,number,`4`) ... looks for resources aligned with specified standards in the standard_group by standard_groups ID
+    + limit (optional, number,`1`) ... Maximum number of results to return (1..100, 50 by default).
+    + offset (optional, number,`0`) ... 0 by default.
+    + standard_group (optional,number,`4`) ... looks for resources aligned with specified standards in the standard_group by standard_groups ID
     + category (optional,string,`Geometry%20%28Elementary%29`) ...  looks for resources aligned with specified standards are in the category by category.id or category.title
     + standard (optional,string,`K.G.2`) ... looks for resources aligned with specified standard by standard.id (the internal object ID) or standard.identifier (the Common Core ID)
-    + area (optional,string`Math`) ... looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
-    + subject (optional,string`Geometry`) ... looks for resources assigned with specified subject by subject.id or subject.title
+    + area (optional,string,`Math`) ... looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
+    + subject (optional,string,`Geometry`) ... looks for resources assigned with specified subject by subject.id or subject.title
     + grade (optional,string,`K`) ... restricts to specified grades (expressed as K,1, .. 12)
+    + grade_group (optional,string,`Elementary`) ... restricts to specified grade_group (e.g. "Elementary", "Middle School", "High School")
     + contribution_name (optional,string) ...  the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
     
 + Response 200 (application/json; charset=utf-8)
 
         {"meta":
-            {"resources_total_count":1,"resources_page_count":1,"resources_per_page":1},
+            pagination":{"offset":0, "total_entries":258213, "entries":1, "limit":1},
             "resources":[
                 {"standard_idents":["K.G.2","K.G.3"],
                 "grade_idents":["K","1","2","3","4","5"],
                 "grades_range":"K-5",
                 "contribution_name":"YouTube",
                 "description":"Mr. Smith sings a cute song to teach kids 3D shapes. He helps build real world connections while students learn the cube, rectangular prism, cylinder, sphere, and pyramid. This is a good resource to help introduce and/or review this important skill.",
-                "featured":false,"embeddable":true,"resource_type":"video",
+                "featured":false,
+                "embeddable":true,
+                "resource_type":"video",
                 "id":178375,
                 "thumb":"https://opened.s3.amazonaws.com/pictures/178375/thumb/default.jpg?1359909018",
                 "title":"Teacher Tipster-3D Shapes Song-Teaching 3 Dimensional Shapes",
@@ -249,7 +253,7 @@ It will also return a count of resources.
 
 + Parameters
     + standard_group (optional, string, `Common Core Math`) ... shows all categories within a standard group
-    + grade_group (optional, string, `Elementary`) ... restricts the categories to those associated with a specific grade group, such as Elementary (coming soon)
+    + grade_group (optional, string, `Elementary`) ... restricts the categories to those associated with a specific grade group, such as Elementary
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -608,7 +612,7 @@ Get the list of standards with number of aligned resources based on parameters:
 
 +Parameters 
     + category(optional, number,260) ... just the standards for a given standard category
-    + standard_group_id(optional, number) ... just the standards for a given standard group
+    + standard_group(optional, number) ... just the standards for a given standard group
     + grade_group(optional, string) ... just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
     + grade(optional, string) ... just the standards relevant to a given grade (K-12), generally combined with standard group or category
     
