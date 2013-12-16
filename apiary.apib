@@ -61,33 +61,8 @@ Find resources based on:
 ## OAuth Request for Adding Resources [/oauth/token]
 
 ### Request Access Token [POST]
-You will need to use OAuth to supply post resources.  Write to us at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret.
 
-    curl http://opened.apiary.io/oauth/token \
-    -X POST \
-    -d 'grant_type=password&client_id=[CLIENT_ID]&client_secret=[CLIENT_SECRET]&username=[USERNAME]&password=[PASSWORD]'
-
-returns:
-
-{
-  "access_token": "[TOKEN]",
-  "token_type":"bearer",
-  "expires_in":7200,
-  "refresh_token": "[REFRESH_TOKEN]"
-}
-Now you can add resources to catalog using access_token like this:
-
-curl [API_ENDPOINT]/resources/add.json \
--X POST \
--H "Authorization: Bearer [TOKEN]" \ 
--d 'url=http://mysite.com/myvideo.mp4&title=My Cool Video'
-if resource was added it will returns:
-
-{
-  "notice": "Resource was added successfully",
-  "id": 1
-}
-
+You will need to use OAuth to supply post resources.  Write to us at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret. Use this as shown in the following call in order to retrieve a token. 
   
 + Request (application/json)
 
@@ -95,9 +70,11 @@ if resource was added it will returns:
             "grant_type": "password",
             "client_id": [CLIENT_ID],
             "client_secret": [CLIENT_SECRET],
-            "password": "password",
+            "password": [YOURPASSWORD],
             "username": [YOUREMAIL]
         }
+        
+        
 
 + Response 200
 
@@ -158,6 +135,10 @@ Now use the [TOKEN] you received received to submit your resource as shown.
        
 + Response 200
 
+        {
+        "notice": "Resource was added successfully",
+        "id": 1
+        }
     
 ## Specific Resource [/resources/{id}.json]
 
