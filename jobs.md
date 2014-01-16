@@ -10,8 +10,7 @@ to the Common Core is huge - and OpenEd is the only site that provides that in s
 all aligned to Common Core and other educational standards.   OpenEd lets teachers find the right resource for any given topic 
 or standard.  It also allows teachers to build courses in its free Learning Management System- with the recommendation engine
 finding the best content for anything the teacher is covering.  All of OpenEd is available via an [open API] 
-(http://docs.opened.apiary.io), and most of OpenEd (everything but the recommendation engine) is available [open source]
-(http://github.com/openedinc/opened.io).  
+(http://docs.opened.apiary.io), and most of OpenEd (everything but the recommendation engine) is available [open source](http://github.com/openedinc/opened.io).  
 
 If you are a developer with a passion for making a difference in education with a commitment to open source and modern
 approaches we want to hear from you.  
