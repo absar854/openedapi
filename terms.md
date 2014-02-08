@@ -32,7 +32,11 @@ TERMS OF USE
  20 South Santa Cruz Avenue, Suite 107
  Los Gatos, CA 95030
  Attn: Copyright Agent
+<<<<<<< HEAD
  Telephone: (408) 813-0180		
+=======
+ Telephone: (408) 460-3797	
+>>>>>>> 4d7aa4ed4944bbe31d93ac846f1f64667f9b2b02
  Facsimile: 					
  Email Address: support@opened.io 
  </pre>
@@ -61,7 +65,7 @@ TERMS OF USE
 
 21. COMMERCIAL USE. Unless otherwise expressly authorized herein or in the Service, you agree not to display, distribute, license, perform, publish, reproduce, duplicate, copy, create derivative works from, modify, sell, resell, exploit, transfer or upload for any commercial purposes, any portion of the Service, use of the Service, or access to the Service.
 
-22. NOTICE FOR CALIFORNIA USERS.  Under California Civil Code Section 1789.3, users of the Service from California are entitled to the following specific consumer rights notice: The Complaint Assistance Unit of the Division of Consumer Services of the California Department of Consumer Affairs may be contacted in writing at 1625 North Market Blvd., Suite N 112, Sacramento, CA 95834, or by telephone at (916) 445-1254 or (800) 952-5210. You may contact us at OpenEd Inc., 20 South Santa Cruz Avenue, Suite 107, Los Gatos, CA 95030, or by telephone at (408) 813-0180.
+22. NOTICE FOR CALIFORNIA USERS.  Under California Civil Code Section 1789.3, users of the Service from California are entitled to the following specific consumer rights notice: The Complaint Assistance Unit of the Division of Consumer Services of the California Department of Consumer Affairs may be contacted in writing at 1625 North Market Blvd., Suite N 112, Sacramento, CA 95834, or by telephone at (916) 445-1254 or (800) 952-5210. You may contact us at OpenEd Inc., 20 South Santa Cruz Avenue, Suite 107, Los Gatos, CA 95030, or by telephone at (408) 460-3797.
 
 23. MODIFICATIONS. OpenEd may, in its sole discretion and without prior notice, (a) revise these Terms of Use; (b) modify the Site and/or the Service; and (c) discontinue the Site and/or Service at any time. OpenEd shall post any revision to these Terms of Use to the Site, and the revision shall be effective immediately on such posting. You agree to review these Terms of Use and other online policies posted on the Site periodically to be aware of any revisions. You agree that, by continuing to use or access the Site following notice of any revision, you shall abide by any such revision.
 
