@@ -3,6 +3,10 @@ Press
 
 Look and click below to read articles about OpenEd!
 
+* [Create Public Courses on OpenEd](http://www.freetech4teachers.com/2014/02/create-public-courses-on-opened.html#.UxAArfRdW7p), Free Technology for Teachers
+* [OpenEd Adds Public Courses](http://thejournal.com/articles/2014/03/03/opened-adds-public-courses.aspx), THe Journal
+* [OpenEd Announces Public Courses](http://www.techlearning.com/Default.aspx?tabid=67&entryid=7247), Tech and Learning
+* [DIY Lessons](http://blogs.scholastic.com/techtools/2014/03/diy-lessons.html#.UxZsKPSwK0A), Scholastic - Tech Tools
 * [OpenEd highlights Common Core-aligned videos, games](http://www.eclassroomnews.com/2013/10/08/opened-highlights-common-core-aligned-videos-games/), eClassroom News
 * [Website of the Week: OpenEd highlights Common Core-aligned videos, games]( http://www.eschoolnews.com/2013/10/08/opened-videos-games-158/), eSchool News
 * [Why is There More Open Content for Math Than English?](http://blogs.edweek.org/edweek/on_innovation/2013/09/why_is_there_more_open_content_for_math_than_english.html), Education Week
@@ -33,7 +37,5 @@ Look and click below to read articles about OpenEd!
 * [5 K-12 Tech Trends To Watch in 2014](http://thejournal.com/articles/2014/02/06/5-k-12-tech-trends-to-watch-in-2014.aspx?admgarea=Features1), THE Journal
 * [OpenEd Releases It’s First OER App](http://gettingsmart.com/2014/02/opened-releases-first-oer-app/), Getting Smart
 * [OpenEd.io and Curriki Geometry Release Mobile Apps](https://www.edsurge.com/n/2014-02-23-opened-io-and-curriki-geometry-release-mobile-apps), Edsurge
-* [Create Public Courses on OpenEd](http://www.freetech4teachers.com/2014/02/create-public-courses-on-opened.html#.UxAArfRdW7p), Free Technology for Teachers
-* [OpenEd Adds Public Courses](http://thejournal.com/articles/2014/03/03/opened-adds-public-courses.aspx), THe Journal
-* [OpenEd Announces Public Courses](http://www.techlearning.com/Default.aspx?tabid=67&entryid=7247), Tech and Learning
-* [DIY Lessons](http://blogs.scholastic.com/techtools/2014/03/diy-lessons.html#.UxZsKPSwK0A), Scholastic - Tech Tools
+
+
