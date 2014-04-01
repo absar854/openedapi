@@ -9,10 +9,37 @@ The **OpenEd API** lets you use the capabilities of the OpenEd engine for findin
 
 All API access is over HTTPS, and accessed from the https://opened.apiary.io host. All data is sent and received as JSON. 
 
-API calls which make changes (currently just resource add) require OAuth2 authentication. Write to us at api@opened.io to receive an OAuth credentials. Usage of OAuth is described below.
+All API calls require OAuth2 authentication. Write to us at api@opened.io to receive an OAuth credentials. Usage of OAuth is described below.
 
 The **OpenEd API** focuses on searching and adding resources, getting information on standards, and managing OpenEd's own area/subject taxonomy.  These are all documented below. Please leave us
 any feedback or questions right here on Apiary pages or on the [OpenEd API Google Group](https://groups.google.com/forum/#!forum/openedapi)
+
+## OAuth Requests [/oauth/token]
+
+### Request Access Token [POST]
+
+You will need to use OAuth to access the API.  Write to us at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret. Use this as shown in the following call in order to retrieve a token. 
+  
++ Request (application/json)
+
+        {
+            "grant_type": "password",
+            "client_id": [CLIENT_ID],
+            "client_secret": [CLIENT_SECRET],
+            "password": [YOURPASSWORD],
+            "username": [YOUREMAIL]
+        }
+        
+        
+
++ Response 200
+
+        {
+            "access_token": "[TOKEN]",
+            "token_type":"bearer",
+            "expires_in":7200,
+            "refresh_token": "[REFRESH_TOKEN]"
+        }
 
 # Group Resources
 
@@ -58,32 +85,8 @@ Find resources based on:
             ]
         }
 
-## OAuth Request for Adding Resources [/oauth/token]
 
-### Request Access Token [POST]
 
-You will need to use OAuth to supply post resources.  Write to us at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret. Use this as shown in the following call in order to retrieve a token. 
-  
-+ Request (application/json)
-
-        {
-            "grant_type": "password",
-            "client_id": [CLIENT_ID],
-            "client_secret": [CLIENT_SECRET],
-            "password": [YOURPASSWORD],
-            "username": [YOUREMAIL]
-        }
-        
-        
-
-+ Response 200
-
-        {
-            "access_token": "[TOKEN]",
-            "token_type":"bearer",
-            "expires_in":7200,
-            "refresh_token": "[REFRESH_TOKEN]"
-        }
 
 
 ## Add Resource [/resources/add.json]
@@ -107,7 +110,7 @@ Add resources to the OpenEd catalog, based on supplying following attributes:
 <!--  + title (required,"My Wonderful Counting Video")... what do you want to call the resource. It doesn't have to match what you have on your site-->
 
 
-### [POST]
+### POST
 Now use the [TOKEN] you received received to submit your resource as shown.  
 
 + Request (application/json)
@@ -147,7 +150,10 @@ Show specified resource
 + Parameters
     + id (number, `110710`) ... An unique identifier of the resource
 
-### [GET]
+
+### GET
+
+
 + Response 200 (application/json; charset=utf-8)
     
         {"resource":
