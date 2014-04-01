@@ -3,7 +3,7 @@ HOST: https://api.opened.io
 
 # OpenEd
 
-OpenEd is the world's largest educational resource catalog, currently with over a million videos, games and assessments. It is the only site completely focused on aligning educational resources to standards.
+OpenEd is the world's largest educational resource catalog, currently with over a million videos, games, assessments and courses. It is the only site completely focused on aligning educational resources to standards.
 
 The **OpenEd API** lets you use the capabilities of the OpenEd engine for finding resources and providing information about educational standards (Common Core and otherwise) inside your own apps and websites.
 
@@ -19,7 +19,8 @@ any feedback or questions right here on Apiary pages or on the [OpenEd API Googl
 ### Request Access Token [POST]
 
 You will need to use OAuth to access the API.  Write to us at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret. Use this as shown in the following call in order to retrieve a token. 
-  
+Once you have a token you can use it in all API calls as shown below. 
+ 
 + Request (application/json)
 
         {
@@ -40,8 +41,10 @@ You will need to use OAuth to access the API.  Write to us at api@opened.io from
             "expires_in":7200,
             "refresh_token": "[REFRESH_TOKEN]"
         }
+        
 
 # Group Resources
+
 
 ## Search Resource [/resources.json{?descriptive,limit,offset,standard_group,category,standard,area,subject,grade,grade_group,contribution_name}]
 
@@ -61,6 +64,11 @@ Find resources based on:
     + grade (optional,string,`K`) ... restricts to specified grades (expressed as K,1, .. 12)
     + grade_group (optional,string,`Elementary`) ... restricts to specified grade_group (e.g. "Elementary", "Middle School", "High School")
     + contribution_name (optional,string) ...  the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
+    
++ Headers
+
+            Authorization: Bearer [TOKEN]
+
     
 + Response 200 (application/json; charset=utf-8)
 
@@ -109,7 +117,6 @@ Add resources to the OpenEd catalog, based on supplying following attributes:
 <!--  + url (required,string,`http://yoursite.com/yourawesomevideo.mp4`)... where is the resource hosted -->
 <!--  + title (required,"My Wonderful Counting Video")... what do you want to call the resource. It doesn't have to match what you have on your site-->
 
-
 ### POST
 Now use the [TOKEN] you received received to submit your resource as shown.  
 
@@ -147,23 +154,28 @@ Now use the [TOKEN] you received received to submit your resource as shown.
 
 Show specified resource
 
+
 + Parameters
     + id (number, `110710`) ... An unique identifier of the resource
 
++ Headers
+    
+        Authorization: Bearer [TOKEN]
+            
 
 ### GET
 
-
 + Response 200 (application/json; charset=utf-8)
-    
-        {"resource":
-            {"standard_idents":["K.CC.1","K.CC.4"],"grade_idents":["K"],"grades_range":"K","contribution_name":"WatchKnowLearnCommonCore",
-            "description":"In this classic Sesame Street cartoon, the Bellhop has to find the parents of two lost kids. \u00a0Betty and Bobby Blobby are lost in the lobby.\u00a0",
-            "featured":false,"embeddable":true,"resource_type":"video","id":110710,"thumb":"https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
-            "title":"The Bellhop Counts to 2",
-            "share_url":"http://www.opened.io/#/share/110710",
-            "rating":3,
-            "safe_url":"https://www.youtube.com/watch?v=xUUkvLvw8-g"
+
+        {
+            "resource":{
+                "standard_idents":["K.CC.1","K.CC.4"],"grade_idents":["K"],"grades_range":"K","contribution_name":"WatchKnowLearnCommonCore",
+                "description":"In this classic Sesame Street cartoon, the Bellhop has to find the parents of two lost kids. \u00a0Betty and Bobby Blobby are lost in the lobby.\u00a0",
+                "featured":false,"embeddable":true,"resource_type":"video","id":110710,"thumb":"https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
+                "title":"The Bellhop Counts to 2",
+                "share_url":"http://www.opened.io/#/share/110710",
+                "rating":3,
+                "safe_url":"https://www.youtube.com/watch?v=xUUkvLvw8-g"
             }
         }
             
@@ -183,6 +195,10 @@ To navigate the standards hierarchies you first need to get the list of standard
 
 Retrieve full list of standard groups 
 
++ Headers
+    
+        Authorization: Bearer [TOKEN]
+            
 + Response 200 (application/json; charset=utf-8)
 
         {
@@ -242,6 +258,10 @@ Get the list of grade groups, typically for a particular standard group.
 
 + Parameters
     + standard_group (optional, title, `Common Core Math`) ... The title of the standard group you want grade groups for
+    
++ Headers
+    
+        Authorization: Bearer [TOKEN]
        
 + Response 200 (application/json; charset=utf-8)
 
@@ -267,6 +287,10 @@ It will also return a count of resources.
 + Parameters
     + standard_group (optional, string, `Common Core Math`) ... shows all categories within a standard group
     + grade_group (optional, string, `Elementary`) ... restricts the categories to those associated with a specific grade group, such as Elementary
+
++ Headers
+    
+        Authorization: Bearer [TOKEN]
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -629,6 +653,9 @@ Get the list of standards with number of aligned resources based on parameters:
     + grade_group(optional, string) ... just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
     + grade(optional, string) ... just the standards relevant to a given grade (K-12), generally combined with standard group or category
     
++ Headers
+    
+        Authorization: Bearer [TOKEN]
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -735,6 +762,10 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
 
 ### GET
 
++ Headers
+    
+        Authorization: Bearer [TOKEN]
+
 + Response 200 (application/json; charset=utf-8)
 
         {
@@ -775,6 +806,11 @@ Get the list of subjects based on supplied area
 
 +Parameters
     +Area(number,1)... the area you want subjects for
+
++ Headers
+    
+        Authorization: Bearer [TOKEN]
+
     
 + Response 200 (application/json; charset=utf-8)
 
