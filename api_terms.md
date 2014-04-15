@@ -1,6 +1,5 @@
 API TERMS OF USE
 ================
-### Date of Last Revision: 4/11/2014
 
 1. BINDING EFFECT. This is a binding agreement. By accessing, downloading and using the application program interface ("API") for our Internet site located at http://www.opened.io/ (the "Site"), you agree to abide by these API Terms of Use, as they may be amended by OpenEd Inc. ("OpenEd") from time to time in its sole discretion. OpenEd will post a notice on the Site any time these API Terms of Use have been changed or otherwise updated. It is your responsibility to review these API Terms of Use periodically, and if at any time you find these API Terms of Use unacceptable, you must immediately leave the Site and cease all use of the API and the Site.
 
