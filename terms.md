@@ -32,12 +32,7 @@ TERMS OF USE
  20 South Santa Cruz Avenue, Suite 107
  Los Gatos, CA 95030
  Attn: Copyright Agent
-<<<<<<< HEAD
- Telephone: (408) 813-0180		
-=======
  Telephone: (408) 460-3797	
->>>>>>> 4d7aa4ed4944bbe31d93ac846f1f64667f9b2b02
- Facsimile: 					
  Email Address: support@opened.io 
  </pre>
 
