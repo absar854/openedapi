@@ -15,7 +15,6 @@ API TERMS OF USE
 
   (b) use the API to contribute Resources and Site Metadata to make your Resources available for searching on the Site. 
 
-
  The license set forth above is further restricted by and subject to the following:  (i) you may use the API to perform searches up to a rate limit of 100,000 API calls per month without charge; provided that usage beyond this level with give rise to a Fee as set forth below (ii) you may only submit Resources and other content that you own or with respect to which you have all rights to convey such content and provide the license thereto as set forth in the Terms of Use for the Site; (iii) you will not be charged for submitting Resources and other content which are not subject to any restriction, royalty or other charge and which do not require individual purchase or subscription in order to be used, provided that submitting Resources which are not free or require a subscription will give rise to a Fee as set forth below.    
 
  For avoidance of doubt, Resources include educational video lectures, educational games, educational assessments, tests and quizzes and other learning-related objects which the Site stores and tracks. Site Metadata includes attributes about those Resources including appropriate grade levels, subjects, rating, alignments to standards and the underlying URLs where the Resource is originally hosted.  
