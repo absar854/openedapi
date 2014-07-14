@@ -1,7 +1,7 @@
 **Press**
 -----
 
-Look and click below to read articles about OpenEd!
+Click below to read articles about OpenEd!
 
 * [OpenEd highlights Common Core-aligned videos, games](http://www.eclassroomnews.com/2013/10/08/opened-highlights-common-core-aligned-videos-games/), eClassroom News
 * [Website of the Week: OpenEd highlights Common Core-aligned videos, games]( http://www.eschoolnews.com/2013/10/08/opened-videos-games-158/), eSchool News
@@ -45,7 +45,11 @@ Look and click below to read articles about OpenEd!
 * [5 EdTech Gems Hidden in the Back of the Filing Cabinet](http://www.fractuslearning.com/2014/06/06/edtech-gems-filing-cabinet/), Fractus Learning
 * [OpenEd Launches Free Common Core Assessment Creation Tool](http://the21stcenturyprincipal.blogspot.com/2014/06/opened-launches-free-common-core.html), The 21st Century Principal
 * [OpenEd Releases a New Tool for Creating Common Core-aligned Practice Assessments](http://www.freetech4teachers.com/2014/06/opened-releases-new-tool-for-creating.html#.U6SyHY1dW7o), Free Technology For Teachers
-
+* [5 EdTech Gems Hidden in the Back of the Filing Cabinet](http://www.fractuslearning.com/2014/06/06/edtech-gems-filing-cabinet/), Fractus Learning
+* [Forty Educational Websites To Put In Your Toolkit](http://21centuryedtech.wordpress.com/2014/06/21/part-2-forty-educational-websites-to-put-in-your-toolkit/), 21st Century Educational Technology and Learning
+* [Silicon Valley: Global Innovation Engine](http://gettingsmart.com/2014/06/creative-cluster-silicon-valley/), Getting Smart
+* [Using OpenEd to Create Common Core-aligned Assessments](http://www.freetech4teachers.com/2014/07/free-webinar-using-opened-to-create.html#.U7WojI1dW_t), Free Technology For Teachers
+* [More on OpenEd's Free Online Assessment Tools: How-to Videos](http://the21stcenturyprincipal.blogspot.com/2014/06/more-on-openeds-free-online-assessment.html), 21st Century Principal
        
 
 
