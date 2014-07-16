@@ -4,6 +4,7 @@
 * New question types (composite question, sub-questions)
 * Grades range on resources
 * Clone question & assessment
+* CC standard mastery assessments
 
 ## May 19, 2014
 * Several assessment models added (question, response_items, question types)
