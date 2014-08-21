@@ -1,3 +1,10 @@
+## August 21, 2014
+* badges + ribbons with caching
+* multi-parent resource support
+* recommend and find calls fixes
+* compositeQuestion fixes (children ordering, polymorphic output on demand, better model validation)
+* multi-answers (mostly for compositeQuestion)
+
 ## July 16, 2014
 * Assessment runner support added
 * Reports API (a.k.a. Mastery Chart)
