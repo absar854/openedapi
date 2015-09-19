@@ -1,47 +1,1074 @@
 FORMAT: 1A
-HOST: http://www.google.com
+HOST: https://api.opened.io
 
-# Notes API
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+# OpenEd Partner API
 
-# Group Notes
-Notes related resources of the **Notes API**
+OpenEd is the world's largest educational resource catalog, currently with over a million videos, games, assessments and courses. It is the only site completely focused on aligning educational resources to standards.
 
-## Notes Collection [/notes]
-### List all Notes [GET]
-+ Response 200 (application/json)
+The **OpenEd API** lets you use the capabilities of the OpenEd engine for finding resources and providing information about educational standards (Common Core and otherwise) inside your own apps and websites.
 
-        [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
-        }]
+All API access is over HTTPS, and accessed from the https://opened.apiary.io host. All data is sent and received as JSON. 
 
-### Create a Note [POST]
+All API calls require OAuth2 authentication. Write to us at api@opened.io to receive an OAuth credentials. Usage of OAuth is described below.
+
+The **OpenEd API** focuses on searching and adding resources, getting information on standards, and managing OpenEd's own area/subject taxonomy.  These are all documented below. Please leave us
+any feedback or questions right here on Apiary pages or at api@opened.io
+
+
+## OAuth Requests [/oauth/token]
+
+### Request Access Token [POST]
+
+You will need to use OAuth to access the API.  Write to us at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret. Use this as shown in the following call in order to retrieve a token. 
+Once you have a token you can use it in all API calls as shown below. 
+ 
 + Request (application/json)
 
-        { "title": "Buy cheese and bread for breakfast." }
+        {
+            "grant_type": "password",
+            "client_id": [CLIENT_ID],
+            "client_secret": [CLIENT_SECRET],
+            "password": [YOURPASSWORD],
+            "username": [YOUREMAIL]
+        }
+        
+        
+
++ Response 200
+
+        {
+            "access_token": "[TOKEN]",
+            "token_type":"bearer",
+            "expires_in":7200,
+            "refresh_token": "[REFRESH_TOKEN]"
+        }
+        
+
+# Group Resources
+
+## Search Resource [/resources.json{?descriptive,limit,offset,standard_group,category,standard,area,subject,grade,grade_group,contribution_name,resource_types}]
+
+### GET
+
+Find resources based on:
+
++ Parameters 
+    + descriptive (optional, string, `3D`) ... Filters title, description, area_title and subject_title with Solr fulltext search
+    + limit (optional, number,`1`) ... Maximum number of results to return (1..100, 50 by default).
+    + offset (optional, number,`0`) ... 0 by default.
+    + standard_group (optional,number,`4`) ... looks for resources aligned with specified standards in the standard_group by standard_groups ID
+    + category (optional,string,`Geometry%20%28Elementary%29`) ...  looks for resources aligned with specified standards are in the category by category.id or category.title
+    + standard (optional,string,`K.G.2`) ... looks for resources aligned with specified standard by standard.id (the internal object ID) or standard.identifier (the Common Core ID)
+    + area (optional,string,`Math`) ... looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
+    + subject (optional,string,`Geometry`) ... looks for resources assigned with specified subject by subject.id or subject.title
+    + grade (optional,string,`K`) ... restricts to specified grades (expressed as K,1, .. 12)
+    + grade_group (optional,string,`Elementary`) ... restricts to specified grade_group (e.g. "Elementary", "Middle School", "High School")
+    + contribution_name (optional,string) ...  the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
+    + resource_types (optional, string) ... array of resource types which can be "video", "game", "assessment", "question"
+
+    
++ Response 200 (application/json; charset=utf-8)
+
+        {"meta":
+            pagination":{"offset":0, "total_entries":258213, "entries":1, "limit":1},
+            "resources":[
+                {"standard_idents":["K.G.2","K.G.3"],
+                "grade_idents":["K","1","2","3","4","5"],
+                "grades_range":"K-5",
+                "contribution_name":"YouTube",
+                "description":"Mr. Smith sings a cute song to teach kids 3D shapes. He helps build real world connections while students learn the cube, rectangular prism, cylinder, sphere, and pyramid. This is a good resource to help introduce and/or review this important skill.",
+                "featured":false,
+                "embeddable":true,
+                "resource_type":"video",
+                "id":178375,
+                "thumb":"https://opened.s3.amazonaws.com/pictures/178375/thumb/default.jpg?1359909018",
+                "title":"Teacher Tipster-3D Shapes Song-Teaching 3 Dimensional Shapes",
+                "share_url":"http://www.opened.io/#/share/178375",
+                "rating":4,
+                "my_rating":null,
+                "safe_url":"https://www.youtube.com/watch?v=2PiRhCwzg5E"}
+            ]
+        }
+
+
+
+
+
+## Add Resource [/resources/add.json]
+
+Add resources to the OpenEd catalog, based on supplying following attributes:
+
+* url - where is the resource hosted - REQUIRED
+* title - what do you want to call the resource. It doesn't have to match what you have on your site - REQUIRED
+* description - more information about the resource. You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resources
+* standard_idents - the list of standards aligned to the resource. You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
+* subjects - the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource
+* grades_range - in the form "lowgrade-highgrade", e.g. "K-4"
+* contribution_name - your site as the contributor so we can give you credit. Defaults to OAuth username.
+* resource_type - Either "video", "game", "assessment", "homework" or "other". Default to "other" if it is not identified as a video
+* rating - The rating of the resource on a scale of "1" to "5" if you have one on your site
+* image - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
+
+<!-- would like to do it the following way, but its not working -->
+<!--+ Parameters -->
+<!--  + url (required,string,`http://yoursite.com/yourawesomevideo.mp4`)... where is the resource hosted -->
+<!--  + title (required,"My Wonderful Counting Video")... what do you want to call the resource. It doesn't have to match what you have on your site-->
+
+### POST
+Now use the [TOKEN] you received in request headers to submit your resource as shown.
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [TOKEN]
+
+    + Body
+        
+            {
+                "url": "http://yoursite.com/yourawesomevideo.mp4",
+                "title": "My Awesome Counting Video",
+                "description": "Vun octopus arm, two octopus arms..three vunderful octopus arms",
+                "standard_idents": [
+                "K.CC.1",
+                "K.CC.4"
+                ],
+                "grades_range": "K-1",
+                "contribution_name": "YourSite",
+                "resource_type": "video",
+                "rating": "5",
+                "image": "http://yoursite.com/pics/awesomevideothumb.jpg"
+            }
+       
++ Response 200
+
+        {
+        "notice": "Resource was added successfully",
+        "id": 1
+        }
+    
+## Specific Resource [/resources/{id}.json]
+
+Show specified resource
+
+
++ Parameters
+    + id (number, `110710`) ... An unique identifier of the resource
+
+   
+        Authorization: Bearer [TOKEN]
+            
+
+### GET
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "resource":{
+                "standard_idents":["K.CC.1","K.CC.4"],"grade_idents":["K"],"grades_range":"K","contribution_name":"WatchKnowLearnCommonCore",
+                "description":"In this classic Sesame Street cartoon, the Bellhop has to find the parents of two lost kids. \u00a0Betty and Bobby Blobby are lost in the lobby.\u00a0",
+                "featured":false,"embeddable":true,"resource_type":"video","id":110710,"thumb":"https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
+                "title":"The Bellhop Counts to 2",
+                "share_url":"http://www.opened.io/#/share/110710",
+                "rating":3,
+                "safe_url":"https://www.youtube.com/watch?v=xUUkvLvw8-g"
+            }
+        }
+            
+# Group Standards
+
+OpenEd also allows you to search for information on standards themselves (in addition to finding resources for standards). 
+Standards are organized into "standard groups" such as "Common Core Math" and "Common Core Language Arts". 
+Within a standard group there are "grade groups" such as "Elementary" and "Middle School". 
+Each grade group has a set of "categories" (sometimes known as "strands"), such as "Geometry". 
+Within categories there are individual standards. This method of organizing standards was created by the Common Core State Standards, 
+but we use it to structure all standard groups.
+
+## Standard Groups [/standard_groups.json]
+To navigate the standards hierarchies you first need to get the list of standard groups.
+
+### GET
+
+Retrieve full list of standard groups 
+
+            
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "standard_groups": [
+                {
+                    "id": 2,
+                    "name": "Common Core Language Arts",
+                    "title": "Common Core Language Arts",
+                    "count": 3669
+                },
+                {
+                    "id": 7,
+                    "name": "Common Core Literacy:History/Social Studies, Science, and Technical Subjects",
+                    "title": "Common Core Literacy:History/Social Studies, Science, and Technical Subjects",
+                    "count": 198
+                },
+                {
+                    "id": 4,
+                    "name": "Common Core Math",
+                    "title": "Common Core Math",
+                    "count": 8279
+                },
+                {
+                    "id": 9,
+                    "name": "National Geography Standards",
+                    "title": "National Geography Standards",
+                    "count": 88
+                },
+                {
+                    "id": 5,
+                    "name": "New York Common Core Social Studies",
+                    "title": "New York Common Core Social Studies",
+                    "count": 967
+                },
+                {
+                    "id": 6,
+                    "name": "Next Generation Science Standards",
+                    "title": "Next Generation Science Standards",
+                    "count": 730
+                },
+                {
+                    "id": 1,
+                    "name": "Social Studies (California History Standards)",
+                    "title": "Social Studies (California History Standards)",
+                    "count": 1053
+                }
+            ]
+        }
+        
+## Grade Groups [/grade_groups.json{?standard_group}]
+
+List grade groups for specified standard group
+
+### GET
+  
+Get the list of grade groups, typically for a particular standard group.
+
++ Parameters
+    + standard_group (optional, title, `Common Core Math`) ... The title of the standard group you want grade groups for
+    
+       
++ Response 200 (application/json; charset=utf-8)
+
+        {"grade_groups":
+            [
+                {"id":46,"title":"Elementary","count":7099},
+                {"id":47,"title":"Middle School","count":4536},
+                {"id":48,"title":"High School","count":2247},
+                {"id":49,"title":"High School: Algebra","count":757},
+                {"id":50,"title":"High School: Functions","count":580},
+                {"id":51,"title":"High School: Geometry","count":547},
+                {"id":52,"title":"High School: Number and Quantity","count":426},
+                {"id":53,"title":"High School: Statistics & Probability ","count":430}
+            ]
+        }
+        
+## Categories [/categories.json{?standard_group,grade_group}]
+
+### GET
+You can list the categories (also known as "strands") based on several criteria. 
+It will also return a count of resources.
+
++ Parameters
+    + standard_group (optional, string, `Common Core Math`) ... shows all categories within a standard group
+    + grade_group (optional, string, `Elementary`) ... restricts the categories to those associated with a specific grade group, such as Elementary
+
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+        "categories": [
+            {
+                "id": 424,
+                "title": "A Child’s Place in Time and Space",
+                "grade_group": "Elementary",
+                "count": 51
+            },
+            {
+                "id": 489,
+                "title": "Biological Evolution: Unity and Diversity (K-5)",
+                "grade_group": "Elementary",
+                "count": 43
+            },
+            {
+                "id": 427,
+                "title": "California: A Changing State",
+                "grade_group": "Elementary",
+                "count": 68
+            },
+            {
+                "id": 470,
+                "title": "Civic Ideals and Practices",
+                "grade_group": "Elementary",
+                "count": 70
+            },
+            {
+                "id": 426,
+                "title": "Continuity and Change",
+                "grade_group": "Elementary",
+                "count": 55
+            },
+            {
+                "id": 260,
+                "title": "Counting and Cardinality",
+                "grade_group": "Elementary",
+                "count": 192
+            },
+            {
+                "id": 518,
+                "title": "Development, Movement, and Interaction of Cultures",
+                "grade_group": "Elementary",
+                "count": 24
+            },
+            {
+                "id": 482,
+                "title": "Earth and Human Activity (K-5)",
+                "grade_group": "Elementary",
+                "count": 41
+            },
+            {
+                "id": 458,
+                "title": "Earth and Space Science 3: Earth and Human Activity (Elementary)",
+                "grade_group": "Elementary",
+                "count": 23
+            },
+            {
+                "id": 486,
+                "title": "Earth’s Place in the Universe (K-5)",
+                "grade_group": "Elementary",
+                "count": 19
+            },
+            {
+                "id": 473,
+                "title": "Economic Systems",
+                "grade_group": "Elementary",
+                "count": 64
+            },
+            {
+                "id": 488,
+                "title": "Ecosystems: Interactions, Energy, and Dynamics (K-5)",
+                "grade_group": "Elementary",
+                "count": 15
+            },
+            {
+                "id": 478,
+                "title": "Energy (K-5)",
+                "grade_group": "Elementary",
+                "count": 29
+            },
+            {
+                "id": 490,
+                "title": "Engineering Design (K-5)",
+                "grade_group": "Elementary",
+                "count": 17
+            },
+            {
+                "id": 450,
+                "title": "Engineering, Technology, and Applications of Science 1:Engineering Design (Elementary)",
+                "grade_group": "Elementary",
+                "count": 6
+            },
+            {
+                "id": 451,
+                "title": "Engineering, Technology, and Applications of Science 2: Links Among Engineering, Technology, Science, and Society (Elementary)",
+                "grade_group": "Elementary",
+                "count": 8
+            },
+            {
+                "id": 572,
+                "title": "Environment and Society (Elementary)",
+                "grade_group": "Elementary",
+                "count": 11
+            },
+            {
+                "id": 480,
+                "title": "From Molecules to Organisms: Structures and Processes (K-5)",
+                "grade_group": "Elementary",
+                "count": 38
+            },
+            {
+                "id": 471,
+                "title": "Geography, Humans, and the Environment (K-3)",
+                "grade_group": "Elementary",
+                "count": 81
+            },
+            {
+                "id": 115,
+                "title": "Geometry (Elementary)",
+                "grade_group": "Elementary",
+                "count": 335
+            },
+            {
+                "id": 519,
+                "title": "Governance and Citizenship in New York",
+                "grade_group": "Elementary",
+                "count": 14
+            },
+            {
+                "id": 485,
+                "title": "Heredity: Inheritance and Variation of Traits (K-5)",
+                "grade_group": "Elementary",
+                "count": 7
+            },
+            {
+                "id": 476,
+                "title": "History of the United States and New York",
+                "grade_group": "Elementary",
+                "count": 48
+            },
+            {
+                "id": 569,
+                "title": "Human Systems (Elementary)",
+                "grade_group": "Elementary",
+                "count": 14
+            },
+            {
+                "id": 469,
+                "title": "Individual Development and Cultural Identity",
+                "grade_group": "Elementary",
+                "count": 48
+            },
+            {
+                "id": 161,
+                "title": "Language Standards (Elementary)",
+                "grade_group": "Elementary",
+                "count": 700
+            },
+            {
+                "id": 423,
+                "title": "Learning and Working Now and Long Ago",
+                "grade_group": "Elementary",
+                "count": 30
+            },
+            {
+                "id": 439,
+                "title": "Life Science 1: From Molecules to Organisms:Structures and Processes (Elementary)",
+                "grade_group": "Elementary",
+                "count": 11
+            },
+            {
+                "id": 440,
+                "title": "Life Science 2: Ecosystems: Interactions, Energy, and Dynamics (Elementary)",
+                "grade_group": "Elementary",
+                "count": 6
+            },
+            {
+                "id": 436,
+                "title": "Life Science 3: Heredity: Inheritance and Variance of Traits (Elementary)",
+                "grade_group": "Elementary",
+                "count": 3
+            },
+            {
+                "id": 441,
+                "title": "Life Science 4: Biological Evolution: Unity and Diversity (Elementary)",
+                "grade_group": "Elementary",
+                "count": 9
+            },
+            {
+                "id": 487,
+                "title": "Matter and Its Interactions (K-5)",
+                "grade_group": "Elementary",
+                "count": 14
+            },
+            {
+                "id": 263,
+                "title": "Measurement and Data",
+                "grade_group": "Elementary",
+                "count": 1023
+            },
+            {
+                "id": 477,
+                "title": "Motion and Stability: Forces and Interactions (K-5)",
+                "grade_group": "Elementary",
+                "count": 21
+            },
+            {
+                "id": 520,
+                "title": "New York Economy Contributes to the Country and the World",
+                "grade_group": "Elementary",
+                "count": 10
+            },
+            {
+                "id": 266,
+                "title": "Number and Operations - Fractions",
+                "grade_group": "Elementary",
+                "count": 567
+            },
+            {
+                "id": 262,
+                "title": "Number and Operations in Base Ten",
+                "grade_group": "Elementary",
+                "count": 825
+            },
+            {
+                "id": 261,
+                "title": "Operations and Algebraic Thinking",
+                "grade_group": "Elementary",
+                "count": 900
+            },
+            {
+                "id": 425,
+                "title": "People Who Make a Difference",
+                "grade_group": "Elementary",
+                "count": 33
+            },
+            {
+                "id": 93,
+                "title": "Physical Science 1: Matter and Its Interactions (Elementary)",
+                "grade_group": "Elementary",
+                "count": 13
+            },
+            {
+                "id": 94,
+                "title": "Physical Science 2: Motion and Stability: Forces and Interactions (Elementary)",
+                "grade_group": "Elementary",
+                "count": 26
+            },
+            {
+                "id": 95,
+                "title": "Physical Science 3: Energy (Elementary)",
+                "grade_group": "Elementary",
+                "count": 22
+            },
+            {
+                "id": 96,
+                "title": "Physical Science 4: Waves and Their Applications in Technologies for Information Transfer (Elementary)",
+                "grade_group": "Elementary",
+                "count": 12
+            },
+            {
+                "id": 566,
+                "title": "Physical Systems (Elementary)",
+                "grade_group": "Elementary",
+                "count": 7
+            },
+            {
+                "id": 563,
+                "title": "Places and Regions (Elementary)",
+                "grade_group": "Elementary",
+                "count": 14
+            },
+            {
+                "id": 150,
+                "title": "Reading: Foundational Skills (Elementary)",
+                "grade_group": "Elementary",
+                "count": 499
+            },
+            {
+                "id": 151,
+                "title": "Reading: Informational Text (Elementary)",
+                "grade_group": "Elementary",
+                "count": 260
+            },
+            {
+                "id": 149,
+                "title": "Reading: Literature (Elementary)",
+                "grade_group": "Elementary",
+                "count": 447
+            },
+            {
+                "id": 285,
+                "title": "Speaking and Listening (Elementary)",
+                "grade_group": "Elementary",
+                "count": 212
+            },
+            {
+                "id": 474,
+                "title": "The Empire State Identity",
+                "grade_group": "Elementary",
+                "count": 12
+            },
+            {
+                "id": 475,
+                "title": "The Geography of the United States and New York",
+                "grade_group": "Elementary",
+                "count": 9
+            },
+            {
+                "id": 575,
+                "title": "The Uses of Geography (Elementary)",
+                "grade_group": "Elementary",
+                "count": 6
+            },
+            {
+                "id": 560,
+                "title": "The World in Spatial Terms (Elementary)",
+                "grade_group": "Elementary",
+                "count": 13
+            },
+            {
+                "id": 472,
+                "title": "Time, Continuity, and Change (K-4)",
+                "grade_group": "Elementary",
+                "count": 72
+            },
+            {
+                "id": 80,
+                "title": "United States History and Geography: Making a New Nation",
+                "grade_group": "Elementary",
+                "count": 132
+            },
+            {
+                "id": 479,
+                "title": "Waves and their Applications in Technologies for Information Transfer (K-5)",
+                "grade_group": "Elementary",
+                "count": 25
+            },
+            {
+                "id": 154,
+                "title": "Writing (Elementary)",
+                "grade_group": "Elementary",
+                "count": 302
+            }
+        ]
+        }
+
+## Standards [/standards.json{?category,standard_group_id,grade_group,grade}]
+
+### GET
+
+Get the list of standards with number of aligned resources based on parameters:
+
++Parameters 
+    + category(optional, number,260) ... just the standards for a given standard category
+    + standard_group(optional, number) ... just the standards for a given standard group
+    + grade_group(optional, string) ... just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
+    + grade(optional, string) ... just the standards relevant to a given grade (K-12), generally combined with standard group or category
+    
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+        "standards": [
+        {
+        "id": 21461,
+        "identifier": "K.CC.1",
+        "title": "Count to 100 by ones and by tens.",
+        "description": "Count to 100 by ones and by tens.",
+        "key_words": "counting,numbers,digits,count by tens, count by ones, count to 100, k.cc.1\r\n",
+        "more_information": "",
+        "count": 128
+        },
+        {
+        "id": 20916,
+        "identifier": "K.CC.2",
+        "title": "Count forward beginning from a given number within the known sequence (instead of having to begin at 1).",
+        "description": "Count forward beginning from a given number within the known sequence (instead of having to begin at 1).",
+        "key_words": "counting,count forward, numbers, count, k.cc.2",
+        "more_information": "",
+        "count": 47
+        },
+        {
+        "id": 20917,
+        "identifier": "K.CC.3",
+        "title": "Write numbers from 0 to 20. Represent a number of objects with a written numeral 0-20 (with 0 representing a count of no objects).",
+        "description": "Write numbers from 0 to 20. Represent a number of objects with a written numeral 0-20 (with 0 representing a count of no objects).",
+        "key_words": "write numbers, make numbers, count, 0-20, count, number, k.cc.3",
+        "more_information": "",
+        "count": 32
+        },
+        {
+        "id": 20918,
+        "identifier": "K.CC.4",
+        "title": "Understand the relationship between numbers and quantities; connect counting to cardinality.",
+        "description": "Understand the relationship between numbers and quantities; connect counting to cardinality.",
+        "key_words": "number, quantity, counting, cardinality, count objects, k.cc.4",
+        "more_information": "",
+        "count": 91
+        },
+        {
+        "id": 21484,
+        "identifier": "K.CC.4.a",
+        "title": "When counting objects, say the number names in the standard order, pairing each object with one and only one number name and each number name with one and only one object.",
+        "description": "When counting objects, say the number names in the standard order, pairing each object with one and only one number name and each number name with one and only one object.",
+        "key_words": "count, counting, count objects, number, name numbers, match numbers, k.cc.4a, k.cc.4.a",
+        "more_information": "Students implement correct counting procedures by pointing to one object at a time (one-to-one correspondence), using one counting word for every object.",
+        "count": 43
+        },
+        {
+        "id": 20920,
+        "identifier": "K.CC.4.b",
+        "title": "Understand that the last number name said tells the number of objects counted. The number of objects is the same regardless of their arrangement or the order in which they were counted.",
+        "description": "Understand that the last number name said tells the number of objects counted. The number of objects is the same regardless of their arrangement or the order in which they were counted.",
+        "key_words": "counting, count, count objects, how many are there, how many, k.cc.4.b, k.cc.4b",
+        "more_information": "Students implement correct counting procedures by pointing to one object at a time (one-to-one correspondence), using one counting word for every object (synchrony/ one-to-one tagging), while keeping track of objects that have and have not been counted.",
+        "count": 39
+        },
+        {
+        "id": 20921,
+        "identifier": "K.CC.4.c",
+        "title": "Understand that each successive number name refers to a quantity that is one larger.",
+        "description": "Understand that each successive number name refers to a quantity that is one larger.",
+        "key_words": "count, counting, numbers, count objects, add 1, plus 1, 1 more, inclusion, successive number",
+        "more_information": "Students should know that if they have three objects, that in order to make four, they do not need to start all over again. Students should also be able to answer \"How many would you have if we added one more?\"",
+        "count": 30
+        },
+        {
+        "id": 8941,
+        "identifier": "K.CC.5",
+        "title": "Count to answer \u201chow many?\u201d questions about as many as 20 things arranged in a line, a rectangular array, or a circle, or as many as 10 things in a scattered configuration; given a number from 1\u201320, count out that many objects.",
+        "description": "Count to answer \u201chow many?\u201d questions about as many as 20 things arranged in a line, a rectangular array, or a circle, or as many as 10 things in a scattered configuration; given a number from 1\u201320, count out that many objects.",
+        "key_words": "count objects, count, counting, count 0-20, how many, count to 20, K.CC.5",
+        "more_information": "Students should be able to count objects using strategies like touching, moving or lining them up.",
+        "count": 65
+        },
+        {
+        "id": 8942,
+        "identifier": "K.CC.6",
+        "title": "Identify whether the number of objects in one group is greater than, less than, or equal to the number of objects in another group, e.g., by using matching and counting strategies.",
+        "description": "Identify whether the number of objects in one group is greater than, less than, or equal to the number of objects in another group, e.g., by using matching and counting strategies.",
+        "key_words": "comparing numbers, counting, count, compare, more or less, compare, k.cc.6",
+        "more_information": "Students use their counting ability to compare sets of objects (0-10). ",
+        "count": 24
+        },
+        {
+        "id": 8943,
+        "identifier": "K.CC.7",
+        "title": "Compare two numbers between 1 and 10 presented as written numerals.",
+        "description": "Compare two numbers between 1 and 10 presented as written numerals.",
+        "key_words": "comparing numbers, compare, numbers, more or less, compare numerals, written numbers, k.cc.7",
+        "more_information": "Comparing written numbers only, not objects.",
+        "count": 14
+        }
+        ]
+        }
+        
+# Group Area and Subject Taxonomy
+
+OpenEd categorizes all resources in an area/subject taxonomy. The top level is areas such as Math and Language Arts. The next level is subject such as Geometry or Writing.
+
+##  Areas [/areas.json]
+
+### GET
+
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+        "areas": [
+        {
+        "id": 1,
+        "title": "Mathematics",
+        "count": 7460
+        },
+        {
+        "id": 2,
+        "title": "Language Arts",
+        "count": 3929
+        },
+        {
+        "id": 3,
+        "title": "Social Studies",
+        "count": 1172
+        },
+        {
+        "id": 4,
+        "title": "Science",
+        "count": 837
+        },
+        {
+        "id": 5,
+        "title": "Other",
+        "count": 32
+        }
+        ]
+        }
+        
+## Subjects [/subjects.json{?area}]
+
+### GET
+
+Get the list of subjects based on supplied area
+
++Parameters
+    +Area(number,1)... the area you want subjects for
+
+
+    
++ Response 200 (application/json; charset=utf-8)
+
+        {
+        "subjects": [
+        {
+        "id": 6,
+        "title": "Measurement & Data",
+        "count": 1041
+        },
+        {
+        "id": 1,
+        "title": "Geometry",
+        "count": 1277
+        },
+        {
+        "id": 4,
+        "title": "Trigonometry",
+        "count": 84
+        },
+        {
+        "id": 3,
+        "title": "Statistics and Probability",
+        "count": 583
+        },
+        {
+        "id": 2,
+        "title": "Algebra",
+        "count": 2039
+        },
+        {
+        "id": 14,
+        "title": "Number Sense and Operations",
+        "count": 3013
+        }
+        ]
+        }
+
+# Group Manage teacher's classes and students
+
+## Teacher's Classes [/teachers/classes]
+
+`/teachers/classes` endpoint available for teachers only
+
+### List classes [GET /teachers/classes{?ids}]
+
+The request should have OAuth access token in headers `Authorization: Bearer [TOKEN]`
+
+Response contains list of side-loaded objects:
+
++ classes - An array of Class objects.
++ owners - An array of Owner (user) objects -- Class Owners.
++ standard_areas - An array of StandardArea objects.
++ students - An array of Student (user) objects in Classes.
+
++ Parameters
+    + ids (optional, array[int]) ... list of class `id`
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "classes": [
+                {
+                    "id": 4812,
+                    "title": "Grade 5",
+                    "created_at": "2015-09-18T22:30:03.142Z",
+                    "student_ids": [],
+                    "standard_area_ids": [],
+                    "grades_range": "5",
+                    "owner_id": 16370
+                }
+            ],
+            "owners": [
+                {
+                    "id": 16370,
+                    "first_name": "Leonid",
+                    "last_name": "Morozov",
+                    "username": "leonid.morozov"
+                }
+            ],
+            "standard_areas": [],
+            "students": []
+        }
+
+### Class [GET /teachers/classes/{class_id}]
+
+The request should have OAuth access token in headers `Authorization: Bearer [TOKEN]`
+
+Response contains list of side-loaded objects:
+
++ class - Class object.
++ owners - An array of Owner (user) objects -- Class Owners.
++ standard_areas - An array of StandardArea objects.
++ students - An array of Student (user) objects in Class.
+
++ Parameters
+    + class_id (required, number, `1`) ... Class `id`
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "class": {
+                "id": 4812,
+                "title": "Grade 5",
+                "created_at": "2015-09-18T22:30:03.142Z",
+                "student_ids": [],
+                "standard_area_ids": [],
+                "grades_range": "5",
+                "owner_id": 16370
+            },
+            "owners": [
+                {
+                    "id": 16370,
+                    "first_name": "Leonid",
+                    "last_name": "Morozov",
+                    "username": "leonid.morozov"
+                }
+            ],
+            "standard_areas": [],
+            "students": []
+        }
+
+### Create a New Class [POST /teachers/classes]
+
+You may create your own class using this action. It takes a JSON object containing a title and grades_range.
+
++ title (string) - The class title, required
++ grades_range (string) - class grades_range, optional, in formats: '5', '5-5', '6-8'
+
+Response contains list of side-loaded objects as on `get class` request.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+    
+    + Body
+
+            {
+                "class": {
+                    "title": "My class",
+                    "grades_range": "5"
+                }
+            }
 
 + Response 201 (application/json)
 
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+    + Body
 
-## Note [/notes/{id}]
-A single Note object with all its details
+            {
+                "class": {
+                    "id": 4812,
+                    "title": "My class",
+                    "created_at": "2015-09-18T22:30:03.142Z",
+                    "student_ids": [],
+                    "standard_area_ids": [],
+                    "grades_range": "5",
+                    "owner_id": 16370
+                },
+                "owners": [
+                    {
+                        "id": 16370,
+                        "first_name": "Leonid",
+                        "last_name": "Morozov",
+                        "username": "leonid.morozov"
+                    }
+                ],
+                "standard_areas": [],
+                "students": []
+            }
+
+
+### Update Class [PUT /teachers/classes/{class_id}]
+
+You may update your own class using this action. It takes a JSON object containing a title and grades_range.
+
++ title (string) - The class title, optional
++ grades_range (string) - class grades_range, optional, in formats: '5', '5-5', '6-8'
+
+Response contains list of side-loaded objects as on `get class` request.
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + class_id (required, number, `1`) ... Class `id`
+        
++ Request (application/json)
 
-### Retrieve a Note [GET]
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+    
+    + Body
+
+            {
+                "class": {
+                    "title": "My class new title",
+                    "grades_range": "6-8"
+                }
+            }
+
 + Response 200 (application/json)
-
-    + Header
-
-            X-My-Header: The Value
 
     + Body
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
+            {
+                "class": {
+                    "id": 4812,
+                    "title": "My class new title",
+                    "created_at": "2015-09-18T22:30:03.142Z",
+                    "student_ids": [],
+                    "standard_area_ids": [],
+                    "grades_range": "6-8",
+                    "owner_id": 16370
+                },
+                "owners": [
+                    {
+                        "id": 16370,
+                        "first_name": "Leonid",
+                        "last_name": "Morozov",
+                        "username": "leonid.morozov"
+                    }
+                ],
+                "standard_areas": [],
+                "students": []
+            }
 
-### Remove a Note [DELETE]
+
+### Remove a Class [DELETE /teachers/classes/{class_id}]
+
+You may delete your own class using this action.
+
++ Parameters
+    + class_id (required, number, `1`) ... Class `id`
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+
 + Response 204
+
+
+# Group API Commons 
+
+## Manifest
+
+Here is the API Commons Manifest for the OpenEd API.
+
+    {
+        "apis": [
+            {
+                "name": "OpenEd API",
+                "description": "Search for resources for standards or by topic.  Get information on standards.  Get information on our area/subject taxonomy of resources.",
+                "image": "https://pbs.twimg.com/profile_images/378800000580251314/04fe1856596c096c1b5da337946aba45_bigger.png",
+                "keywords": "ed tech, resources, videos, games, K-12, flipped classroom, Common Core",
+                "license": "http://opensource.org/licenses/MIT",
+                "attribution": "OpenEd, Inc.",
+                "url": "http://docs.opened.apiary.io",
+                "definitions": [
+                    {
+                        "type": "[API Blueprint]",
+                        "url": "https://github.com/apiaryio/api-blueprint"
+                    }
+                ]
+            }
+        ],
+        "tags": "api-commons-manifest",
+        "updated": "11/30/2013"
+    }
+
