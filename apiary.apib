@@ -1043,6 +1043,301 @@ You may delete your own class using this action.
 
 + Response 204
 
+### Add existent student to the Class [POST /teachers/classes/{class_id}/add_students]
+
+This is the way how to manage existent students in classes.
+Use `create student` action to create new students and add them to classes.
+
++ Parameters
+    + class_id (required, number, `1`) ... Class `id`
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+
+    + Body
+
+            {
+                "student_ids": [16372]
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "class": {
+                    "id": 4812,
+                    "title": "My class new title",
+                    "created_at": "2015-09-18T22:30:03.142Z",
+                    "student_ids": [],
+                    "standard_area_ids": [],
+                    "grades_range": "6-8",
+                    "owner_id": 16370
+                },
+                "owners": [
+                    {
+                        "id": 16370,
+                        "first_name": "Leonid",
+                        "last_name": "Morozov",
+                        "username": "leonid.morozov"
+                    }
+                ],
+                "standard_areas": [],
+                "students": [
+                    {
+                        "id":16371,
+                        "first_name":"Student",
+                        "last_name":"1",
+                        "username":"student1",
+                        "password":"password"
+                    },
+                    {
+                        "id":16372,
+                        "first_name":"New Student",
+                        "last_name":"1",
+                        "username":"student2",
+                        "password":"password2"
+                    }
+                ]
+            }
+
+
+### Remove student from the Class [POST /teachers/classes/{class_id}/remove_students]
+
++ Parameters
+    + class_id (required, number, `1`) ... Class `id`
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+
+    + Body
+
+            {
+                "student_ids": [16372]
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "class": {
+                    "id": 4812,
+                    "title": "My class new title",
+                    "created_at": "2015-09-18T22:30:03.142Z",
+                    "student_ids": [],
+                    "standard_area_ids": [],
+                    "grades_range": "6-8",
+                    "owner_id": 16370
+                },
+                "owners": [
+                    {
+                        "id": 16370,
+                        "first_name": "Leonid",
+                        "last_name": "Morozov",
+                        "username": "leonid.morozov"
+                    }
+                ],
+                "standard_areas": [],
+                "students": [
+                    {
+                        "id":16371,
+                        "first_name":"Student",
+                        "last_name":"1",
+                        "username":"student1",
+                        "password":"password"
+                    }
+                ]
+            }
+
+
+## Teacher's Students [/teachers/students]
+
+`/teachers/students` endpoint available for teachers only
+
+### List students [GET /teachers/students{?ids}]
+
+The request should have OAuth access token in headers `Authorization: Bearer [TOKEN]`
+
+Response contains objects:
+
++ students - An array of Student (user) objects.
+
++ Parameters
+    + ids (optional, array[int]) ... list of student `id`
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "students":[
+                {
+                    "id":16371,
+                    "first_name":"Student",
+                    "last_name":"1",
+                    "username":"student1",
+                    "password":"password",
+                    "class_ids":[4812]
+                },
+                {
+                    "id":16372,
+                    "first_name":"New Student",
+                    "last_name":"1",
+                    "username":"student2",
+                    "password":"password2",
+                    "class_ids":[4812]
+                }
+            ]
+        }
+
+### Class [GET /teachers/students/{student_id}]
+
+The request should have OAuth access token in headers `Authorization: Bearer [TOKEN]`
+
+Response contain object:
+
++ student - Student (user) object.
+
++ Parameters
+    + student_id (required, number, `1`) ... Student `id`
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "student":{
+                "id":16372,
+                "first_name":"New Student",
+                "last_name":"1",
+                "username":"student2",
+                "password":"password2",
+                "class_ids":[4812]
+            }
+        }
+
+### Create a Student [POST /teachers/students]
+
+You may create your own student and add it to classes using this action. It takes a JSON object containing a first_name, last_name, username, password and list of class ids.
+
++ first_name (string) - Student's first_name, required
++ last_name (string) - Student's last_name, required
++ username (string) - Student's username, required
++ password (string) - Student's password, required
++ class_ids (array[int]) - ids of classes new student needs to be added, optional
+
+Response contains list of side-loaded objects as on `get student` request.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+    
+    + Body
+
+            {
+                "student":{
+                    "first_name":"Student",
+                    "last_name":"2",
+                    "username":"student2",
+                    "password":"password",
+                    "class_ids":[4812]
+                }
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "student":{
+                    "id":16372,
+                    "first_name":"Student",
+                    "last_name":"2",
+                    "username":"student2",
+                    "password":"password",
+                    "class_ids":[4812]
+                }
+            }
+
+
+### Update Class [PUT /teachers/classes/{class_id}]
+
+You may update your own student using this action. It takes a JSON object containing a first_name, last_name and password.
+
++ first_name (string) - Student's first_name, required
++ last_name (string) - Student's last_name, required
++ password (string) - Student's password, required
+
+Response contains list of side-loaded objects as on `get student` request.
+
++ Parameters
+    + class_id (required, number, `1`) ... Class `id`
+        
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+    
+    + Body
+
+            {
+                "student":{
+                    "first_name":"New Student",
+                    "last_name":"1",
+                    "password":"password2"
+                }
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "student":{
+                    "id":16372,
+                    "first_name":"New Student",
+                    "last_name":"1",
+                    "username":"student2",
+                    "password":"password2",
+                    "class_ids":[4812]
+                }
+            }
+
+
+
+### Remove a Student [DELETE /teachers/students/{student_id}]
+
+You may delete your own student using this action.
+
++ Parameters
+    + student_id (required, number, `1`) ... Class `id`
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+
++ Response 204
+
 
 # Group API Commons 
 
