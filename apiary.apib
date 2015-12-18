@@ -5,23 +5,25 @@ HOST: https://partner.opened.com
 
 OpenEd is the world's largest educational resource catalog, currently with over a million videos, games, assessments and courses. It is the only site completely focused on aligning educational resources to standards.
 
-The **OpenEd API** lets you use the capabilities of the OpenEd engine for finding resources and providing information about educational standards (Common Core and otherwise) inside your own apps and websites.
+The **OpenEd Partner API** lets you use the capabilities of the OpenEd engine for finding resources and providing information about educational standards (Common Core and otherwise) inside your own apps and websites.
 
-All API access is over HTTPS, and accessed from the https://opened.apiary.io host. All data is sent and received as JSON. 
+All API access is over HTTPS, and accessed from the https://partner.opened.com host. All data is sent and received as JSON.
 
-All API calls require OAuth2 authentication. Write to us at api@opened.io to receive an OAuth credentials. Usage of OAuth is described below.
+All API calls require OAuth2 authentication. Please write to us at api@opened.com to receive OAuth credentials. Usage of OAuth is described below.
 
-The **OpenEd API** focuses on searching and adding resources, getting information on standards, and managing OpenEd's own area/subject taxonomy.  These are all documented below. Please leave us
-any feedback or questions right here on Apiary pages or at api@opened.io
+The **OpenEd Partner API** focuses on searching and adding resources, getting information on standards, managing OpenEd's own area/subject taxonomy, and managing teacher classes and students.  These are all documented below.
 
+## Feedback and Support
+* If you find errors or problems with this documentation, please open a [GitHub issue](https://github.com/openedinc/openedapi/issues/new) with details and information to reproduce the problem. Please note that the GitHub issue database is open to the public, so do not put sensitive information there.
+* If you have questions about using this API or about use cases not described here, please feel free to contact us at api@opened.com.
 
 ## OAuth Requests [/oauth/token]
 
 ### Request Access Token [POST]
 
-You will need to use OAuth to access the API.  Write to us at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret. Use this as shown in the following call in order to retrieve a token. 
-Once you have a token you can use it in all API calls as shown below. 
- 
+You will need to use OAuth to access the API.  Write to us at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret. Use this as shown in the following call in order to retrieve a token.
+Once you have a token you can use it in all API calls as shown below.
+
 + Request (application/json)
 
         {
@@ -31,8 +33,8 @@ Once you have a token you can use it in all API calls as shown below.
             "password": [YOURPASSWORD],
             "username": [YOUREMAIL]
         }
-        
-        
+
+
 
 + Response 200
 
@@ -42,7 +44,7 @@ Once you have a token you can use it in all API calls as shown below.
             "expires_in":7200,
             "refresh_token": "[REFRESH_TOKEN]"
         }
-        
+
 
 # Group Resources
 
@@ -52,7 +54,7 @@ Once you have a token you can use it in all API calls as shown below.
 
 Find resources based on:
 
-+ Parameters 
++ Parameters
     + descriptive (optional, string, `3D`) ... Filters title, description, area_title and subject_title with Solr fulltext search
     + limit (optional, number,`1`) ... Maximum number of results to return (1..100, 50 by default).
     + offset (optional, number,`0`) ... 0 by default.
@@ -66,7 +68,7 @@ Find resources based on:
     + contribution_name (optional,string) ...  the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
     + resource_types (optional, string) ... array of resource types which can be "video", "game", "assessment", "question"
 
-    
+
 + Response 200 (application/json; charset=utf-8)
 
         {"meta":
@@ -120,11 +122,11 @@ Now use the [TOKEN] you received in request headers to submit your resource as s
 + Request (application/json)
 
     + Headers
-        
+
             Authorization: Bearer [TOKEN]
 
     + Body
-        
+
             {
                 "url": "http://yoursite.com/yourawesomevideo.mp4",
                 "title": "My Awesome Counting Video",
@@ -139,14 +141,14 @@ Now use the [TOKEN] you received in request headers to submit your resource as s
                 "rating": "5",
                 "image": "http://yoursite.com/pics/awesomevideothumb.jpg"
             }
-       
+
 + Response 200
 
         {
         "notice": "Resource was added successfully",
         "id": 1
         }
-    
+
 ## Specific Resource [/resources/{id}.json]
 
 Show specified resource
@@ -155,9 +157,9 @@ Show specified resource
 + Parameters
     + id (number, `110710`) ... An unique identifier of the resource
 
-   
+
         Authorization: Bearer [TOKEN]
-            
+
 
 ### GET
 
@@ -174,14 +176,14 @@ Show specified resource
                 "safe_url":"https://www.youtube.com/watch?v=xUUkvLvw8-g"
             }
         }
-            
+
 # Group Standards
 
-OpenEd also allows you to search for information on standards themselves (in addition to finding resources for standards). 
-Standards are organized into "standard groups" such as "Common Core Math" and "Common Core Language Arts". 
-Within a standard group there are "grade groups" such as "Elementary" and "Middle School". 
-Each grade group has a set of "categories" (sometimes known as "strands"), such as "Geometry". 
-Within categories there are individual standards. This method of organizing standards was created by the Common Core State Standards, 
+OpenEd also allows you to search for information on standards themselves (in addition to finding resources for standards).
+Standards are organized into "standard groups" such as "Common Core Math" and "Common Core Language Arts".
+Within a standard group there are "grade groups" such as "Elementary" and "Middle School".
+Each grade group has a set of "categories" (sometimes known as "strands"), such as "Geometry".
+Within categories there are individual standards. This method of organizing standards was created by the Common Core State Standards,
 but we use it to structure all standard groups.
 
 ## Standard Groups [/standard_groups.json]
@@ -189,9 +191,9 @@ To navigate the standards hierarchies you first need to get the list of standard
 
 ### GET
 
-Retrieve full list of standard groups 
+Retrieve full list of standard groups
 
-            
+
 + Response 200 (application/json; charset=utf-8)
 
         {
@@ -240,19 +242,19 @@ Retrieve full list of standard groups
                 }
             ]
         }
-        
+
 ## Grade Groups [/grade_groups.json{?standard_group}]
 
 List grade groups for specified standard group
 
 ### GET
-  
+
 Get the list of grade groups, typically for a particular standard group.
 
 + Parameters
     + standard_group (optional, title, `Common Core Math`) ... The title of the standard group you want grade groups for
-    
-       
+
+
 + Response 200 (application/json; charset=utf-8)
 
         {"grade_groups":
@@ -267,11 +269,11 @@ Get the list of grade groups, typically for a particular standard group.
                 {"id":53,"title":"High School: Statistics & Probability ","count":430}
             ]
         }
-        
+
 ## Categories [/categories.json{?standard_group,grade_group}]
 
 ### GET
-You can list the categories (also known as "strands") based on several criteria. 
+You can list the categories (also known as "strands") based on several criteria.
 It will also return a count of resources.
 
 + Parameters
@@ -634,12 +636,12 @@ It will also return a count of resources.
 
 Get the list of standards with number of aligned resources based on parameters:
 
-+Parameters 
++Parameters
     + category(optional, number,260) ... just the standards for a given standard category
     + standard_group(optional, number) ... just the standards for a given standard group
     + grade_group(optional, string) ... just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
     + grade(optional, string) ... just the standards relevant to a given grade (K-12), generally combined with standard group or category
-    
+
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -737,7 +739,7 @@ Get the list of standards with number of aligned resources based on parameters:
         }
         ]
         }
-        
+
 # Group Area and Subject Taxonomy
 
 OpenEd categorizes all resources in an area/subject taxonomy. The top level is areas such as Math and Language Arts. The next level is subject such as Geometry or Writing.
@@ -778,7 +780,7 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
         }
         ]
         }
-        
+
 ## Subjects [/subjects.json{?area}]
 
 ### GET
@@ -789,7 +791,7 @@ Get the list of subjects based on supplied area
     +Area(number,1)... the area you want subjects for
 
 
-    
+
 + Response 200 (application/json; charset=utf-8)
 
         {
@@ -939,7 +941,7 @@ Response contains list of side-loaded objects as on `get class` request.
     + Headers
 
             Authorization: Bearer [TOKEN]
-    
+
     + Body
 
             {
@@ -987,13 +989,13 @@ Response contains list of side-loaded objects as on `get class` request.
 
 + Parameters
     + class_id (required, number, `1`) ... Class `id`
-        
+
 + Request (application/json)
 
     + Headers
 
             Authorization: Bearer [TOKEN]
-    
+
     + Body
 
             {
@@ -1250,7 +1252,7 @@ Response contains list of side-loaded objects as on `get student` request.
     + Headers
 
             Authorization: Bearer [TOKEN]
-    
+
     + Body
 
             {
@@ -1291,13 +1293,13 @@ Response contains list of side-loaded objects as on `get student` request.
 
 + Parameters
     + class_id (required, number, `1`) ... Class `id`
-        
+
 + Request (application/json)
 
     + Headers
 
             Authorization: Bearer [TOKEN]
-    
+
     + Body
 
             {
@@ -1341,7 +1343,7 @@ You may delete your own student using this action.
 + Response 204
 
 
-# Group API Commons 
+# Group API Commons
 
 ## Manifest
 
@@ -1368,4 +1370,3 @@ Here is the API Commons Manifest for the OpenEd API.
         "tags": "api-commons-manifest",
         "updated": "11/30/2013"
     }
-
