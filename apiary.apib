@@ -17,11 +17,13 @@ The **OpenEd Partner API** focuses on searching and adding resources, getting in
 * If you find errors or problems with this documentation, please open a [GitHub issue](https://github.com/openedinc/openedapi/issues/new) with details and information to reproduce the problem. Please note that the GitHub issue database is open to the public, so do not put sensitive information there.
 * If you have questions about using this API or about use cases not described here, please feel free to contact us at api@opened.com.
 
+# Group OAuth Requests
+
 ## OAuth Requests [/oauth/token]
 
 ### Request Access Token [POST]
 
-You will need to use OAuth to access the API.  Write to us at api@opened.io from the email account that is registered with OpenEd.  We will give you a client ID and client secret. Use this as shown in the following call in order to retrieve a token.
+You will need to use OAuth to access the API.  Write to us at api@opened.com from the email account that is registered with OpenEd.  We will give you a client ID and client secret. Use this as shown in the following call in order to retrieve a token.
 Once you have a token you can use it in all API calls as shown below.
 
 + Request (application/json)
@@ -45,6 +47,8 @@ Once you have a token you can use it in all API calls as shown below.
             "refresh_token": "[REFRESH_TOKEN]"
         }
 
+# Group Accounts
+For more details about creating and managing OpenEd accounts, please see the [opened.js README](https://github.com/openedinc/opened.js/blob/master/README.md).
 
 # Group Resources
 
