@@ -54,18 +54,18 @@ For more details about creating and managing OpenEd accounts, please see the [op
 Find resources based on:
 
 + Parameters
-    + descriptive (optional, string, `3D`) ... Filters title, description, area_title and subject_title with Solr fulltext search
-    + limit (optional, number,`1`) ... Maximum number of results to return (1..100, 50 by default).
-    + offset (optional, number,`0`) ... 0 by default.
-    + standard_group (optional,number,`4`) ... looks for resources aligned with specified standards in the standard_group by standard_groups ID
-    + category (optional,string,`Geometry%20%28Elementary%29`) ...  looks for resources aligned with specified standards are in the category by category.id or category.title
-    + standard (optional,string,`K.G.2`) ... looks for resources aligned with specified standard by standard.id (the internal object ID) or standard.identifier (the Common Core ID)
-    + area (optional,string,`Math`) ... looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
-    + subject (optional,string,`Geometry`) ... looks for resources assigned with specified subject by subject.id or subject.title
-    + grade (optional,string,`K`) ... restricts to specified grades (expressed as K,1, .. 12)
-    + grade_group (optional,string,`Elementary`) ... restricts to specified grade_group (e.g. "Elementary", "Middle School", "High School")
-    + contribution_name (optional,string) ...  the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
-    + resource_types (optional, string) ... array of resource types which can be "video", "game", "assessment", "question"
+    + descriptive (optional, string, `3D`) - Filters title, description, area_title and subject_title with Solr fulltext search
+    + limit (optional, number,`1`) - Maximum number of results to return (1..100, 50 by default).
+    + offset (optional, number,`0`) - 0 by default.
+    + standard_group (optional,number,`4`) - looks for resources aligned with specified standards in the standard_group by standard_groups ID
+    + category (optional,string,`Geometry%20%28Elementary%29`) -  looks for resources aligned with specified standards are in the category by category.id or category.title
+    + standard (optional,string,`K.G.2`) - looks for resources aligned with specified standard by standard.id (the internal object ID) or standard.identifier (the Common Core ID)
+    + area (optional,string,`Math`) - looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
+    + subject (optional,string,`Geometry`) - looks for resources assigned with specified subject by subject.id or subject.title
+    + grade (optional,string,`K`) - restricts to specified grades (expressed as K,1, .. 12)
+    + grade_group (optional,string,`Elementary`) - restricts to specified grade_group (e.g. "Elementary", "Middle School", "High School")
+    + contribution_name (optional,string) -  the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
+    + resource_types (optional, string) - array of resource types which can be "video", "game", "assessment", "question"
 
 
 + Response 200 (application/json; charset=utf-8)
@@ -74,9 +74,9 @@ Find resources based on:
             "meta":
                 "pagination":
                 {
-                    "offset":0, 
-                    "total_entries":258213, 
-                    "entries":1, 
+                    "offset":0,
+                    "total_entries":258213,
+                    "entries":1,
                     "limit":1
                 },
             "resources":[
@@ -109,16 +109,16 @@ Find resources based on:
 Add resources to the OpenEd catalog, based on supplying following attributes:
 
 + Parameters
-    + url (required,string,`http://yoursite.com/yourawesomevideo.mp4`) ... where is the resource hosted
-    + title (required,string) ... what do you want to call the resource. It doesn't have to match what you have on your site
-    + description (string) ... more information about the resource. You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resources
-    + standard_idents (required,string) ... the list of standards aligned to the resource. You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
-    + subjects (required,string) ... the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource
-    + grades_range (optional,string) ... in the form "lowgrade-highgrade", e.g. "K-4"
-    + contribution_name (required,string) ... your site as the contributor so we can give you credit. Defaults to OAuth username.
-    + resource_type (required,string) ... Either "video", "game", "assessment", "homework" or "other". Default to "other" if it is not identified as a video
-    + rating (optional,string,`3`) ... The rating of the resource on a scale of "1" to "5" if you have one on your site
-    + image (required,string) ... An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
+    + url (required,string,`http://yoursite.com/yourawesomevideo.mp4`) - where is the resource hosted
+    + title (required,string) - what do you want to call the resource. It doesn't have to match what you have on your site
+    + description (string) - more information about the resource. You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resources
+    + standard_idents (required,string) - the list of standards aligned to the resource. You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
+    + subjects (required,string) - the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource
+    + grades_range (optional,string) - in the form "lowgrade-highgrade", e.g. "K-4"
+    + contribution_name (required,string) - your site as the contributor so we can give you credit. Defaults to OAuth username.
+    + resource_type (required,string) - Either "video", "game", "assessment", "homework" or "other". Default to "other" if it is not identified as a video
+    + rating (optional,string,`3`) - The rating of the resource on a scale of "1" to "5" if you have one on your site
+    + image (required,string) - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
 
 + Headers
     + Authorization: Bearer [TOKEN]
@@ -136,7 +136,7 @@ Show specified resource
 
 
 + Parameters
-    + id (number, `110710`) ... An unique identifier of the resource
+    + id (number, `110710`) - An unique identifier of the resource
 
 
         Authorization: Bearer [TOKEN]
@@ -233,7 +233,7 @@ List grade groups for specified standard group
 Get the list of grade groups, typically for a particular standard group.
 
 + Parameters
-    + standard_group (optional, title, `Common Core Math`) ... The title of the standard group you want grade groups for
+    + standard_group (optional, title, `Common Core Math`) - The title of the standard group you want grade groups for
 
 
 + Response 200 (application/json; charset=utf-8)
@@ -258,8 +258,8 @@ You can list the categories (also known as "strands") based on several criteria.
 It will also return a count of resources.
 
 + Parameters
-    + standard_group (optional, string, `Common Core Math`) ... shows all categories within a standard group
-    + grade_group (optional, string, `Elementary`) ... restricts the categories to those associated with a specific grade group, such as Elementary
+    + standard_group (optional, string, `Common Core Math`) - shows all categories within a standard group
+    + grade_group (optional, string, `Elementary`) - restricts the categories to those associated with a specific grade group, such as Elementary
 
 
 + Response 200 (application/json; charset=utf-8)
@@ -618,10 +618,10 @@ It will also return a count of resources.
 Get the list of standards with number of aligned resources based on parameters:
 
 +Parameters
-    + category (optional, number,260) ... just the standards for a given standard category
-    + standard_group (optional, number) ... just the standards for a given standard group
-    + grade_group (optional, string) ... just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
-    + grade (optional, string) ... just the standards relevant to a given grade (K-12), generally combined with standard group or category
+    + category (optional, number,260) - just the standards for a given standard category
+    + standard_group (optional, number) - just the standards for a given standard group
+    + grade_group (optional, string) - just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
+    + grade (optional, string) - just the standards relevant to a given grade (K-12), generally combined with standard group or category
 
 
 + Response 200 (application/json; charset=utf-8)
@@ -769,7 +769,7 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
 Get the list of subjects based on supplied area
 
 + Parameters
-    * area (required,number,1) ... the area you want subjects for
+    * area (required,number,1) - the area you want subjects for
 
 
 
@@ -830,7 +830,7 @@ Response contains list of side-loaded objects:
 + students - An array of Student (user) objects in Classes.
 
 + Parameters
-    + ids (optional, array[int]) ... list of class `id`
+    + ids (optional, array[int]) - list of class `id`
 
 + Request
 
@@ -876,7 +876,7 @@ Response contains list of side-loaded objects:
 + students - An array of Student (user) objects in Class.
 
 + Parameters
-    + class_id (required, number, `1`) ... Class `id`
+    + class_id (required, number, `1`) - Class `id`
 
 + Request
 
@@ -969,7 +969,7 @@ You may update your own class using this action. It takes a JSON object containi
 Response contains list of side-loaded objects as on `get class` request.
 
 + Parameters
-    + class_id (required, number, `1`) ... Class `id`
+    + class_id (required, number, `1`) - Class `id`
 
 + Request (application/json)
 
@@ -1018,7 +1018,7 @@ Response contains list of side-loaded objects as on `get class` request.
 You may delete your own class using this action.
 
 + Parameters
-    + class_id (required, number, `1`) ... Class `id`
+    + class_id (required, number, `1`) - Class `id`
 
 + Request (application/json)
 
@@ -1034,7 +1034,7 @@ This is the way how to manage existing students in classes.
 Use `create student` action to create new students and add them to classes.
 
 + Parameters
-    + class_id (required, number, `1`) ... Class `id`
+    + class_id (required, number, `1`) - Class `id`
 
 + Request (application/json)
 
@@ -1093,7 +1093,7 @@ Use `create student` action to create new students and add them to classes.
 ### Remove student from the Class [POST /teachers/classes/{class_id}/remove_students]
 
 + Parameters
-    + class_id (required, number, `1`) ... Class `id`
+    + class_id (required, number, `1`) - Class `id`
 
 + Request (application/json)
 
@@ -1155,7 +1155,7 @@ Response contains objects:
 + students - An array of Student (user) objects.
 
 + Parameters
-    + ids (optional, array[int]) ... list of student `id`
+    + ids (optional, array[int]) - list of student `id`
 
 + Request
 
@@ -1195,7 +1195,7 @@ Response contain object:
 + student - Student (user) object.
 
 + Parameters
-    + student_id (required, number, `1`) ... Student `id`
+    + student_id (required, number, `1`) - Student `id`
 
 + Request
 
@@ -1273,7 +1273,7 @@ You may update your own student using this action. It takes a JSON object contai
 Response contains list of side-loaded objects as on `get student` request.
 
 + Parameters
-    + class_id (required, number, `1`) ... Class `id`
+    + class_id (required, number, `1`) - Class `id`
 
 + Request (application/json)
 
@@ -1313,7 +1313,7 @@ Response contains list of side-loaded objects as on `get student` request.
 You may delete your own student using this action.
 
 + Parameters
-    + student_id (required, number, `1`) ... Class `id`
+    + student_id (required, number, `1`) - Class `id`
 
 + Request (application/json)
 
