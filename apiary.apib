@@ -26,17 +26,12 @@ The **OpenEd Partner API** focuses on searching and adding resources, getting in
 You will need to use OAuth to access the API.  Write to us at api@opened.com from the email account that is registered with OpenEd.  We will give you a client ID and client secret. Use this as shown in the following call in order to retrieve a token.
 Once you have a token you can use it in all API calls as shown below.
 
-+ Request (application/json)
-
-        {
-            "grant_type": "password",
-            "client_id": [CLIENT_ID],
-            "client_secret": [CLIENT_SECRET],
-            "password": [YOURPASSWORD],
-            "username": [YOUREMAIL]
-        }
-
-
++ Parameters
+    + grant_type (required, string, `password`)
+    + client_id (required, string, `yourclientid`)
+    + client_secret (required, string, `yourclientsecret`)
+    + password (required, string, `yourpassword`)
+    + username (required, string, `yourusernameoremail`)
 
 + Response 200
 
@@ -75,8 +70,15 @@ Find resources based on:
 
 + Response 200 (application/json; charset=utf-8)
 
-        {"meta":
-            pagination":{"offset":0, "total_entries":258213, "entries":1, "limit":1},
+        {
+            "meta":
+                "pagination":
+                {
+                    "offset":0, 
+                    "total_entries":258213, 
+                    "entries":1, 
+                    "limit":1
+                },
             "resources":[
                 {"standard_idents":["K.G.2","K.G.3"],
                 "grade_idents":["K","1","2","3","4","5"],
@@ -102,55 +104,30 @@ Find resources based on:
 
 ## Add Resource [/resources/add.json]
 
+### POST
+
 Add resources to the OpenEd catalog, based on supplying following attributes:
 
-* url - where is the resource hosted - REQUIRED
-* title - what do you want to call the resource. It doesn't have to match what you have on your site - REQUIRED
-* description - more information about the resource. You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resources
-* standard_idents - the list of standards aligned to the resource. You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
-* subjects - the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource
-* grades_range - in the form "lowgrade-highgrade", e.g. "K-4"
-* contribution_name - your site as the contributor so we can give you credit. Defaults to OAuth username.
-* resource_type - Either "video", "game", "assessment", "homework" or "other". Default to "other" if it is not identified as a video
-* rating - The rating of the resource on a scale of "1" to "5" if you have one on your site
-* image - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
++ Parameters
+    + url (required,string,`http://yoursite.com/yourawesomevideo.mp4`) ... where is the resource hosted
+    + title (required,string) ... what do you want to call the resource. It doesn't have to match what you have on your site
+    + description (string) ... more information about the resource. You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resources
+    + standard_idents (required,string) ... the list of standards aligned to the resource. You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
+    + subjects (required,string) ... the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource
+    + grades_range (optional,string) ... in the form "lowgrade-highgrade", e.g. "K-4"
+    + contribution_name (required,string) ... your site as the contributor so we can give you credit. Defaults to OAuth username.
+    + resource_type (required,string) ... Either "video", "game", "assessment", "homework" or "other". Default to "other" if it is not identified as a video
+    + rating (optional,string,`3`) ... The rating of the resource on a scale of "1" to "5" if you have one on your site
+    + image (required,string) ... An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
 
-<!-- would like to do it the following way, but its not working -->
-<!--+ Parameters -->
-<!--  + url (required,string,`http://yoursite.com/yourawesomevideo.mp4`)... where is the resource hosted -->
-<!--  + title (required,"My Wonderful Counting Video")... what do you want to call the resource. It doesn't have to match what you have on your site-->
-
-### POST
-Now use the [TOKEN] you received in request headers to submit your resource as shown.
-
-+ Request (application/json)
-
-    + Headers
-
-            Authorization: Bearer [TOKEN]
-
-    + Body
-
-            {
-                "url": "http://yoursite.com/yourawesomevideo.mp4",
-                "title": "My Awesome Counting Video",
-                "description": "Vun octopus arm, two octopus arms..three vunderful octopus arms",
-                "standard_idents": [
-                "K.CC.1",
-                "K.CC.4"
-                ],
-                "grades_range": "K-1",
-                "contribution_name": "YourSite",
-                "resource_type": "video",
-                "rating": "5",
-                "image": "http://yoursite.com/pics/awesomevideothumb.jpg"
-            }
++ Headers
+    + Authorization: Bearer [TOKEN]
 
 + Response 200
 
         {
-        "notice": "Resource was added successfully",
-        "id": 1
+            "notice": "Resource was added successfully",
+            "id": 1
         }
 
 ## Specific Resource [/resources/{id}.json]
@@ -641,10 +618,10 @@ It will also return a count of resources.
 Get the list of standards with number of aligned resources based on parameters:
 
 +Parameters
-    + category(optional, number,260) ... just the standards for a given standard category
-    + standard_group(optional, number) ... just the standards for a given standard group
-    + grade_group(optional, string) ... just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
-    + grade(optional, string) ... just the standards relevant to a given grade (K-12), generally combined with standard group or category
+    + category (optional, number,260) ... just the standards for a given standard category
+    + standard_group (optional, number) ... just the standards for a given standard group
+    + grade_group (optional, string) ... just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
+    + grade (optional, string) ... just the standards relevant to a given grade (K-12), generally combined with standard group or category
 
 
 + Response 200 (application/json; charset=utf-8)
@@ -791,8 +768,8 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
 
 Get the list of subjects based on supplied area
 
-+Parameters
-    +Area(number,1)... the area you want subjects for
++ Parameters
+    * area (required,number,1) ... the area you want subjects for
 
 
 
