@@ -32,14 +32,29 @@ Once you have a token you can use it in all API calls as shown below.
     + client_secret (required, string, `yourclientsecret`)
     + password (required, string, `yourpassword`)
     + username (required, string, `yourusernameoremail`)
+    
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+
+    + Body
+
+            {
+                "class": {
+                    "title": "My class",
+                    "grades_range": "5"
+                }
+            }
 
 + Response 200
 
         {
-            "access_token": "[TOKEN]",
+            "access_token": "TOKEN",
             "token_type":"bearer",
             "expires_in":7200,
-            "refresh_token": "[REFRESH_TOKEN]"
+            "refresh_token": "REFRESH_TOKEN"
         }
 
 # Group Accounts
@@ -54,15 +69,15 @@ For more details about creating and managing OpenEd accounts, please see the [op
 Find resources based on:
 
 + Parameters
-    + descriptive (optional, string, `3D`) - Filters title, description, area_title and subject_title with Solr fulltext search
-    + limit (optional, number,`1`) - Maximum number of results to return (1..100, 50 by default).
-    + offset (optional, number,`0`) - 0 by default.
+    + descriptive (optional, string, `World War II`) - Perform full text search.
+    + limit (optional, number,`10`) - Number of resources to return.
+    + offset (optional, number,`0`) - Pagination offset. Should be a multiple of limit.
     + standard_group (optional,number,`4`) - looks for resources aligned with specified standards in the standard_group by standard_groups ID
     + category (optional,string,`Geometry%20%28Elementary%29`) -  looks for resources aligned with specified standards are in the category by category.id or category.title
     + standard (optional,string,`K.G.2`) - looks for resources aligned with specified standard by standard.id (the internal object ID) or standard.identifier (the Common Core ID)
     + area (optional,string,`Math`) - looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
     + subject (optional,string,`Geometry`) - looks for resources assigned with specified subject by subject.id or subject.title
-    + grade (optional,string,`K`) - restricts to specified grades (expressed as K,1, .. 12)
+    + grade (optional,string,`K,1`) - restricts to specified grades (expressed as K,1, .. 12)
     + grade_group (optional,string,`Elementary`) - restricts to specified grade_group (e.g. "Elementary", "Middle School", "High School")
     + contribution_name (optional,string) -  the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
     + resource_types (optional, string) - array of resource types which can be "video", "game", "assessment", "question"
@@ -721,7 +736,7 @@ Get the list of standards with number of aligned resources based on parameters:
         ]
         }
 
-# Group Area and Subject Taxonomy
+# Group Area / Subject Taxonomy
 
 OpenEd categorizes all resources in an area/subject taxonomy. The top level is areas such as Math and Language Arts. The next level is subject such as Geometry or Writing.
 
