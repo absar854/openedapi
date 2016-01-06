@@ -10,4 +10,6 @@
      / ___ \|  __/| |
     /_/   \_\_|  |___|
 
+## Overview [![Build Status](https://travis-ci.org/openedinc/openedapi.svg?branch=master)](https://travis-ci.org/openedinc/openedapi)
+
 This repository contains the source documentation for the official OpenEd Partner API docs: http://docs.opened.apiary.io/
