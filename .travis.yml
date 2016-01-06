@@ -1,5 +1,19 @@
 language: node_js
+
+node_js:
+  - 0.12
+  
 sudo: false
-install:
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - "npm install -g npm@^2"
   - npm install -g dredd
+
 script: dredd ./apiary.apib http://localhost:3000 --dry-run
+
+notifications:
+  email: false
