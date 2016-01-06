@@ -1,0 +1,5 @@
+language: node_js
+sudo: false
+install:
+  - npm install -g dredd
+script: dredd ./apiary.apib http://localhost:3000 --dry-run
