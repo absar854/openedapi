@@ -26,27 +26,19 @@ The **OpenEd Partner API** focuses on searching and adding resources, getting in
 You will need to use OAuth to access the API.  Write to us at api@opened.com from the email account that is registered with OpenEd.  We will give you a client ID and client secret. Use this as shown in the following call in order to retrieve a token.
 Once you have a token you can use it in all API calls as shown below.
 
-+ Parameters
-    + grant_type (required, string, `password`)
-    + client_id (required, string, `yourclientid`)
-    + client_secret (required, string, `yourclientsecret`)
-    + password (required, string, `yourpassword`)
-    + username (required, string, `yourusernameoremail`)
-    
 + Request (application/json)
 
-    + Headers
+  + Headers
 
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
 
-    + Body
-
-            {
-                "class": {
-                    "title": "My class",
-                    "grades_range": "5"
-                }
-            }
+  + Attributes
+  
+        + grant_type: password (required)
+        + client_id: yourclientid (required)
+        + client_secret: yourclientsecret (required)
+        + password: yourpassword (required)
+        + username: yourusernameoremail (required)
 
 + Response 200
 
@@ -66,55 +58,60 @@ For more details about creating and managing OpenEd accounts, please see the [op
 
 ### GET
 
-Find resources based on:
-
 + Parameters
     + descriptive (optional, string, `World War II`) - Perform full text search.
-    + limit (optional, number,`10`) - Number of resources to return.
-    + offset (optional, number,`0`) - Pagination offset. Should be a multiple of limit.
-    + standard_group (optional,number,`4`) - looks for resources aligned with specified standards in the standard_group by standard_groups ID
-    + category (optional,string,`Geometry%20%28Elementary%29`) -  looks for resources aligned with specified standards are in the category by category.id or category.title
-    + standard (optional,string,`K.G.2`) - looks for resources aligned with specified standard by standard.id (the internal object ID) or standard.identifier (the Common Core ID)
-    + area (optional,string,`Math`) - looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
-    + subject (optional,string,`Geometry`) - looks for resources assigned with specified subject by subject.id or subject.title
-    + grade (optional,string,`K,1`) - restricts to specified grades (expressed as K,1, .. 12)
-    + grade_group (optional,string,`Elementary`) - restricts to specified grade_group (e.g. "Elementary", "Middle School", "High School")
-    + contribution_name (optional,string) -  the name of the contribution (e.g. "BrightStorm", "KhanAcademy")
-    + resource_types (optional, string) - array of resource types which can be "video", "game", "assessment", "question"
+    + limit (optional, number, `10`) - Number of resources to return.
+    + offset (optional, number, `0`) - Pagination offset. Should be a multiple of limit.
+    + standard_group (optional, number, `4`) - looks for resources aligned with specified standards in the standard_group by standard_groups ID
+    + category (optional, string, `Geometry%20%28Elementary%29`) -  looks for resources aligned with specified standards are in the category by category id or category title
+    + standard (optional, string, `K.G.2`) - looks for resources aligned with specified standard by standard.id (the internal object ID) or standard.identifier (the Common Core ID)
+    + area (optional, string, `Math`) - looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
+    + subject (optional, string, `Geometry`) - looks for resources assigned with specified subject by subject.id or subject.title
+    + grade (optional, string, `K`) - restricts to specified grades and is comma separated
+    + grade_group (optional, string, `Elementary`) - restricts to specified grade_group
+    + contribution_name (optional, string, `BrightStorm`) -  the name of the contribution
+    + resource_types (optional, string, `video`) - array of resource types which can be "video", "game", "assessment", "question"
 
 
-+ Response 200 (application/json; charset=utf-8)
++ Response 200 (application/json)
 
         {
-            "meta":
-                "pagination":
-                {
-                    "offset":0,
-                    "total_entries":258213,
-                    "entries":1,
-                    "limit":1
-                },
-            "resources":[
-                {"standard_idents":["K.G.2","K.G.3"],
-                "grade_idents":["K","1","2","3","4","5"],
-                "grades_range":"K-5",
-                "contribution_name":"YouTube",
-                "description":"Mr. Smith sings a cute song to teach kids 3D shapes. He helps build real world connections while students learn the cube, rectangular prism, cylinder, sphere, and pyramid. This is a good resource to help introduce and/or review this important skill.",
-                "featured":false,
-                "embeddable":true,
-                "resource_type":"video",
-                "id":178375,
-                "thumb":"https://opened.s3.amazonaws.com/pictures/178375/thumb/default.jpg?1359909018",
-                "title":"Teacher Tipster-3D Shapes Song-Teaching 3 Dimensional Shapes",
-                "share_url":"http://www.opened.io/#/share/178375",
-                "rating":4,
-                "my_rating":null,
-                "safe_url":"https://www.youtube.com/watch?v=2PiRhCwzg5E"}
-            ]
+          "meta":
+          {
+            "pagination":
+              {
+                "offset":0,
+                "total_entries":258213,
+                "entries":1,
+                "limit":1
+              }
+          },
+          "resources": [
+            {
+              "standard_idents": [
+                "K.G.2",
+                "K.G.3"
+              ],
+              "grade_idents": [
+                "K",
+                "1"
+              ],
+              "grades_range": "K-5",
+              "contribution_name": "Mr. Smith",
+              "description": "Mr. Smith sings a cute song to teach kids 3D shapes. He helps build real world connections while students learn the cube, rectangular prism, cylinder, sphere, and pyramid. This is a good resource to help introduce and/or review this important skill.",
+              "featured": false,
+              "embeddable": true,
+              "resource_type": "video",
+              "id": 178375,
+              "thumb": "https://opened.s3.amazonaws.com/pictures/178375/thumb/default.jpg?1359909018",
+              "title": "Teacher Tipster-3D Shapes Song-Teaching 3 Dimensional Shapes",
+              "share_url": "https://www.opened.com/resources/178375",
+              "rating": 4,
+              "my_rating": null,
+              "safe_url": "https://www.opened.com/resources/178375"
+            }
+          ]
         }
-
-
-
 
 
 ## Add Resource [/resources/add.json]
@@ -172,6 +169,7 @@ Show specified resource
                 "safe_url":"https://www.youtube.com/watch?v=xUUkvLvw8-g"
             }
         }
+
 
 # Group Standards
 
