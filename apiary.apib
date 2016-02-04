@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: https://partner.opened.com
 
-# OpenEd Partner API
+# Opened Partner API
 
 OpenEd is the world's largest educational resource catalog, currently with over a million videos, games, assessments and courses. It is the only site completely focused on aligning educational resources to standards.
 
@@ -9,54 +9,164 @@ The **OpenEd Partner API** lets you use the capabilities of the OpenEd engine fo
 
 All API access is over HTTPS, and accessed from the https://partner.opened.com host. All data is sent and received as JSON.
 
-All API calls require OAuth2 authentication. Please write to us at api@opened.com to receive OAuth credentials. Usage of OAuth is described below.
-
-The **OpenEd Partner API** focuses on searching and adding resources, getting information on standards, managing OpenEd's own area/subject taxonomy, and managing teacher classes and students.  These are all documented below.
+All API calls require an OpenEd Access Token. Please write to us at api@opened.com to receive a Client Id and Secret which will allow you to generate an Access Token.
 
 ## Feedback and Support
 * If you find errors or problems with this documentation, please open a [GitHub issue](https://github.com/openedinc/openedapi/issues/new) with details and information to reproduce the problem. Please note that the GitHub issue database is open to the public, so do not put sensitive information there.
 * If you have questions about using this API or about use cases not described here, please feel free to contact us at api@opened.com.
 
-# Group OAuth Requests
+# Requesting Credentials
 
-## OAuth Requests [/oauth/token]
+Email us at api@opened.com to request access to the Opened Partner API and to recieve a client id and secret.   
 
-### Request Access Token [POST]
+## Creating a signed certificate
 
-You will need to use OAuth to access the API.  Write to us at api@opened.com from the email account that is registered with OpenEd.  We will give you a client ID and client secret. Use this as shown in the following call in order to retrieve a token.
-Once you have a token you can use it in all API calls as shown below.
+You will need to generate a signed certificate using your client id and secret. This will be used to create an account later.
 
-+ Request (application/json)
+To generate a signed certificate you will need:
 
-  + Headers
+    Client ID
+    Secret
+    Username
+    
+*The Username is a string choosen by you and will serve as the username of your account.
 
-            Authorization: Bearer TOKEN
+Once you have your client id, secret, and have chose a username, you can generate a signed certificate by copying code from one of our 
+[signed server examples](https://github.com/openedinc/opened.js/tree/master/signing_server_examples). into your own application.  
+
+We currently have code examples for node, ruby, and php.
+
+If you are using Ruby you can include our [opened-partnerapi gem](https://github.com/openedinc/opened-partnerapi) into your project.  Below is an exampel of how to retrieve your signed
+certificate using this gem.
+
+    class User
+        include Opened::Partnerapi
+
+        def self.get_token (username)
+            hsh = {username:username,client_id:ENV['CLIENT_ID'], app_secret:ENV['CLIENT_SECRET'] }
+            sr  =  signed_request(hsh)
+            return get_access_token(sr, ENV['PARTNER_BASE_URI'])
+        end
+    end
+
+# Group Accounts
+
+## Access Token [/oauth/silent_login]
+
+### Getting your Access Token [POST]
+
+To use the Opened API you will first need to create an account to receive your ACCESS_TOKEN. Your ACCESS_TOKEN will be sent in the header
+of all subsequent API requests.
+
++ Request (application/text)
+
 
   + Attributes
   
-        + grant_type: password (required)
-        + client_id: yourclientid (required)
-        + client_secret: yourclientsecret (required)
-        + password: yourpassword (required)
-        + username: yourusernameoremail (required)
+        + signed_certificate (required)
+      
 
 + Response 200
 
         {
             "access_token": "TOKEN",
-            "token_type":"bearer",
             "expires_in":7200,
-            "refresh_token": "REFRESH_TOKEN"
         }
 
-# Group Accounts
-For more details about creating and managing OpenEd accounts, please see the [opened.js README](https://github.com/openedinc/opened.js/blob/master/README.md).
+# Group User
+
+## User [/1/users]
+
+### Create [POST]
+
+You can create other accounts to be used later.  These accounts must be created with an email and password. You can also specify role as 'teacher' or 'student'.  By default a teacher user will be created.
+
++ Request (application/json)
+
+
+  + Attributes
+        + user (object, required): user attributes
+            + email: email (required)
+            + password: user_password (required)
+            + role: teacher or student  (string, optional)
+        + client_id: yourclientid (required)
+       
+  + Headers 
+  
+            Authorization: Bearer [TOKEN]
+        
++ Response 200
+
+        
+        {
+            "user":{
+                "id":16372,
+                "first_name":"New Student",
+                "last_name":"1",
+                "full_name": "New Student 1",
+                "email": "user_email",
+                "role": "teacher",
+                "username":"student2",
+                
+            }
+        }
+
++ Response 400
+
+        {
+            "error": "error message"
+        }
+
+## User [/1/users/search?{username}]
+
+### Search
+
+You can get a user object by email or username
+
++ Request (application/json)
+
+
+  + Parameters
+    + username (required) - The username or email of the user
+       
+  + Headers 
+  
+            Authorization: Bearer [TOKEN]
+        
++ Response 200
+
+        
+        {
+            "user":{
+                "id":16372,
+                "first_name":"New Student",
+                "last_name":"1",
+                "full_name": "New Student 1",
+                "email": "user_email",
+                "role": "student",
+                "username":"student2",
+                
+            }
+        }
+
++ Response 400
+
+        {
+            "error": "error message"
+        }
 
 # Group Resources
 
-## Search Resource [/resources.json{?descriptive,limit,offset,standard_group,category,standard,area,subject,grade,grade_group,contribution_name,resource_types}]
+## Search Resources [/1/resources.json{?descriptive,limit,offset,standard_group,category,standard,area,subject,grade,grade_group,contribution_name,resource_types}]
 
+Search OpenEd's resource catalog using one or more of the parameters below.
 ### GET
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
 
 + Parameters
     + descriptive (optional, string, `World War II`) - Perform full text search.
@@ -113,36 +223,7 @@ For more details about creating and managing OpenEd accounts, please see the [op
           ]
         }
 
-
-## Add Resource [/resources/add.json]
-
-### POST
-
-Add resources to the OpenEd catalog, based on supplying following attributes:
-
-+ Parameters
-    + url (required,string,`http://yoursite.com/yourawesomevideo.mp4`) - where is the resource hosted
-    + title (required,string) - what do you want to call the resource. It doesn't have to match what you have on your site
-    + description (string) - more information about the resource. You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resources
-    + standard_idents (required,string) - the list of standards aligned to the resource. You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
-    + subjects (required,string) - the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource
-    + grades_range (optional,string) - in the form "lowgrade-highgrade", e.g. "K-4"
-    + contribution_name (required,string) - your site as the contributor so we can give you credit. Defaults to OAuth username.
-    + resource_type (required,string) - Either "video", "game", "assessment", "homework" or "other". Default to "other" if it is not identified as a video
-    + rating (optional,string,`3`) - The rating of the resource on a scale of "1" to "5" if you have one on your site
-    + image (required,string) - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
-
-+ Headers
-    + Authorization: Bearer [TOKEN]
-
-+ Response 200
-
-        {
-            "notice": "Resource was added successfully",
-            "id": 1
-        }
-
-## Specific Resource [/resources/{id}.json]
+## Get Resource [/resources/{id}.json]
 
 Show specified resource
 
@@ -152,8 +233,7 @@ Show specified resource
 
 
         Authorization: Bearer [TOKEN]
-
-
+        
 ### GET
 
 + Response 200 (application/json; charset=utf-8)
@@ -169,7 +249,6 @@ Show specified resource
                 "safe_url":"https://www.youtube.com/watch?v=xUUkvLvw8-g"
             }
         }
-
 
 # Group Standards
 
@@ -630,11 +709,12 @@ It will also return a count of resources.
 
 Get the list of standards with number of aligned resources based on parameters:
 
-+Parameters
-    + category (optional, number,260) - just the standards for a given standard category
-    + standard_group (optional, number) - just the standards for a given standard group
-    + grade_group (optional, string) - just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
-    + grade (optional, string) - just the standards relevant to a given grade (K-12), generally combined with standard group or category
+    + Parameters
+    
+        + category (optional, number,260) - just the standards for a given standard category
+        + standard_group (optional, number) - just the standards for a given standard group
+        + grade_group (optional, string) - just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
+        + grade (optional, string) - just the standards relevant to a given grade (K-12), generally combined with standard group or category
 
 
 + Response 200 (application/json; charset=utf-8)
@@ -782,8 +862,7 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
 Get the list of subjects based on supplied area
 
 + Parameters
-    * area (required,number,1) - the area you want subjects for
-
+    + area (required,number) - the area you want subjects for
 
 
 + Response 200 (application/json; charset=utf-8)
