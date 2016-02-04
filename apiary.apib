@@ -75,7 +75,7 @@ of all subsequent API requests.
 
 # Group User
 
-## User [/1/users]
+## Create a User [/1/users]
 
 ### Create [POST]
 
@@ -85,7 +85,7 @@ You can create other accounts to be used later.  These accounts must be created 
 
 
   + Attributes
-        + user (object, required): user attributes
+        + user (object, required): user attributes - email, password, role
             + email: email (required)
             + password: user_password (required)
             + role: teacher or student  (string, optional)
@@ -117,21 +117,22 @@ You can create other accounts to be used later.  These accounts must be created 
             "error": "error message"
         }
 
-## User [/1/users/search?{username}]
+## Search for a User [/1/users/search?{username}]
 
-### Search
+### Search [GET]
 
 You can get a user object by email or username
 
 + Request (application/json)
 
-
-  + Parameters
-    + username (required) - The username or email of the user
-       
-  + Headers 
+     + Headers 
   
             Authorization: Bearer [TOKEN]
+
+
++ Parameters
+    + username (required) - The username or email of the user
+       
         
 + Response 200
 
@@ -1003,26 +1004,21 @@ Response contains list of side-loaded objects:
 ### Create a New Class [POST /teachers/classes]
 
 You may create your own class using this action. It takes a JSON object containing a title and grades_range.
-
 + title (string) - The class title, required
 + grades_range (string) - class grades_range, optional, in formats: '5', '5-5', '6-8'
-
-Response contains list of side-loaded objects as on `get class` request.
++ teacher_id (integer) - teacher id to create class on
 
 + Request (application/json)
-
+    + Attributes
+        + user (object, required) - title (string),grades_range (string)
+            + title (string) - The class title, required
+            + grades_range (string) - class grades_range, optional, in formats: '5', '5-5', '6-8'
+             + teacher_id - teacher id to create class on
+             
     + Headers
 
             Authorization: Bearer [TOKEN]
 
-    + Body
-
-            {
-                "class": {
-                    "title": "My class",
-                    "grades_range": "5"
-                }
-            }
 
 + Response 201 (application/json)
 
