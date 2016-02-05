@@ -224,7 +224,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
           ]
         }
 
-## Get Resource [/resources/{id}.json]
+## Get Resource [/1/resources/{id}.json]
 
 Show specified resource
 
@@ -260,7 +260,7 @@ Each grade group has a set of "categories" (sometimes known as "strands"), such 
 Within categories there are individual standards. This method of organizing standards was created by the Common Core State Standards,
 but we use it to structure all standard groups.
 
-## Standard Groups [/standard_groups.json]
+## Standard Groups [/1/standard_groups.json]
 To navigate the standards hierarchies you first need to get the list of standard groups.
 
 ### GET
@@ -317,7 +317,7 @@ Retrieve full list of standard groups
             ]
         }
 
-## Grade Groups [/grade_groups.json{?standard_group}]
+## Grade Groups [/1/grade_groups.json{?standard_group}]
 
 List grade groups for specified standard group
 
@@ -344,7 +344,7 @@ Get the list of grade groups, typically for a particular standard group.
             ]
         }
 
-## Categories [/categories.json{?standard_group,grade_group}]
+## Categories [/1/categories.json{?standard_group,grade_group}]
 
 ### GET
 You can list the categories (also known as "strands") based on several criteria.
@@ -704,7 +704,7 @@ It will also return a count of resources.
         ]
         }
 
-## Standards [/standards.json{?category,standard_group_id,grade_group,grade}]
+## Standards [/1/standards.json{?category,standard_group_id,grade_group,grade}]
 
 ### GET
 
@@ -856,7 +856,7 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
         ]
         }
 
-## Subjects [/subjects.json{?area}]
+## Subjects [/1/subjects.json{?area}]
 
 ### GET
 
@@ -907,11 +907,11 @@ Get the list of subjects based on supplied area
 
 Partner's API endpoint is https://partner.opened.com/
 
-## Teacher's Classes [/teachers/classes]
+## Teacher's Classes [/1/teachers/classes]
 
 `/teachers/classes` endpoint available for teachers only
 
-### List classes [GET /teachers/classes{?ids}]
+### List classes [GET /1/teachers/classes{?ids}]
 
 The request should have OAuth access token in headers `Authorization: Bearer [TOKEN]`
 
@@ -957,7 +957,7 @@ Response contains list of side-loaded objects:
             "students": []
         }
 
-### Class [GET /teachers/classes/{class_id}]
+### Class [GET /1/teachers/classes/{class_id}]
 
 The request should have OAuth access token in headers `Authorization: Bearer [TOKEN]`
 
@@ -1001,7 +1001,7 @@ Response contains list of side-loaded objects:
             "students": []
         }
 
-### Create a New Class [POST /teachers/classes]
+### Create a New Class [POST /1/teachers/classes]
 
 You may create your own class using this action. It takes a JSON object containing a title and grades_range.
 + title (string) - The class title, required
@@ -1047,7 +1047,7 @@ You may create your own class using this action. It takes a JSON object containi
             }
 
 
-### Update Class [PUT /teachers/classes/{class_id}]
+### Update Class [PUT /1/teachers/classes/{class_id}]
 
 You may update your own class using this action. It takes a JSON object containing a title and grades_range.
 
@@ -1116,7 +1116,7 @@ You may delete your own class using this action.
 
 + Response 204
 
-### Add existing student to the Class [POST /teachers/classes/{class_id}/add_students]
+### Add existing student to the Class [POST /1/teachers/classes/{class_id}/add_students]
 
 This is the way how to manage existing students in classes.
 Use `create student` action to create new students and add them to classes.
@@ -1178,7 +1178,7 @@ Use `create student` action to create new students and add them to classes.
             }
 
 
-### Remove student from the Class [POST /teachers/classes/{class_id}/remove_students]
+### Remove student from the Class [POST /1/teachers/classes/{class_id}/remove_students]
 
 + Parameters
     + class_id (required, number, `1`) - Class `id`
@@ -1230,11 +1230,11 @@ Use `create student` action to create new students and add them to classes.
             }
 
 
-## Teacher's Students [/teachers/students]
+## Teacher's Students [/1/teachers/students]
 
 `/teachers/students` endpoint available for teachers only
 
-### List students [GET /teachers/students{?ids}]
+### List students [GET /1/teachers/students{?ids}]
 
 The request should have OAuth access token in headers `Authorization: Bearer [TOKEN]`
 
@@ -1274,7 +1274,7 @@ Response contains objects:
             ]
         }
 
-### Class [GET /teachers/students/{student_id}]
+### Class [GET /1/teachers/students/{student_id}]
 
 The request should have OAuth access token in headers `Authorization: Bearer [TOKEN]`
 
@@ -1304,7 +1304,7 @@ Response contain object:
             }
         }
 
-### Create a Student [POST /teachers/students]
+### Create a Student [POST /1/teachers/students]
 
 You may create your own student and add it to classes using this action. It takes a JSON object containing a first_name, last_name, username, password and list of class ids.
 
@@ -1350,7 +1350,7 @@ Response contains list of side-loaded objects as on `get student` request.
             }
 
 
-### Update Class [PUT /teachers/classes/{class_id}]
+### Update Class [PUT /1/teachers/classes/{class_id}]
 
 You may update your own student using this action. It takes a JSON object containing a first_name, last_name and password.
 
@@ -1396,7 +1396,7 @@ Response contains list of side-loaded objects as on `get student` request.
 
 
 
-### Remove a Student [DELETE /teachers/students/{student_id}]
+### Remove a Student [DELETE /1/teachers/students/{student_id}]
 
 You may delete your own student using this action.
 
@@ -1411,6 +1411,55 @@ You may delete your own student using this action.
 
 + Response 204
 
+# Group School
+
+## Create a School [/1/schools]
+
+### Create [POST]
+
+You can create schools to be used later with user accounts.  These schools must be created with NCES ID and school name. You can also specify school's address, grade range and phone number.
+
++ Request (application/json)
+
+
+  + Attributes
+        + school (object, required): school attributes - nces_id, name, address, city, state, zip, phone, low_grade, high_grade
+            + nces_id: school's NCES ID (required)
+            + name: school's name (required)
+            + address: school's address (string, optional)
+            + city: school's city (string, optional)
+            + state: school's state (string, optional)
+            + zip: school's zip code (string, optional)
+            + phone: school's phone number (string, optional)
+            + low_grade: school's minimal grade (string, optional)
+            + high_grade: school's maximum grade (string, optional)
+       
+  + Headers 
+  
+            Authorization: Bearer [TOKEN]
+        
++ Response 200
+
+        {
+            "school":{
+                "id":65945, 
+                "name":"Example Middle", 
+                "nces_id":"111111", 
+                "low_grade":"6", 
+                "high_grade":"8", 
+                "phone":"1-555-400-5555", 
+                "address":"100 First st.",
+                "city":"San Jose", 
+                "state":"CA", 
+                "zip":"99999"
+            }
+        } 
+
++ Response 422
+
+        {
+            "error": "error message"
+        }
 
 # Group API Commons
 
