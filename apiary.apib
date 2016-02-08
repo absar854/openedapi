@@ -3,13 +3,13 @@ HOST: https://partner.opened.com
 
 # Opened Partner API
 
-OpenEd is the world's largest educational resource catalog, currently with over a million videos, games, assessments and courses. It is the only site completely focused on aligning educational resources to standards.
+OpenEd is the world's largest educational resource catalog, with over a million videos, games, assessments, homework, and lesson plans. It is the only site completely focused on aligning educational resources to standards.
 
-The **OpenEd Partner API** lets you use the capabilities of the OpenEd engine for finding resources and providing information about educational standards (Common Core and otherwise) inside your own apps and websites.
+The **OpenEd Partner API** lets you use the capabilities of the OpenEd engine to find resources and provide information about educational standards (Common Core and otherwise) inside your own apps and websites.
 
 All API access is over HTTPS, and accessed from the https://partner.opened.com host. All data is sent and received as JSON.
 
-All API calls require an OpenEd Access Token. Please write to us at api@opened.com to receive a Client Id and Secret which will allow you to generate an Access Token.
+All API calls require an OpenEd Access Token. Please write to us at api@opened.com to receive a Client ID and Secret which will allow you to generate an Access Token.
 
 ## Feedback and Support
 * If you find errors or problems with this documentation, please open a [GitHub issue](https://github.com/openedinc/openedapi/issues/new) with details and information to reproduce the problem. Please note that the GitHub issue database is open to the public, so do not put sensitive information there.
@@ -17,26 +17,26 @@ All API calls require an OpenEd Access Token. Please write to us at api@opened.c
 
 # Requesting Credentials
 
-Email us at api@opened.com to request access to the Opened Partner API and to recieve a client id and secret.   
+Email us at api@opened.com to request access to the Opened Partner API and to receive a Client ID and Secret.   
 
-## Creating a signed certificate
+## Creating a Signed Certificate
 
-You will need to generate a signed certificate using your client id and secret. This will be used to create an account later.
+You will need to generate a signed certificate using your Client ID and Secret. This will be used to create an account later.
 
-To generate a signed certificate you will need:
+To generate a signed certificate, you will need:
 
     Client ID
     Secret
     Username
     
-*The Username is a string choosen by you and will serve as the username of your account.
+*The Username is a string chosen by you and will serve as the username of your account.
 
-Once you have your client id, secret, and have chose a username, you can generate a signed certificate by copying code from one of our 
-[signed server examples](https://github.com/openedinc/opened.js/tree/master/signing_server_examples). into your own application.  
+Once you have your client id, secret, and have chosen a username, you can generate a signed certificate by copying code from one of our 
+[signed server examples](https://github.com/openedinc/opened.js/tree/master/signing_server_examples) into your own application.  
 
 We currently have code examples for node, ruby, and php.
 
-If you are using Ruby you can include our [opened-partnerapi gem](https://github.com/openedinc/opened-partnerapi) into your project.  Below is an exampel of how to retrieve your signed
+If you are using Ruby, you can include our [opened-partnerapi gem](https://github.com/openedinc/opened-partnerapi) in your project.  Below is an example of how to retrieve your signed
 certificate using this gem.
 
     class User
@@ -55,7 +55,7 @@ certificate using this gem.
 
 ### Getting your Access Token [POST]
 
-To use the Opened API you will first need to create an account to receive your ACCESS_TOKEN. Your ACCESS_TOKEN will be sent in the header
+To use the OpenEd API you will first need to create an account to receive your ACCESS_TOKEN. Your ACCESS_TOKEN will be sent in the header
 of all subsequent API requests.
 
 + Request (application/text)
@@ -79,7 +79,7 @@ of all subsequent API requests.
 
 ### Create [POST]
 
-You can create other accounts to be used later.  These accounts must be created with an email and password. You can also specify role as 'teacher' or 'student'.  By default a teacher user will be created.
+You can create other accounts to be used later.  These accounts must be created with an email and password. You can also specify role as 'teacher' or 'student'.  By default, a teacher user will be created.
 
 + Request (application/json)
 
@@ -230,7 +230,7 @@ Show specified resource
 
 
 + Parameters
-    + id (number, `110710`) - An unique identifier of the resource
+    + id (number, `110710`) - A unique identifier of the resource
 
 
         Authorization: Bearer [TOKEN]
@@ -253,7 +253,7 @@ Show specified resource
 
 # Group Standards
 
-OpenEd also allows you to search for information on standards themselves (in addition to finding resources for standards).
+OpenEd also allows you to search for information on the standards themselves (in addition to finding resources for standards).
 Standards are organized into "standard groups" such as "Common Core Math" and "Common Core Language Arts".
 Within a standard group there are "grade groups" such as "Elementary" and "Middle School".
 Each grade group has a set of "categories" (sometimes known as "strands"), such as "Geometry".
@@ -708,7 +708,7 @@ It will also return a count of resources.
 
 ### GET
 
-Get the list of standards with number of aligned resources based on parameters:
+Get the list of standards with the number of aligned resources based on parameters:
 
     + Parameters
     
@@ -817,7 +817,7 @@ Get the list of standards with number of aligned resources based on parameters:
 
 # Group Area / Subject Taxonomy
 
-OpenEd categorizes all resources in an area/subject taxonomy. The top level is areas such as Math and Language Arts. The next level is subject such as Geometry or Writing.
+OpenEd categorizes all resources in an area/subject taxonomy. The top level is areas, such as Math and Language Arts. The next level is subject, such as Geometry or Writing.
 
 ##  Areas [/areas.json]
 
@@ -913,7 +913,7 @@ Partner's API endpoint is https://partner.opened.com/
 
 ### List classes [GET /1/teachers/classes{?ids}]
 
-The request should have OAuth access token in headers `Authorization: Bearer [TOKEN]`
+The request should have the OAuth access token in the headers `Authorization: Bearer [TOKEN]`
 
 Response contains list of side-loaded objects:
 
@@ -959,7 +959,7 @@ Response contains list of side-loaded objects:
 
 ### Class [GET /1/teachers/classes/{class_id}]
 
-The request should have OAuth access token in headers `Authorization: Bearer [TOKEN]`
+The request should have the OAuth access token in the headers `Authorization: Bearer [TOKEN]`
 
 Response contains list of side-loaded objects:
 
@@ -1010,7 +1010,7 @@ You may create your own class using this action. It takes a JSON object containi
 
 + Request (application/json)
     + Attributes
-        + user (object, required) - title (string),grades_range (string)
+        + user (object, required) - title (string), grades_range (string)
             + title (string) - The class title, required
             + grades_range (string) - class grades_range, optional, in formats: '5', '5-5', '6-8'
              + teacher_id - teacher id to create class on
@@ -1118,7 +1118,7 @@ You may delete your own class using this action.
 
 ### Add existing student to the Class [POST /1/teachers/classes/{class_id}/add_students]
 
-This is the way how to manage existing students in classes.
+This allows you to manage existing students in the classes.
 Use `create student` action to create new students and add them to classes.
 
 + Parameters
@@ -1236,7 +1236,7 @@ Use `create student` action to create new students and add them to classes.
 
 ### List students [GET /1/teachers/students{?ids}]
 
-The request should have OAuth access token in headers `Authorization: Bearer [TOKEN]`
+The request should have the OAuth access token in the headers `Authorization: Bearer [TOKEN]`
 
 Response contains objects:
 
@@ -1276,7 +1276,7 @@ Response contains objects:
 
 ### Class [GET /1/teachers/students/{student_id}]
 
-The request should have OAuth access token in headers `Authorization: Bearer [TOKEN]`
+The request should have the OAuth access token in the headers `Authorization: Bearer [TOKEN]`
 
 Response contain object:
 
@@ -1306,7 +1306,7 @@ Response contain object:
 
 ### Create a Student [POST /1/teachers/students]
 
-You may create your own student and add it to classes using this action. It takes a JSON object containing a first_name, last_name, username, password and list of class ids.
+You may create your own student and add it to classes using this action. It takes a JSON object containing a first_name, last_name, username, password and list of class IDs.
 
 + first_name (string) - Student's first_name, required
 + last_name (string) - Student's last_name, required
@@ -1314,7 +1314,7 @@ You may create your own student and add it to classes using this action. It take
 + password (string) - Student's password, required
 + class_ids (array[int]) - ids of classes new student needs to be added, optional
 
-Response contains list of side-loaded objects as on `get student` request.
+Response contains list of side-loaded objects as an `get student` request.
 
 + Request (application/json)
 
@@ -1417,7 +1417,7 @@ You may delete your own student using this action.
 
 ### Create [POST]
 
-You can create schools to be used later with user accounts.  These schools must be created with NCES ID and school name. You can also specify school's address, grade range and phone number.
+You can create schools to be used later with user accounts.  These schools must be created with the NCES ID and school name. You can also specify the school's address, grade range and phone number.
 
 + Request (application/json)
 
