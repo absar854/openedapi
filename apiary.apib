@@ -158,10 +158,11 @@ You can get a user object by email or username
 
 # Group Resources
 
+
 ## Search Resources [/1/resources.json{?descriptive,limit,offset,standard_group,category,standard,area,subject,grade,grade_group,contribution_name,resource_types}]
 
 Search OpenEd's resource catalog using one or more of the parameters below.
-### GET
+### Search [GET]
 
 + Request (application/json)
 
@@ -249,6 +250,40 @@ Show specified resource
                 "rating":3,
                 "safe_url":"https://www.youtube.com/watch?v=xUUkvLvw8-g"
             }
+        }
+
+## Create Resource [/resources/add.json]
+
+Add resources to the OpenEd catalog.
+
+### Create [POST]
+
++ Request (application/text)
+
+    + Headers
+    
+            Authorization: Bearer [TOKEN]
+
+    + Attributes
+  
+        + url (required,string) - where is the resource hosted
+        + title (required,string) - what do you want to call the resource. It doesn't have to match what you have on your site
+        + description (string) - more information about the resource. You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resources
+        + standard_idents (required,string) - the list of standards aligned to the resource. You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
+        + subjects (required,string) - the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource
+        + grades_range (optional,string) - in the form "lowgrade-highgrade", e.g. "K-4"
+        + contribution_name (required,string) - your site as the contributor so we can give you credit. Defaults to OAuth username.
+        + resource_type (required,string) - Either "video", "game", "assessment", "homework" or "other". Default to "other" if it is not identified as a video
+        + rating (optional,string) - The rating of the resource on a scale of "1" to "5" if you have one on your site
+        + image (required,string) - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
+
+
+
++ Response 200
+
+        {
+            "notice": "Resource was added successfully",
+            "id": 1
         }
 
 # Group Standards
