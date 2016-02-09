@@ -159,7 +159,7 @@ You can get a user object by email or username
 # Group Resources
 
 
-## Search Resources [/1/resources.json{?descriptive,limit,offset,standard_group,category,standard,area,subject,grade,grade_group,contribution_name,resource_types}]
+## Search Resources [/1/resources.json{?descriptive,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_types}]
 
 Search OpenEd's resource catalog using one or more of the parameters below.
 ### Search [GET]
@@ -180,7 +180,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
     + standard (optional, string, `K.G.2`) - looks for resources aligned with specified standard by standard.identifier (the Common Core ID)
     + area (optional, number, `11`) - looks for resources assigned with specified area (and/or with specified subjects of area) by area id
     + subject (optional, number, `110`) - looks for resources assigned with specified subject by subject.id
-    + grade (optional, string, `K`) - restricts to specified grades and is comma separated
+    + grades_range (optional, string, `K-5`) - restricts to specified grades range. Can be specified as a single grade.
     + publisher (optional, string/array, `BrightStorm`) -  looks for resources from the publisher(s) by publisher title(s). Can be specified as single entry, comma-seprated list of titles or a URL-formatted array.
     + resource_types (optional, string/array, `video`) - looks for resources with specific type. Possible types are: "video", "game", "assessment", "homework", "question". Can be specified as single entry, comma-seprated list of types or a URL-formatted array.
 
