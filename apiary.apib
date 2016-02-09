@@ -174,15 +174,15 @@ Search OpenEd's resource catalog using one or more of the parameters below.
     + descriptive (optional, string, `World War II`) - Perform full text search.
     + limit (optional, number, `10`) - Number of resources to return.
     + offset (optional, number, `0`) - Pagination offset. Should be a multiple of limit.
-    + standard_group (optional, number, `4`) - looks for resources aligned with specified standards in the standard_group by standard_groups ID
-    + category (optional, string, `Geometry%20%28Elementary%29`) -  looks for resources aligned with specified standards are in the category by category id or category title
-    + standard (optional, string, `K.G.2`) - looks for resources aligned with specified standard by standard.id (the internal object ID) or standard.identifier (the Common Core ID)
-    + area (optional, string, `Math`) - looks for resources assigned with specified area (and/or with specified subjects of area) by area.id or area.title
-    + subject (optional, string, `Geometry`) - looks for resources assigned with specified subject by subject.id or subject.title
+    + standard_group (optional, number, `4`) - looks for resources aligned with specified standards in the standard_group by standard_group ID
+    + grade_group (optional, number, `46`) - looks for resources aligned with specified standards in the grade_group by grade_group ID
+    + category (optional, number, `12`) -  looks for resources aligned with specified standards are in the category by category id
+    + standard (optional, string, `K.G.2`) - looks for resources aligned with specified standard by standard.identifier (the Common Core ID)
+    + area (optional, number, `11`) - looks for resources assigned with specified area (and/or with specified subjects of area) by area id
+    + subject (optional, number, `110`) - looks for resources assigned with specified subject by subject.id
     + grade (optional, string, `K`) - restricts to specified grades and is comma separated
-    + grade_group (optional, string, `Elementary`) - restricts to specified grade_group
-    + contribution_name (optional, string, `BrightStorm`) -  the name of the contribution
-    + resource_types (optional, string, `video`) - array of resource types which can be "video", "game", "assessment", "question"
+    + publisher (optional, string/array, `BrightStorm`) -  looks for resources from the publisher(s) by publisher title(s). Can be specified as single entry, comma-seprated list of titles or a URL-formatted array.
+    + resource_types (optional, string/array, `video`) - looks for resources with specific type. Possible types are: "video", "game", "assessment", "homework", "question". Can be specified as single entry, comma-seprated list of types or a URL-formatted array.
 
 
 + Response 200 (application/json)
@@ -1495,6 +1495,10 @@ You can create schools to be used later with user accounts.  These schools must 
         {
             "error": "error message"
         }
+
+# Group Examples
+
+[Resource Search](https://github.com/openedinc/opened-api-consumer)  
 
 # Group API Commons
 
