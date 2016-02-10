@@ -352,7 +352,7 @@ Retrieve full list of standard groups
             ]
         }
 
-## Grade Groups [/1/grade_groups.json{?standard_group}]
+## Grade Groups [/1/grade_groups.json{?standard_group,ids}]
 
 List grade groups for specified standard group
 
@@ -361,8 +361,7 @@ List grade groups for specified standard group
 Get the list of grade groups, typically for a particular standard group.
 
 + Parameters
-    + standard_group (optional, title, `Common Core Math`) - The title of the standard group you want grade groups for
-
+    + standard_group: `2` (optional, number) - The id of the standard group you want grade groups for
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -386,8 +385,8 @@ You can list the categories (also known as "strands") based on several criteria.
 It will also return a count of resources.
 
 + Parameters
-    + standard_group (optional, string, `Common Core Math`) - shows all categories within a standard group
-    + grade_group (optional, string, `Elementary`) - restricts the categories to those associated with a specific grade group, such as Elementary
+    + standard_group: `2` (optional, number) - shows all categories within a standard group
+    + grade_group: `46` (optional, number) - restricts the categories to those associated with a specific grade group
 
 
 + Response 200 (application/json; charset=utf-8)
