@@ -751,7 +751,6 @@ Get the list of standards with the number of aligned resources based on paramete
     + grade_group: `46` (optional, number) - just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group).
     + grades_range: `K-5` (optional, string) - just the standards relevant to a given grades range, generally combined with standard group or grade group.
 
-
 + Response 200 (application/json; charset=utf-8)
 
         {
@@ -897,7 +896,7 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
 Get the list of subjects based on supplied area
 
 + Parameters
-    + area (required,number) - the area you want subjects for
+    + area: `1` (required,number) - the area you want subjects for.
 
 
 + Response 200 (application/json; charset=utf-8)
