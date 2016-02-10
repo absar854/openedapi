@@ -159,7 +159,7 @@ You can get a user object by email or username
 # Group Resources
 
 
-## Search Resources [/1/resources.json{?id,descriptive,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_types}]
+## Search Resources [/1/resources.json{?descriptive,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_types}]
 
 Search OpenEd's resource catalog using one or more of the parameters below.
 ### Search [GET]
@@ -174,15 +174,15 @@ Search OpenEd's resource catalog using one or more of the parameters below.
     + descriptive: `World War II` (optional, string) - Perform full text search.
     + limit: `10` (optional, number) - Number of resources to return.
     + offset: `0` (optional, number) - Pagination offset. Should be a multiple of limit.
-    + standard_group: `4` (optional, number) - looks for resources aligned with specified standards in the standard_group by standard_group ID.
-    + grade_group (optional, number, `46`) - looks for resources aligned with specified standards in the grade_group by grade_group ID
-    + category (optional, number, `12`) -  looks for resources aligned with specified standards are in the category by category id
-    + standard (optional, string, `K.G.2`) - looks for resources aligned with specified standard by standard.identifier (the Common Core ID)
-    + area (optional, number, `11`) - looks for resources assigned with specified area (and/or with specified subjects of area) by area id
-    + subject (optional, number, `110`) - looks for resources assigned with specified subject by subject.id
-    + grades_range (optional, string, `K-5`) - restricts to specified grades range. Can be specified as a single grade.
-    + publisher (optional, string/array, `BrightStorm`) -  looks for resources from the publisher(s) by publisher title(s). Can be specified as single entry, comma-seprated list of titles or a URL-formatted array.
-    + resource_types (optional, string/array, `video`) - looks for resources with specific type. Possible types are: "video", "game", "assessment", "homework", "question". Can be specified as single entry, comma-seprated list of types or a URL-formatted array.
+    + standard_group: `2` (optional, number) - looks for resources aligned with specified standards in the standard group by standard group ID.
+    + grade_group: `46` (optional, number) - looks for resources aligned with specified standards in the grade group by grade group ID
+    + category: `12` (optional, number) -  looks for resources aligned with specified standards are in the category by category id
+    + standard: `K.G.2` (optional, string) - looks for resources aligned with specified standard by standard.identifier (the Common Core ID)
+    + area: `11` (optional, number) - looks for resources assigned with specified area (and/or with specified subjects of area) by area id
+    + subject: `110` (optional, number) - looks for resources assigned with specified subject by subject.id
+    + grades_range: `K-5` (optional, string) - restricts to specified grades range. Can be specified as a single grade.
+    + publisher: `BrightStorm` (optional, string/array) -  looks for resources from the publisher(s) by publisher title(s). Can be specified as single entry, comma-seprated list of titles or a URL-formatted array.
+    + resource_types: `video` (optional, string/array) - looks for resources with specific type. Possible types are: "video", "game", "assessment", "homework", "question". Can be specified as single entry, comma-seprated list of types or a URL-formatted array.
 
 
 + Response 200 (application/json)
