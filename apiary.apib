@@ -361,7 +361,7 @@ List grade groups for specified standard group
 Get the list of grade groups, typically for a particular standard group.
 
 + Parameters
-    + standard_group: `2` (optional, number) - The id of the standard group you want grade groups for
+    + standard_group: `2` (optional, number) - The id of the standard group you want grade groups for.
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -385,8 +385,8 @@ You can list the categories (also known as "strands") based on several criteria.
 It will also return a count of resources.
 
 + Parameters
-    + standard_group: `2` (optional, number) - shows all categories within a standard group
-    + grade_group: `46` (optional, number) - restricts the categories to those associated with a specific grade group
+    + standard_group: `2` (optional, number) - shows all categories within a standard group.
+    + grade_group: `46` (optional, number) - restricts the categories to those associated with a specific grade group.
 
 
 + Response 200 (application/json; charset=utf-8)
@@ -738,7 +738,7 @@ It will also return a count of resources.
         ]
         }
 
-## Standards [/1/standards.json{?category,standard_group_id,grade_group,grade}]
+## Standards [/1/standards.json{?category,standard_group,grade_group,grades_range}]
 
 ### GET
 
@@ -746,10 +746,10 @@ Get the list of standards with the number of aligned resources based on paramete
 
     + Parameters
     
-        + category (optional, number,260) - just the standards for a given standard category
-        + standard_group (optional, number) - just the standards for a given standard group
-        + grade_group (optional, string) - just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group)
-        + grade (optional, string) - just the standards relevant to a given grade (K-12), generally combined with standard group or category
+        + category: `256` (optional, number) - just the standards for a given standard category.
+        + standard_group: `2` (optional, number) - just the standards for a given standard group.
+        + grade_group: `46` (optional, number) - just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group).
+        + grades_range: `K-5` (optional, string) - just the standards relevant to a given grades range, generally combined with standard group or grade group.
 
 
 + Response 200 (application/json; charset=utf-8)
