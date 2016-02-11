@@ -738,7 +738,7 @@ It will also return a count of resources.
         ]
         }
 
-## Standards [/1/standards.json{?category,standard_group,grade_group,grades_range}]
+## Standards [/1/standards.json{?category,grades_range}]
 
 ### GET
 
@@ -746,9 +746,7 @@ Get the list of standards with the number of aligned resources based on paramete
 
 + Parameters
     
-    + category: `256` (optional, number) - just the standards for a given standard category.
-    + standard_group: `2` (optional, number) - just the standards for a given standard group.
-    + grade_group: `46` (optional, number) - just the standards for a given grade group (generally combined with standard group, since the category is already within a grade group).
+    + category: `256` (required, number) - just the standards for a given standard category.
     + grades_range: `K-5` (optional, string) - just the standards relevant to a given grades range, generally combined with standard group or grade group.
 
 + Response 200 (application/json; charset=utf-8)
