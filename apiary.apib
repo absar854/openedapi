@@ -286,38 +286,6 @@ Create a resource in the OpenEd catalog.
             "id": 1
         }
 
-# Group Publisher
-
-## Publishers [/1/publishers.json]
-
-### GET
-
-Retrieve list of publishers
-
-+ Request (application/text)
-
-    + Headers
-    
-            Authorization: Bearer [TOKEN]
-        
-+ Response 200
-        
-        {
-            "publishers": [
-                {
-                    "id":32539,
-                    "title":"Smithsonian Institution",
-                    "count":1000,
-                    "featured":true
-                },
-                {
-                    "id":32539,
-                    "title":"Sample Publisher",
-                    "count":2,
-                    "featured":false
-                }
-        }
-
 # Group Standards
 
 OpenEd also allows you to search for information on the standards themselves (in addition to finding resources for standards).
@@ -905,6 +873,39 @@ Get the list of subjects based on supplied area
         }
         ]
         }
+
+# Group Publisher
+
+## Publishers [/1/publishers.json]
+
+### GET
+
+Retrieve list of publishers
+
++ Request (application/text)
+
+    + Headers
+    
+            Authorization: Bearer [TOKEN]
+        
++ Response 200
+        
+        {
+            "publishers": [
+                {
+                    "id":32539,
+                    "title":"Smithsonian Institution",
+                    "count":1000,
+                    "featured":true
+                },
+                {
+                    "id":32539,
+                    "title":"Sample Publisher",
+                    "count":2,
+                    "featured":false
+                }
+        }
+
 
 # Group Manage teacher's classes and students
 
