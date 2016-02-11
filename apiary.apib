@@ -302,6 +302,11 @@ To navigate the standards hierarchies you first need to get the list of standard
 
 Retrieve full list of standard groups
 
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [TOKEN]
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -363,6 +368,12 @@ Get the list of grade groups, typically for a particular standard group.
 + Parameters
     + standard_group: `2` (optional, number) - The id of the standard group you want grade groups for.
 
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [TOKEN]
+
 + Response 200 (application/json; charset=utf-8)
 
         {"grade_groups":
@@ -388,6 +399,11 @@ It will also return a count of resources.
     + standard_group: `2` (requir, number) - shows all categories within a standard group.
     + grade_group: `46` (optional, number) - restricts the categories to those associated with a specific grade group.
 
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [TOKEN]
 
 + Response 200 (application/json; charset=utf-8)
 
