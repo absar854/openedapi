@@ -301,10 +301,21 @@ Retrieve list of publishers
             Authorization: Bearer [TOKEN]
         
 + Response 200
-
+        
         {
-                "notice": "Resource was added successfully",
-                "id": 1
+            "publishers": [
+                {
+                    "id":32539,
+                    "title":"Smithsonian Institution",
+                    "count":1000,
+                    "featured":true
+                },
+                {
+                    "id":32539,
+                    "title":"Sample Publisher",
+                    "count":2,
+                    "featured":false
+                }
         }
 
 # Group Standards
