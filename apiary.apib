@@ -794,6 +794,11 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
 
 ### GET
 
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [TOKEN]
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -836,6 +841,11 @@ Get the list of subjects based on supplied area
 + Parameters
     + area: `1` (required,number) - the area you want subjects for.
 
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [TOKEN]
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -882,7 +892,7 @@ Get the list of subjects based on supplied area
 
 Retrieve list of publishers
 
-+ Request (application/text)
++ Request
 
     + Headers
     
