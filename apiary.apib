@@ -288,9 +288,24 @@ Create a resource in the OpenEd catalog.
 
 # Group Publisher
 
-## Get [/1/publishers.json]
+## Publishers [/1/publishers.json]
+
+### GET
 
 Retrieve list of publishers
+
++ Request (application/text)
+
+    + Headers
+    
+            Authorization: Bearer [TOKEN]
+        
++ Response 200
+
+        {
+                "notice": "Resource was added successfully",
+                "id": 1
+        }
 
 # Group Standards
 
