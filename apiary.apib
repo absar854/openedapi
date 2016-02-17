@@ -85,10 +85,10 @@ You can create other accounts to be used later.  These accounts must be created 
 
 
   + Attributes
-        + user (object, required): user attributes - email, password, role
-            + email: email (required)
-            + password: user_password (required)
-            + role: teacher or student  (string, optional)
+        + email: email (required)
+        + password: user_password (required)
+        + role: teacher or student  (string, optional)
+        + promo: promo code (string, optional)
         + client_id: yourclientid (required)
        
   + Headers 
@@ -200,6 +200,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
           },
           "resources": [
             {
+              "standard_ids": [1, 2],
               "standard_idents": [
                 "K.G.2",
                 "K.G.3"
@@ -217,7 +218,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
               "id": 178375,
               "thumb": "https://opened.s3.amazonaws.com/pictures/178375/thumb/default.jpg?1359909018",
               "title": "Teacher Tipster-3D Shapes Song-Teaching 3 Dimensional Shapes",
-              "share_url": "https://www.opened.com/resources/178375",
+              "share_url": "https://www.opened.com/resources/178375?partner_id1&simplifiedView=true",
               "rating": 4,
               "my_rating": null,
               "safe_url": "https://www.opened.com/resources/178375"
@@ -258,7 +259,7 @@ Create a resource in the OpenEd catalog.
 
 ### Create [POST]
 
-+ Request (application/text)
++ Request (application/json)
 
     + Headers
     
@@ -988,7 +989,7 @@ Response contains list of side-loaded objects:
             "students": []
         }
 
-### Class [GET /1/teachers/classes/{class_id}]
+### Get Class [GET /1/teachers/classes/{class_id}]
 
 The request should have the OAuth access token in the headers `Authorization: Bearer [TOKEN]`
 
@@ -1147,7 +1148,7 @@ You may delete your own class using this action.
 
 + Response 204
 
-### Add existing student to the Class [POST /1/teachers/classes/{class_id}/add_students]
+### Add existing students to the Class [POST /1/teachers/classes/{class_id}/add_students]
 
 This allows you to manage existing students in the classes.
 Use `create student` action to create new students and add them to classes.
@@ -1209,7 +1210,7 @@ Use `create student` action to create new students and add them to classes.
             }
 
 
-### Remove student from the Class [POST /1/teachers/classes/{class_id}/remove_students]
+### Remove students from the Class [POST /1/teachers/classes/{class_id}/remove_students]
 
 + Parameters
     + class_id (required, number, `1`) - Class `id`
@@ -1305,7 +1306,7 @@ Response contains objects:
             ]
         }
 
-### Class [GET /1/teachers/students/{student_id}]
+### Get Student [GET /1/teachers/students/{student_id}]
 
 The request should have the OAuth access token in the headers `Authorization: Bearer [TOKEN]`
 
@@ -1381,7 +1382,7 @@ Response contains list of side-loaded objects as an `get student` request.
             }
 
 
-### Update Class [PUT /1/teachers/classes/{class_id}]
+### Update Student [PUT /1/teachers/students/{student_id}]
 
 You may update your own student using this action. It takes a JSON object containing a first_name, last_name and password.
 
@@ -1392,7 +1393,7 @@ You may update your own student using this action. It takes a JSON object contai
 Response contains list of side-loaded objects as on `get student` request.
 
 + Parameters
-    + class_id (required, number, `1`) - Class `id`
+    + student_id (required, number, `1`) - Class `id`
 
 + Request (application/json)
 
