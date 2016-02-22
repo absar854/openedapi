@@ -75,6 +75,45 @@ of all subsequent API requests.
 
 # Group User
 
+## Search for a User [/1/users/search?{username}]
+
+### Search [GET]
+
+You can get a user object by email or username
+
++ Request (application/json)
+
+     + Headers 
+  
+            Authorization: Bearer [TOKEN]
+
+
++ Parameters
+    + username (required) - The username or email of the user
+       
+        
++ Response 200
+
+        
+        {
+            "user":{
+                "id":16372,
+                "first_name":"New Student",
+                "last_name":"1",
+                "full_name": "New Student 1",
+                "email": "user_email",
+                "role": "student",
+                "username":"student2",
+                
+            }
+        }
+
++ Response 400
+
+        {
+            "error": "error message"
+        }
+
 ## Create a User [/1/users]
 
 ### Create [POST]
@@ -117,49 +156,11 @@ You can create other accounts to be used later.  These accounts must be created 
             "error": "error message"
         }
 
-## Search for a User [/1/users/search?{username}]
-
-### Search [GET]
-
-You can get a user object by email or username
-
-+ Request (application/json)
-
-     + Headers 
-  
-            Authorization: Bearer [TOKEN]
-
-
-+ Parameters
-    + username (required) - The username or email of the user
-       
-        
-+ Response 200
-
-        
-        {
-            "user":{
-                "id":16372,
-                "first_name":"New Student",
-                "last_name":"1",
-                "full_name": "New Student 1",
-                "email": "user_email",
-                "role": "student",
-                "username":"student2",
-                
-            }
-        }
-
-+ Response 400
-
-        {
-            "error": "error message"
-        }
 
 # Group Resources
 
 
-## Search Resources [/1/resources.json{?descriptive,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_types}]
+## Search Resources [/1/resources.json{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_types,contribution_name,enable_lrmi}]
 
 Search OpenEd's resource catalog using one or more of the parameters below.
 ### Search [GET]
@@ -183,8 +184,10 @@ Search OpenEd's resource catalog using one or more of the parameters below.
     + grades_range: `K-5` (optional, string) - restricts search to specified grades range. Can be specified as a single grade.
     + publisher: `BrightStorm` (optional, string/array) -  looks for resources from the publisher(s) by publisher title(s). Can be specified as single entry, comma-seprated list of titles or a URL-formatted array.
     + resource_type: `video` (optional, string/array) - looks for resources with specific type. Possible types are: "video", "game", "assessment", "homework", "question". Can be specified as single entry, comma-seprated list of types or a URL-formatted array.
-
-
+    + url: `http://youtube_video.com` (optional, string) - the underlying url of the resource
+    + contribution_name: `LearningRegistry` (optional, string) - the place where the resource was contributed from. Not neccessarily the publisher.
+    + enable_lrmi: `true | false` (optional, boolean) - if set to true returns metada to lrmi specification
+    
 + Response 200 (application/json)
 
         {
@@ -225,6 +228,45 @@ Search OpenEd's resource catalog using one or more of the parameters below.
             }
           ]
         }
+
+       
++ Response 201 (application/json)
+    If enable_lrmi is set to true your response will be specficed to lrml
+    
+    + Body
+
+            "total_pages": 200,
+            "current_page": 0,
+            "resources": [
+            {
+              "resource_id": 178375,
+              "name": "Learing about Parcc",
+              "educationalAlignment": [
+                {
+                    targetName: "PARCC.ELA.RV3.1",
+                    alignmentType: 'teachers',
+                    educationalFramework: "PARCC Common Core ELA/Literacy Summative Assessments",
+                    targetDescription: "Use units as a way to understand problems",
+                    targetUrl: "https://common_core_ela_material.com
+              ],
+              "publisher": "Mr. Smith",
+              "author": "Mr. Smith",
+              "description": "Mr. Smith sings a cute song to teach kids 3D shapes. He helps build real world connections while students learn the cube, rectangular prism, cylinder, sphere, and pyramid. This is a good resource to help introduce and/or review this important skill.",
+              "thumbnailUrl": "https://opened.s3.amazonaws.com/pictures/178375/thumb/default.jpg?1359909018",
+              "url": "https://www.opened.com/resources/178375?partner_id1&simplifiedView=true",
+              "dateCreated": nil,
+              "inLanguage": "English", 
+              "useRightsUrl": "free", 
+              "timeRequired": 130.0, 
+              "typicalAgeRange": "K-2", 
+              "interactivityType": "expositive", 
+              "about": "Unknown/Unknown", 
+              "intendedEndUserRole": "student", 
+              "educationalUse": "Video", 
+              "learningResourceType": "Video", 
+              "effectiveness": 100.0
+            }
+            ]
 
 ## Get Resource [/1/resources/{id}.json]
 
@@ -285,6 +327,39 @@ Create a resource in the OpenEd catalog.
         {
             "notice": "Resource was added successfully",
             "id": 1
+        }
+        
+## Update Resource [/1/resources/]
+
+Update an existing resource in the OpenEd catalog.
+
+### Update [PUT]
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer [TOKEN]
+
+    + Attributes
+        + id (required, number) - the existing resource id
+        + url (required,string) - where is the resource hosted
+        + title (required,string) - what do you want to call the resource. It doesn't have to match what you have on your site
+        + description (required, string) - more information about the resource. You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resources
+        + standard_idents (optional,string) - comma-separated list of standard identifiers aligned to the resource. You do not have to supply this. OpenEd will attempt to determine alignments once your resource is contributed
+        + subject (optional, string) - the list of subjects (from the OpenEd area/subject taxonomy describe below) associated with the resource
+        + grades_range (optional,string) - in the form "lowgrade-highgrade", e.g. "K-4" where "K" must be capitalized
+        + publisher (optional,string) - your site as the publisher so we can give you credit. Defaults to OAuth username.
+        + resource_type (required, string) - Either "video", "game", "assessment", "homework" or "other". Default to "other" if it is not identified as a video
+        + rating (optional,string) - The rating of the resource on a scale of "1" to "5" if you have one on your site
+        + image (optional,string) - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
+        + contribution_name (optional, string) - the place where the resource was contributed from. Not neccessarily the publisher.
+
+
++ Response 200
+
+        {
+            "notice": "Resource was updated successfully"
         }
 
 # Group Standards
@@ -1493,7 +1568,7 @@ You can create schools to be used later with user accounts.  These schools must 
         }
 
 # Group Examples
-###[Roster Upload](https://github.com/openedinc/lr-oe)
+###[Roster Upload](https://github.com/openedinc/oneroster)
 ###[Resource Search](https://github.com/openedinc/opened-api-consumer)
 
     
