@@ -19,51 +19,23 @@ All API calls require an OpenEd Access Token. Please write to us at api@opened.c
 
 Email us at api@opened.com to request access to the Opened Partner API and to receive a Client ID and Secret.   
 
-## Creating a Signed Certificate
-
-You will need to generate a signed certificate using your Client ID and Secret. This will be used to create an account later.
-
-To generate a signed certificate, you will need:
-
-    Client ID
-    Secret
-    Username
-    
-*The Username is a string chosen by you and will serve as the username of your account.
-
-Once you have your client id, secret, and have chosen a username, you can generate a signed certificate by copying code from one of our 
-[signed server examples](https://github.com/openedinc/opened.js/tree/master/signing_server_examples) into your own application.  
-
-We currently have code examples for node, ruby, and php.
-
-If you are using Ruby, you can include our [opened-partnerapi gem](https://github.com/openedinc/opened-partnerapi) in your project.  Below is an example of how to retrieve your signed
-certificate using this gem.
-
-    class User
-        include Opened::Partnerapi
-
-        def self.get_token (username)
-            hsh = {username:username,client_id:ENV['CLIENT_ID'], app_secret:ENV['CLIENT_SECRET'] }
-            sr  =  signed_request(hsh)
-            return get_access_token(sr, ENV['PARTNER_BASE_URI'])
-        end
-    end
-
 # Group Accounts
 
-## Access Token [/oauth/silent_login]
+## Access Token [/1/oauth/get_token]
 
 ### Getting your Access Token [POST]
 
 To use the OpenEd API you will first need to create an account to receive your ACCESS_TOKEN. Your ACCESS_TOKEN will be sent in the header
 of all subsequent API requests.
 
-+ Request (application/text)
++ Request (application/json)
 
 
   + Attributes
   
-        + signed_certificate (required)
+        + client_id (required, string) - your opened client id
+        + secret (required, string) - your opened secret
+        + username (required, string) - chosen by you and will serve as the username of your account.
       
 
 + Response 200
@@ -85,7 +57,7 @@ You can get a user object by email or username
 
      + Headers 
   
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
 
 
 + Parameters
@@ -132,7 +104,7 @@ You can create other accounts to be used later.  These accounts must be created 
        
   + Headers 
   
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
         
 + Response 200
 
@@ -169,7 +141,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
 
     + Headers
 
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
 
 + Parameters
     + descriptive: `World War II` (optional, string) - Perform full text search.
@@ -277,7 +249,7 @@ Show specified resource
     + id (number, `110710`) - A unique identifier of the resource
 
 
-        Authorization: Bearer [TOKEN]
+        Authorization: Bearer TOKEN
         
 ### GET
 
@@ -305,7 +277,7 @@ Create a resource in the OpenEd catalog.
 
     + Headers
     
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
 
     + Attributes
   
@@ -339,7 +311,7 @@ Update an existing resource in the OpenEd catalog.
 
     + Headers
     
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
 
     + Attributes
         + id (required, number) - the existing resource id
@@ -382,7 +354,7 @@ Retrieve full list of standard groups
 
     + Headers
     
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -448,7 +420,7 @@ Get the list of grade groups, typically for a particular standard group.
 
     + Headers
     
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -479,7 +451,7 @@ It will also return a count of resources.
 
     + Headers
     
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -890,7 +862,7 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
 
     + Headers
     
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -937,7 +909,7 @@ Get the list of subjects based on supplied area
 
     + Headers
     
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -988,7 +960,7 @@ Retrieve list of publishers
 
     + Headers
     
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
         
 + Response 200 (application/json; charset=utf-8)
 
@@ -1036,7 +1008,7 @@ Response contains list of side-loaded objects:
 
     + Headers
 
-            Authorization: Bearer [TOKEN]
+            Authorization: Bearer TOKEN
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -1066,7 +1038,7 @@ Response contains list of side-loaded objects:
 
 ### Get Class [GET /1/teachers/classes/{class_id}]
 
-The request should have the OAuth access token in the headers `Authorization: Bearer [TOKEN]`
+The request should have the OAuth access token in the headers `Authorization: Bearer TOKEN`
 
 Response contains list of side-loaded objects:
 
