@@ -191,7 +191,12 @@ Search OpenEd's resource catalog using one or more of the parameters below.
               "embeddable": true,
               "resource_type": "video",
               "id": 178375,
-              "thumb": "https://opened.s3.amazonaws.com/pictures/178375/thumb/default.jpg?1359909018",
+              "thumbnails": {
+                "mini": "https://small_thumb/default.jpg",
+                "small": "https://small_thumb/default.jpg",
+                "medium": "https://small_thumb/default.jpg",
+                "large": "https://small_thumb/default.jpg"
+                },
               "title": "Teacher Tipster-3D Shapes Song-Teaching 3 Dimensional Shapes",
               "share_url": "https://www.opened.com/resources/178375?partner_id1&simplifiedView=true",
               "rating": 4,
@@ -301,20 +306,23 @@ Create a resource in the OpenEd catalog.
             "id": 1
         }
         
-## Update Resource [/1/resources/]
+## Update Resource [/1/resources/{id}]
 
 Update an existing resource in the OpenEd catalog.
 
 ### Update [PUT]
+
++ Parameters
+    + id (required, number) - the existing resource id
 
 + Request (application/json)
 
     + Headers
     
             Authorization: Bearer TOKEN
+            
 
     + Attributes
-        + id (required, number) - the existing resource id
         + url (required,string) - where is the resource hosted
         + title (required,string) - what do you want to call the resource. It doesn't have to match what you have on your site
         + description (required, string) - more information about the resource. You are strongly urged to supply a description as it helps the OpenEd recommendation engine highlight your resources
