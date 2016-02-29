@@ -132,7 +132,7 @@ You can create other accounts to be used later.  These accounts must be created 
 # Group Resources
 
 
-## Search Resources [/1/resources.json{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_types,contribution_name,enable_lrmi}]
+## Search Resources [/1/resources.json{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_types,contribution_name,license,enable_lrmi}]
 
 Search OpenEd's resource catalog using one or more of the parameters below.
 ### Search [GET]
@@ -158,6 +158,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
     + resource_type: `video` (optional, string/array) - looks for resources with specific type. Possible types are: "video", "game", "assessment", "homework", "question". Can be specified as single entry, comma-seprated list of types or a URL-formatted array.
     + url: `http://youtube_video.com` (optional, string) - the underlying url of the resource
     + contribution_name: `LearningRegistry` (optional, string) - the place where the resource was contributed from. Not neccessarily the publisher.
+    + license: `free or premium` (optional, string) - the resource license type
     + enable_lrmi: `true | false` (optional, boolean) - if set to true returns metada to lrmi specification
     
 + Response 200 (application/json)
@@ -187,6 +188,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
                 "1"
               ],
               "grades_range": "K-5",
+              "is_premium": false
               "publisher": "Mr. Smith",
               "description": "Mr. Smith sings a cute song to teach kids 3D shapes. He helps build real world connections while students learn the cube, rectangular prism, cylinder, sphere, and pyramid. This is a good resource to help introduce and/or review this important skill.",
               "featured": false,
