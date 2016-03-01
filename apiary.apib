@@ -158,7 +158,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
     + resource_type: `video` (optional, string/array) - looks for resources with specific type. Possible types are: "video", "game", "assessment", "homework", "question". Can be specified as single entry, comma-seprated list of types or a URL-formatted array.
     + url: `http://youtube_video.com` (optional, string) - the underlying url of the resource
     + contribution_name: `LearningRegistry` (optional, string) - the place where the resource was contributed from. Not neccessarily the publisher.
-    + license: `free or premium` (optional, string) - the resource license type
+    + license: `free, premium, paid, all` (optional, string) - the resource license type
     + enable_lrmi: `true | false` (optional, boolean) - if set to true returns metada to lrmi specification
     
 + Response 200 (application/json)
@@ -205,8 +205,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
               "share_url": "https://www.opened.com/resources/178375?partner_id1&simplifiedView=true",
               "student_url": "https://www.opened.com/resources/383255?partner_id=id&simplifiedView=true&student_view=true",
               "rating": 4,
-              "duration": 130,
-              "safe_url": "https://www.opened.com/resources/178375"
+              "duration": 130
             }
           ]
         }
@@ -278,8 +277,7 @@ Show specified resource
                 "featured":false,"embeddable":true,"resource_type":"video","id":110710,"thumb":"https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
                 "title":"The Bellhop Counts to 2",
                 "share_url":"http://www.opened.io/#/share/110710",
-                "rating":3,
-                "safe_url":"https://www.youtube.com/watch?v=xUUkvLvw8-g"
+                "rating":3
             }
         }
 
