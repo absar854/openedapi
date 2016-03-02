@@ -205,7 +205,8 @@ Search OpenEd's resource catalog using one or more of the parameters below.
               "share_url": "https://www.opened.com/resources/178375?partner_id1&simplifiedView=true",
               "student_url": "https://www.opened.com/resources/383255?partner_id=id&simplifiedView=true&student_view=true",
               "rating": 4,
-              "duration": 130
+              "duration": 130,
+              "use_rights_url":"https://creativecommons.org/licenses"
             }
           ]
         }
@@ -272,12 +273,30 @@ Show specified resource
 
         {
             "resource":{
-                "standard_idents":["K.CC.1","K.CC.4"],"grade_idents":["K"],"grades_range":"K","contribution_name":"WatchKnowLearnCommonCore",
+                "id":23145,
+                "standard_idents":["K.CC.1","K.CC.4"],
+                "grades_range":"K",
+                "contribution_name":"WatchKnowLearnCommonCore",
+                "publisher":"SamplePublisher",
                 "description":"In this classic Sesame Street cartoon, the Bellhop has to find the parents of two lost kids. \u00a0Betty and Bobby Blobby are lost in the lobby.\u00a0",
-                "featured":false,"embeddable":true,"resource_type":"video","id":110710,"thumb":"https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
+                "featured":false,
+                "duration":120,
+                "embeddable":true,
+                "resource_type":"video",
+                "thumbnails": {
+                    "mini":https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
+                    "small":https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
+                    "medium":https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
+                    "large":https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449"
+                },
                 "title":"The Bellhop Counts to 2",
                 "share_url":"http://www.opened.io/#/share/110710",
-                "rating":3
+                "student_url":"http://www.opened.io/#/share/110710?student_view=true",
+                "rating":3,
+                "area_ids":[2],  
+                "subject_ids":[18],
+                "effectiveness":88,
+                "use_rights_url":"https://creativecommons.org/licenses"
             }
         }
 
