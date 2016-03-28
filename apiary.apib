@@ -100,6 +100,7 @@ You can create other accounts to be used later.  These accounts must be created 
         + password: user_password (required)
         + role: teacher or student  (string, optional)
         + promo: promo code (string, optional)
+        + school_nces_id: NCES_ID (string, optional)
         + client_id: yourclientid (required)
        
   + Headers 
@@ -155,7 +156,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
     + subject: `110` (optional, number) - looks for resources assigned with specified subject by subject id.
     + grades_range: `K-5` (optional, string) - restricts search to specified grades range. Can be specified as a single grade.
     + publisher: `BrightStorm` (optional, string/array) -  looks for resources from the publisher(s) by publisher title(s). Can be specified as single entry, comma-seprated list of titles or a URL-formatted array.
-    + resource_type: `video` (optional, string/array) - looks for resources with specific type. Possible types are: "video", "game", "assessment", "homework", "question". Can be specified as single entry, comma-seprated list of types or a URL-formatted array.
+    + resource_type: `video` (optional, string/array) - looks for resources with specific type. Possible types are: "video", "game", "assessment", "homework", "question", "audio", "other", "lesson plan"(lesson plan should be sent with underscore between lesson and plan). Can be specified as single entry, comma-seprated list of types or a URL-formatted array.
     + url: `http://youtube_video.com` (optional, string) - the underlying url of the resource
     + contribution_name: `LearningRegistry` (optional, string) - the place where the resource was contributed from. Not neccessarily the publisher.
     + license: `free, premium, paid, all` (optional, string) - the resource license type
@@ -398,45 +399,31 @@ Retrieve full list of standard groups
             "standard_groups": [
                 {
                     "id": 2,
-                    "name": "Common Core Language Arts",
-                    "title": "Common Core Language Arts",
-                    "count": 3669
+                    "title": "Common Core Language Arts"
                 },
                 {
                     "id": 7,
-                    "name": "Common Core Literacy:History/Social Studies, Science, and Technical Subjects",
-                    "title": "Common Core Literacy:History/Social Studies, Science, and Technical Subjects",
-                    "count": 198
+                    "title": "Common Core Literacy:History/Social Studies, Science, and Technical Subjects"
                 },
                 {
                     "id": 4,
-                    "name": "Common Core Math",
-                    "title": "Common Core Math",
-                    "count": 8279
+                    "name": "Common Core Math"
                 },
                 {
                     "id": 9,
-                    "name": "National Geography Standards",
-                    "title": "National Geography Standards",
-                    "count": 88
+                    "title": "National Geography Standards"
                 },
                 {
                     "id": 5,
-                    "name": "New York Common Core Social Studies",
-                    "title": "New York Common Core Social Studies",
-                    "count": 967
+                    "title": "New York Common Core Social Studies"
                 },
                 {
                     "id": 6,
-                    "name": "Next Generation Science Standards",
-                    "title": "Next Generation Science Standards",
-                    "count": 730
+                    "title": "Next Generation Science Standards"
                 },
                 {
                     "id": 1,
-                    "name": "Social Studies (California History Standards)",
-                    "title": "Social Studies (California History Standards)",
-                    "count": 1053
+                    "title": "Social Studies (California History Standards)"
                 }
             ]
         }
@@ -1576,7 +1563,7 @@ You can create schools to be used later with user accounts.  These schools must 
         }
 
 # Group Examples
-###[Roster Upload](https://github.com/openedinc/oneroster)
+###[Roster Upload](https://github.com/openedinc/oneroster/blob/master/opened/1r-oe.rb)
 ###[Resource Search](https://github.com/openedinc/opened-api-consumer)
 ###[Manage Classes and Students](https://github.com/openedinc/Opened_Partner_API_Manage_Teacher_Classes_example)
     
