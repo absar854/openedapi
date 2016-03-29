@@ -275,14 +275,13 @@ Show specified resource
         {
             "resource":{
                 "id":23145,
+                "standard_ids": [1, 2],
                 "standard_idents":["K.CC.1","K.CC.4"],
                 "grades_range":"K",
                 "contribution_name":"WatchKnowLearnCommonCore",
                 "publisher":"SamplePublisher",
                 "description":"In this classic Sesame Street cartoon, the Bellhop has to find the parents of two lost kids. \u00a0Betty and Bobby Blobby are lost in the lobby.\u00a0",
-                "featured":false,
                 "duration":120,
-                "embeddable":true,
                 "resource_type":"video",
                 "thumbnails": {
                     "mini":https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
@@ -398,34 +397,55 @@ Retrieve full list of standard groups
         {
             "standard_groups": [
                 {
-                    "id": 2,
-                    "title": "Common Core Language Arts"
-                },
-                {
-                    "id": 7,
-                    "title": "Common Core Literacy:History/Social Studies, Science, and Technical Subjects"
-                },
-                {
                     "id": 4,
-                    "name": "Common Core Math"
+                    "title": "Common Core Math",
+                    "grades_range": "K-12",
+                    "area_id": 1
                 },
                 {
-                    "id": 9,
-                    "title": "National Geography Standards"
-                },
-                {
-                    "id": 5,
-                    "title": "New York Common Core Social Studies"
-                },
-                {
-                    "id": 6,
-                    "title": "Next Generation Science Standards"
-                },
-                {
-                    "id": 1,
-                    "title": "Social Studies (California History Standards)"
+                    "id": 2,
+                    "title": "Common Core Language Arts",
+                    "grades_range": "K-12",
+                    "area_id": 2
                 }
-            ]
+            ],
+            "meta": {
+                "pagination": {
+                    "offset": 0,
+                    "total_entries": 2,
+                    "entries": 2,
+                    "limit": 50
+                }
+            }
+        }
+
+## Get Standard Group [/1/standard_groups/{id}.json]
+
+Show specified standard group
+
+### GET
+
++ Parameters
+
+    + id (number, `4`) - A unique identifier of the standard group
+        
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer TOKEN
+
+   
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "standard_group": {
+                "id": 4,
+                "title": "Common Core Math",
+                "grades_range": "K-12",
+                "area_id": 1
+            }
         }
 
 ## Grade Groups [/1/grade_groups.json{?standard_group,ids}]
@@ -447,17 +467,64 @@ Get the list of grade groups, typically for a particular standard group.
 
 + Response 200 (application/json; charset=utf-8)
 
-        {"grade_groups":
-            [
-                {"id":46,"title":"Elementary","count":7099},
-                {"id":47,"title":"Middle School","count":4536},
-                {"id":48,"title":"High School","count":2247},
-                {"id":49,"title":"High School: Algebra","count":757},
-                {"id":50,"title":"High School: Functions","count":580},
-                {"id":51,"title":"High School: Geometry","count":547},
-                {"id":52,"title":"High School: Number and Quantity","count":426},
-                {"id":53,"title":"High School: Statistics & Probability ","count":430}
-            ]
+        {
+            "grade_groups": [
+               {
+                  "id": 46,
+                  "title": "Elementary",
+                  "grades_range": "K-5",
+                  "standard_group_ids": [2,4]
+               },
+               {
+                  "id": 47,
+                  "title": "Middle School",
+                  "grades_range": "6-8",
+                  "standard_group_ids": [2,4]
+               },
+               {
+                  "id": 48,
+                  "title": "High School",
+                  "grades_range": "9-12",
+                  "standard_group_ids": [2]
+               }
+            ],
+            "meta": {
+                "pagination": {
+                    "offset": 0,
+                    "total_entries": 3,
+                    "entries": 3,
+                    "limit": 50
+                }
+            }
+        }
+
+## Get Grade Group [/1/grade_groups/{id}.json]
+
+Show specified grade group
+
+### GET
+
++ Parameters
+
+    + id (number, `46`) - A unique identifier of the grade group
+        
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer TOKEN
+
+   
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "grade_group": {
+                "id": 46,
+                "title": "Elementary",
+                "grades_range": "K-5",
+                "standard_group_ids": [2,4]
+            }
         }
 
 ## Categories [/1/categories.json{?standard_group,grade_group}]
@@ -479,350 +546,67 @@ It will also return a count of resources.
 + Response 200 (application/json; charset=utf-8)
 
         {
-        "categories": [
-            {
-                "id": 424,
-                "title": "A Child’s Place in Time and Space",
-                "grade_group": "Elementary",
-                "count": 51
-            },
-            {
-                "id": 489,
-                "title": "Biological Evolution: Unity and Diversity (K-5)",
-                "grade_group": "Elementary",
-                "count": 43
-            },
-            {
-                "id": 427,
-                "title": "California: A Changing State",
-                "grade_group": "Elementary",
-                "count": 68
-            },
-            {
-                "id": 470,
-                "title": "Civic Ideals and Practices",
-                "grade_group": "Elementary",
-                "count": 70
-            },
-            {
-                "id": 426,
-                "title": "Continuity and Change",
-                "grade_group": "Elementary",
-                "count": 55
-            },
-            {
-                "id": 260,
-                "title": "Counting and Cardinality",
-                "grade_group": "Elementary",
-                "count": 192
-            },
-            {
-                "id": 518,
-                "title": "Development, Movement, and Interaction of Cultures",
-                "grade_group": "Elementary",
-                "count": 24
-            },
-            {
-                "id": 482,
-                "title": "Earth and Human Activity (K-5)",
-                "grade_group": "Elementary",
-                "count": 41
-            },
-            {
-                "id": 458,
-                "title": "Earth and Space Science 3: Earth and Human Activity (Elementary)",
-                "grade_group": "Elementary",
-                "count": 23
-            },
-            {
-                "id": 486,
-                "title": "Earth’s Place in the Universe (K-5)",
-                "grade_group": "Elementary",
-                "count": 19
-            },
-            {
-                "id": 473,
-                "title": "Economic Systems",
-                "grade_group": "Elementary",
-                "count": 64
-            },
-            {
-                "id": 488,
-                "title": "Ecosystems: Interactions, Energy, and Dynamics (K-5)",
-                "grade_group": "Elementary",
-                "count": 15
-            },
-            {
-                "id": 478,
-                "title": "Energy (K-5)",
-                "grade_group": "Elementary",
-                "count": 29
-            },
-            {
-                "id": 490,
-                "title": "Engineering Design (K-5)",
-                "grade_group": "Elementary",
-                "count": 17
-            },
-            {
-                "id": 450,
-                "title": "Engineering, Technology, and Applications of Science 1:Engineering Design (Elementary)",
-                "grade_group": "Elementary",
-                "count": 6
-            },
-            {
-                "id": 451,
-                "title": "Engineering, Technology, and Applications of Science 2: Links Among Engineering, Technology, Science, and Society (Elementary)",
-                "grade_group": "Elementary",
-                "count": 8
-            },
-            {
-                "id": 572,
-                "title": "Environment and Society (Elementary)",
-                "grade_group": "Elementary",
-                "count": 11
-            },
-            {
-                "id": 480,
-                "title": "From Molecules to Organisms: Structures and Processes (K-5)",
-                "grade_group": "Elementary",
-                "count": 38
-            },
-            {
-                "id": 471,
-                "title": "Geography, Humans, and the Environment (K-3)",
-                "grade_group": "Elementary",
-                "count": 81
-            },
-            {
+            "categories": [
+                {
+                    "id": 115,
+                    "title": "Geometry (Elementary)",
+                    "standard_group_id": 4,
+                    "grade_group_id": 46,
+                    "grades_range": "K-5"
+                },
+                {
+                    "id": 121,
+                    "title": "Functions",
+                    "standard_group_id": 4,
+                    "grade_group_id": 47,
+                    "grades_range": "8"
+                },
+                {
+                    "id": 125,
+                    "title": "The Number System",
+                    "standard_group_id": 4,
+                    "grade_group_id": 47,
+                    "grades_range": "6-8"
+                }
+            ],
+            "meta": {
+                "pagination": {
+                    "offset": 0,
+                    "total_entries": 3,
+                    "entries": 3,
+                    "limit": 50
+                }
+            }
+        }
+
+## Get Category [/1/categories/{id}.json]
+
+Show specified category
+
+### GET
+
++ Parameters
+
+    + id (number, `115`) - A unique identifier of the category
+        
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer TOKEN
+
+   
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "category": {
                 "id": 115,
                 "title": "Geometry (Elementary)",
-                "grade_group": "Elementary",
-                "count": 335
-            },
-            {
-                "id": 519,
-                "title": "Governance and Citizenship in New York",
-                "grade_group": "Elementary",
-                "count": 14
-            },
-            {
-                "id": 485,
-                "title": "Heredity: Inheritance and Variation of Traits (K-5)",
-                "grade_group": "Elementary",
-                "count": 7
-            },
-            {
-                "id": 476,
-                "title": "History of the United States and New York",
-                "grade_group": "Elementary",
-                "count": 48
-            },
-            {
-                "id": 569,
-                "title": "Human Systems (Elementary)",
-                "grade_group": "Elementary",
-                "count": 14
-            },
-            {
-                "id": 469,
-                "title": "Individual Development and Cultural Identity",
-                "grade_group": "Elementary",
-                "count": 48
-            },
-            {
-                "id": 161,
-                "title": "Language Standards (Elementary)",
-                "grade_group": "Elementary",
-                "count": 700
-            },
-            {
-                "id": 423,
-                "title": "Learning and Working Now and Long Ago",
-                "grade_group": "Elementary",
-                "count": 30
-            },
-            {
-                "id": 439,
-                "title": "Life Science 1: From Molecules to Organisms:Structures and Processes (Elementary)",
-                "grade_group": "Elementary",
-                "count": 11
-            },
-            {
-                "id": 440,
-                "title": "Life Science 2: Ecosystems: Interactions, Energy, and Dynamics (Elementary)",
-                "grade_group": "Elementary",
-                "count": 6
-            },
-            {
-                "id": 436,
-                "title": "Life Science 3: Heredity: Inheritance and Variance of Traits (Elementary)",
-                "grade_group": "Elementary",
-                "count": 3
-            },
-            {
-                "id": 441,
-                "title": "Life Science 4: Biological Evolution: Unity and Diversity (Elementary)",
-                "grade_group": "Elementary",
-                "count": 9
-            },
-            {
-                "id": 487,
-                "title": "Matter and Its Interactions (K-5)",
-                "grade_group": "Elementary",
-                "count": 14
-            },
-            {
-                "id": 263,
-                "title": "Measurement and Data",
-                "grade_group": "Elementary",
-                "count": 1023
-            },
-            {
-                "id": 477,
-                "title": "Motion and Stability: Forces and Interactions (K-5)",
-                "grade_group": "Elementary",
-                "count": 21
-            },
-            {
-                "id": 520,
-                "title": "New York Economy Contributes to the Country and the World",
-                "grade_group": "Elementary",
-                "count": 10
-            },
-            {
-                "id": 266,
-                "title": "Number and Operations - Fractions",
-                "grade_group": "Elementary",
-                "count": 567
-            },
-            {
-                "id": 262,
-                "title": "Number and Operations in Base Ten",
-                "grade_group": "Elementary",
-                "count": 825
-            },
-            {
-                "id": 261,
-                "title": "Operations and Algebraic Thinking",
-                "grade_group": "Elementary",
-                "count": 900
-            },
-            {
-                "id": 425,
-                "title": "People Who Make a Difference",
-                "grade_group": "Elementary",
-                "count": 33
-            },
-            {
-                "id": 93,
-                "title": "Physical Science 1: Matter and Its Interactions (Elementary)",
-                "grade_group": "Elementary",
-                "count": 13
-            },
-            {
-                "id": 94,
-                "title": "Physical Science 2: Motion and Stability: Forces and Interactions (Elementary)",
-                "grade_group": "Elementary",
-                "count": 26
-            },
-            {
-                "id": 95,
-                "title": "Physical Science 3: Energy (Elementary)",
-                "grade_group": "Elementary",
-                "count": 22
-            },
-            {
-                "id": 96,
-                "title": "Physical Science 4: Waves and Their Applications in Technologies for Information Transfer (Elementary)",
-                "grade_group": "Elementary",
-                "count": 12
-            },
-            {
-                "id": 566,
-                "title": "Physical Systems (Elementary)",
-                "grade_group": "Elementary",
-                "count": 7
-            },
-            {
-                "id": 563,
-                "title": "Places and Regions (Elementary)",
-                "grade_group": "Elementary",
-                "count": 14
-            },
-            {
-                "id": 150,
-                "title": "Reading: Foundational Skills (Elementary)",
-                "grade_group": "Elementary",
-                "count": 499
-            },
-            {
-                "id": 151,
-                "title": "Reading: Informational Text (Elementary)",
-                "grade_group": "Elementary",
-                "count": 260
-            },
-            {
-                "id": 149,
-                "title": "Reading: Literature (Elementary)",
-                "grade_group": "Elementary",
-                "count": 447
-            },
-            {
-                "id": 285,
-                "title": "Speaking and Listening (Elementary)",
-                "grade_group": "Elementary",
-                "count": 212
-            },
-            {
-                "id": 474,
-                "title": "The Empire State Identity",
-                "grade_group": "Elementary",
-                "count": 12
-            },
-            {
-                "id": 475,
-                "title": "The Geography of the United States and New York",
-                "grade_group": "Elementary",
-                "count": 9
-            },
-            {
-                "id": 575,
-                "title": "The Uses of Geography (Elementary)",
-                "grade_group": "Elementary",
-                "count": 6
-            },
-            {
-                "id": 560,
-                "title": "The World in Spatial Terms (Elementary)",
-                "grade_group": "Elementary",
-                "count": 13
-            },
-            {
-                "id": 472,
-                "title": "Time, Continuity, and Change (K-4)",
-                "grade_group": "Elementary",
-                "count": 72
-            },
-            {
-                "id": 80,
-                "title": "United States History and Geography: Making a New Nation",
-                "grade_group": "Elementary",
-                "count": 132
-            },
-            {
-                "id": 479,
-                "title": "Waves and their Applications in Technologies for Information Transfer (K-5)",
-                "grade_group": "Elementary",
-                "count": 25
-            },
-            {
-                "id": 154,
-                "title": "Writing (Elementary)",
-                "grade_group": "Elementary",
-                "count": 302
+                "standard_group_id": 4,
+                "grade_group_id": 46,
+                "grades_range": "K-5"
             }
-        ]
         }
 
 ## Standards [/1/standards.json{?category,grades_range}]
@@ -839,37 +623,66 @@ Get the list of standards with the number of aligned resources based on paramete
 + Response 200 (application/json; charset=utf-8)
 
         {
-        "standards": [
-        {
-        "id": 21461,
-        "identifier": "K.CC.1",
-        "title": "Count to 100 by ones and by tens.",
-        "description": "Count to 100 by ones and by tens.",
-        "category_id": 115,
-        "grades_range": "2"
-        },
-        {
-        "id": 20916,
-        "identifier": "K.CC.2",
-        "title": "Count forward beginning from a given number within the known sequence (instead of having to begin at 1).",
-        "description": "Count forward beginning from a given number within the known sequence (instead of having to begin at 1).",
-        "category_id": 115,
-        "grades_range": "2"
-        },
-        {
-        "id": 20917,
-        "identifier": "K.CC.3",
-        "title": "Write numbers from 0 to 20. Represent a number of objects with a written numeral 0-20 (with 0 representing a count of no objects).",
-        "description": "Write numbers from 0 to 20. Represent a number of objects with a written numeral 0-20 (with 0 representing a count of no objects).",
-        "category_id": 115,
-        "grades_range": "2"
+            "standards": [
+                {
+                    "id": 21461,
+                    "identifier": "K.CC.1",
+                    "title": "Count to 100 by ones and by tens.",
+                    "category_id": 115,
+                    "grades_range": "2"
+                },
+                {
+                    "id": 20916,
+                    "identifier": "K.CC.2",
+                    "title": "Count forward beginning from a given number within the known sequence (instead of having to begin at 1).",
+                    "category_id": 115,
+                    "grades_range": "2"
+                },
+                {
+                    "id": 20917,
+                    "identifier": "K.CC.3",
+                    "title": "Write numbers from 0 to 20. Represent a number of objects with a written numeral 0-20 (with 0 representing a count of no objects).",
+                    "category_id": 115,
+                    "grades_range": "2"
+                }
+            ],
+            "meta": {
+                "pagination": {
+                    "offset": 0, 
+                    "total_entries": 3,
+                    "entries": 3,
+                    "limit": 50
+                }
+            }
         }
-        ],
-        meta: {"pagination": 
-            {"offset": 0, 
-            "total_entries": 10,
-            "entries": 10,
-            "limit": 10}
+
+## Get Standard [/1/standards/{id}.json]
+
+Show specified standard
+
+### GET
+
++ Parameters
+
+    + id (number, `21461`) - A unique identifier of the standards
+        
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer TOKEN
+
+   
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "standard": {
+                "id": 21461,
+                "identifier": "K.CC.1",
+                "title": "Count to 100 by ones and by tens.",
+                "category_id": 115,
+                "grades_range": "2"
             }
         }
 
@@ -890,35 +703,56 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
 + Response 200 (application/json; charset=utf-8)
 
         {
-        "areas": [
-        {
-        "id": 1,
-        "title": "Mathematics",
-        "count": 7460
-        },
-        {
-        "id": 2,
-        "title": "Language Arts",
-        "count": 3929
-        },
-        {
-        "id": 3,
-        "title": "Social Studies",
-        "count": 1172
-        },
-        {
-        "id": 4,
-        "title": "Science",
-        "count": 837
-        },
-        {
-        "id": 5,
-        "title": "Other",
-        "count": 32
-        }
-        ]
+            "areas": [
+                {
+                    "id": 1,
+                    "title": "Mathematics",
+                    "grades_range": "K-12"
+                },
+                {
+                    "id": 2,
+                    "title": "Language Arts",
+                    "grades_range": "K-12"
+                }
+            ],
+            "meta": {
+                "pagination": {
+                    "offset": 0,
+                    "total_entries": 2,
+                    "entries": 2,
+                    "limit": 50
+                }
+            }
         }
 
+## Get Area [/1/areas/{id}.json]
+
+Show specified area
+
+### GET
+
++ Parameters
+
+    + id (number, `1`) - A unique identifier of the area
+        
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer TOKEN
+
+   
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "area": {
+                "id": 1,
+                "title": "Mathematics",
+                "grades_range": "K-12"
+            }
+        }
+        
 ## Subjects [/1/subjects.json{?area}]
 
 ### GET
@@ -937,40 +771,65 @@ Get the list of subjects based on supplied area
 + Response 200 (application/json; charset=utf-8)
 
         {
-        "subjects": [
-        {
-        "id": 6,
-        "title": "Measurement & Data",
-        "count": 1041
-        },
-        {
-        "id": 1,
-        "title": "Geometry",
-        "count": 1277
-        },
-        {
-        "id": 4,
-        "title": "Trigonometry",
-        "count": 84
-        },
-        {
-        "id": 3,
-        "title": "Statistics and Probability",
-        "count": 583
-        },
-        {
-        "id": 2,
-        "title": "Algebra",
-        "count": 2039
-        },
-        {
-        "id": 14,
-        "title": "Number Sense and Operations",
-        "count": 3013
-        }
-        ]
+            "subjects": [
+                {
+                    "id": 7,
+                    "title": "Functions",
+                    "area_id": 1,
+                    "grades_range": ""
+                },
+                {
+                    "id": 4,
+                    "title": "Trigonometry",
+                    "area_id": 1,
+                    "grades_range": ""
+                },
+                {
+                    "id": 8,
+                    "title": "Expressions, Equations and Inequalities",
+                    "area_id": 1,
+                    "grades_range": ""
+                }
+            ],
+            "meta": {
+                "pagination": {
+                    "offset": 0,
+                    "total_entries": 3,
+                    "entries": 3,
+                    "limit": 50
+                }
+            }
         }
 
+## Get Subject [/1/subjects/{id}.json]
+
+Show specified subject
+
+### GET
+
++ Parameters
+
+    + id (number, `7`) - A unique identifier of the subject
+        
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer TOKEN
+
+   
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "subject": {
+                "id": 7,
+                "title": "Functions",
+                "area_id": 1,
+                "grades_range": ""
+            }
+        }
+        
 # Group Publisher
 
 ## Publishers [/1/publishers.json]
@@ -1004,6 +863,35 @@ Retrieve list of publishers
             ]
         }
 
+## Get Publisher [/1/publisher/{id}.json]
+
+Show specified publisher
+
+### GET
+
++ Parameters
+
+    + id (number, `32539`) - A unique identifier of the publisher
+        
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer TOKEN
+
+   
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "publisher": {
+                "id":32539,
+                "title":"Smithsonian Institution",
+                "count":1000,
+                "featured":true
+            }
+        }
+        
 
 # Group Manage teacher's classes and students
 
