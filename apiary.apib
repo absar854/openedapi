@@ -61,7 +61,7 @@ You can get a user object by email or username
 
 
 + Parameters
-    + username (required) - The username or email of the user
+    + username: `testuser` (required) - The username or email of the user.
        
         
 + Response 200
@@ -160,7 +160,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
     + url: `http://youtube_video.com` (optional, string) - the underlying url of the resource
     + contribution_name: `LearningRegistry` (optional, string) - the place where the resource was contributed from. Not neccessarily the publisher.
     + license: `free, premium, paid, all` (optional, string) - the resource license type
-    + enable_lrmi: `true | false` (optional, boolean) - if set to true returns metada to lrmi specification
+    + enable_lrmi: `true` (optional, boolean) - if set to true returns metada to lrmi specification
     
 + Response 200 (application/json)
 
@@ -341,7 +341,7 @@ Update an existing resource in the OpenEd catalog.
 ### Update [PUT]
 
 + Parameters
-    + id (required, number) - the existing resource id
+    + id: `34521` (required, number) - the existing resource id
 
 + Request (application/json)
 
