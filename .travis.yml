@@ -18,3 +18,7 @@ script: dredd ./apiary.apib http://localhost:3000 --dry-run
 
 notifications:
   email: false
+  slack:
+    on_success: change
+    on_failure: always
+    rooms: "u/oabSzY3o3mFM/q619fwqsDzUTeBsJgsukkhKwkSyKnOjdXG+XSklxusfsooCaCF2GadOaXzmVmM9TRP+fY7QKcT1t7iCEaa/TBcEF78K2mczSCCP9izFDzTgtIwsu8SYbAXlbQFR+DcjB/SMfhhIAUXnTO/GRVhV83tKSXdNQ="
