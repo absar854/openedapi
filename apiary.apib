@@ -1001,9 +1001,9 @@ You may create your own class using this action. It takes a JSON object containi
 + Request (application/json)
     + Attributes
         + user (object, required) - title (string), grades_range (string)
-            + title (string) - The class title, required
-            + grades_range (string) - class grades_range, optional, in formats: '5', '5-5', '6-8'
-             + teacher_id - teacher id to create class on
+            + title (string, required) - The class title, required
+            + grades_range: `K-2` (string, optional) - class grades_range, optional, in formats: '5', '5-5', '6-8'
+            + teacher_id (number, optional) - teacher id to create class on
              
     + Headers
 
@@ -1047,7 +1047,7 @@ You may update your own class using this action. It takes a JSON object containi
 Response contains list of side-loaded objects as on `get class` request.
 
 + Parameters
-    + class_id (required, number, `1`) - Class `id`
+    + class_id (required, number, `123`) - Class `id`
 
 + Request (application/json)
 
@@ -1096,7 +1096,7 @@ Response contains list of side-loaded objects as on `get class` request.
 You may delete your own class using this action.
 
 + Parameters
-    + class_id (required, number, `1`) - Class `id`
+    + class_id (required, number, `123`) - Class `id`
 
 + Request (application/json)
 
