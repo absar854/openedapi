@@ -41,6 +41,7 @@ before "Manage teacher's classes and students > Teacher's Classes > Create a Stu
   request_body = JSON.parse transaction['request']['body']
   request_body['student']['username'] = 'studentapi'
   request_body['student']['class_ids'] = []
+  request_body['student']['email'] = nil
   transaction['request']['body'] = request_body.to_json
 end
 
@@ -51,14 +52,6 @@ end
 before "Resources > Search Resources > Search" do |transaction|
   path = transaction['fullPath'].split("?")[0]
   transaction['fullPath'] =  "#{path}?license=free"
-end
-
-before "Assessment Results > Get Assessment Results > GET" do |transaction|
-  # request_body = JSON.parse transaction['request']['body']
-  # request_body = {}
-  # request_body['resource_id'] = '1069949'
-  # transaction['request']['body'] = request_body.to_json
-  puts "full path is #{transaction['fullPath']}"
 end
 
 after "Assessment Results > Get Assessment Results > GET" do |transaction|
