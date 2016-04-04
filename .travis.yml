@@ -9,6 +9,8 @@ before_install:
 - npm config set spin false
 - npm install -g npm@^2
 - npm install -g dredd
+- gem install dredd_hooks
+
 script: dredd ./apiary.apib --hookfiles=./api_hooks.rb
 notifications:
   email: false
