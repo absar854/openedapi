@@ -51,7 +51,7 @@ of all subsequent API requests.
 
 ### Search [GET]
 
-You can get a user object by email or username
+You can get a user object by email or username.
 
 + Request (application/json)
 
@@ -195,10 +195,10 @@ You can update an existing user account by passing the user id.
 
 
 ## Search Resources [/1/resources.json/{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_type,contribution_name,license,enable_lrmi}]
-]
+
+### Search [GET]
 
 Search OpenEd's resource catalog using one or more of the parameters below.
-### Search [GET]
 
 + Request (application/json; charset=utf-8)
 
@@ -309,14 +309,14 @@ Search OpenEd's resource catalog using one or more of the parameters below.
             }
             ]
 
-## Get Resource [/1/resources/{ids}]
-
-Show specified resource
+## Get Resource [/1/resources/{resource_id}]
 
 ### GET
 
+Show specified resource.
+
 + Parameters
-    + ids: `185352` (required, array[int]) - An array of unique identifiers of the resources
+    + resource_id: `185352` (required, number) - The unique identifier of the resource
         
 + Request (application/json; charset=utf-8)
 
@@ -358,9 +358,9 @@ Show specified resource
 
 ## Create Resource [/1/resources]
 
-Create a resource in the OpenEd catalog.
-
 ### Create [POST]
+
+Create a resource in the OpenEd catalog.
 
 + Request (application/json; charset=utf-8)
 
@@ -408,9 +408,9 @@ Create a resource in the OpenEd catalog.
         
 ## Update Resource [/1/resources/{id}]
 
-Update an existing resource in the OpenEd catalog.
-
 ### Update [PUT]
+
+Update an existing resource in the OpenEd catalog.
 
 + Parameters
     + id: `34521` (required, number) - the existing resource id
@@ -467,11 +467,11 @@ Within categories there are individual standards. This method of organizing stan
 but we use it to structure all standard groups.
 
 ## Standard Groups [/1/standard_groups.json]
-To navigate the standards hierarchies you first need to get the list of standard groups.
 
 ### GET
 
-Retrieve full list of standard groups
+To navigate the standards hierarchies you first need to get the list of standard groups.
+
 
 + Request
 
@@ -508,9 +508,9 @@ Retrieve full list of standard groups
 
 ## Get Standard Group [/1/standard_groups/{id}.json]
 
-Show specified standard group
-
 ### GET
+
+Show specified standard group.
 
 + Parameters
 
@@ -537,11 +537,11 @@ Show specified standard group
 
 ## Grade Groups [/1/grade_groups.json{?standard_group,ids}]
 
-List grade groups for specified standard group
 
 ### GET
 
 Get the list of grade groups, typically for a particular standard group.
+
 
 + Parameters
     + standard_group: `2` (optional, number) - The id of the standard group you want grade groups for.
@@ -587,9 +587,10 @@ Get the list of grade groups, typically for a particular standard group.
 
 ## Get Grade Group [/1/grade_groups/{id}.json]
 
-Show specified grade group
 
 ### GET
+
+Show specified grade group.
 
 + Parameters
 
@@ -617,8 +618,10 @@ Show specified grade group
 ## Categories [/1/categories.json{?standard_group,grade_group}]
 
 ### GET
+
 You can list the categories (also known as "strands") based on several criteria.
 It will also return a count of resources.
+
 
 + Parameters
     + standard_group: `2` (requir, number) - shows all categories within a standard group.
@@ -668,9 +671,9 @@ It will also return a count of resources.
 
 ## Get Category [/1/categories/{id}.json]
 
-Show specified category
-
 ### GET
+
+Show specified category.
 
 + Parameters
 
@@ -698,9 +701,11 @@ Show specified category
 
 ## Standards [/1/standards.json{?category,grades_range}]
 
+
 ### GET
 
-Get the list of standards with the number of aligned resources based on parameters:
+Get the list of standards with the number of aligned resources based on parameters.
+
 
 + Parameters
     
@@ -745,9 +750,9 @@ Get the list of standards with the number of aligned resources based on paramete
 
 ## Get Standard [/1/standards/{id}.json]
 
-Show specified standard
-
 ### GET
+
+Show specified standard.
 
 + Parameters
 
@@ -780,6 +785,8 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
 ##  Areas [/1/areas.json]
 
 ### GET
+
+Get a list of areas.
 
 + Request
 
@@ -814,9 +821,9 @@ OpenEd categorizes all resources in an area/subject taxonomy. The top level is a
 
 ## Get Area [/1/areas/{id}.json]
 
-Show specified area
-
 ### GET
+
+Show specified area.
 
 + Parameters
 
@@ -844,7 +851,7 @@ Show specified area
 
 ### GET
 
-Get the list of subjects based on supplied area
+Get the list of subjects based on supplied area.
 
 + Parameters
     + area: `1` (required,number) - the area you want subjects for.
@@ -890,9 +897,10 @@ Get the list of subjects based on supplied area
 
 ## Get Subject [/1/subjects/{id}.json]
 
-Show specified subject
 
 ### GET
+
+Show specified subject.
 
 + Parameters
 
@@ -923,7 +931,7 @@ Show specified subject
 
 ### GET
 
-Retrieve list of publishers
+Retrieve list of publishers.
 
 + Request
 
@@ -951,9 +959,9 @@ Retrieve list of publishers
 
 ## Get Publisher [/1/publishers/{id}.json]
 
-Show specified publisher
-
 ### GET
+
+Show specified publisher
 
 + Parameters
 
