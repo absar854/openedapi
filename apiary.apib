@@ -28,7 +28,7 @@ Email us at api@opened.com to request access to the Opened Partner API and to re
 To use the OpenEd API you will first need to create an account to receive your ACCESS_TOKEN. Your ACCESS_TOKEN will be sent in the header
 of all subsequent API requests.
 
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
 
   + Attributes
@@ -38,16 +38,16 @@ of all subsequent API requests.
         + username (required, string) - chosen by you and will serve as the username of your account.
       
 
-+ Response 200
++ Response 200 (application/json; charset=utf-8)
 
         {
             "access_token": "TOKEN",
-            "expires_in":7200,
+            "expires_in": 7200
         }
 
 # Group User
 
-## Search for a User [/1/users/search?{username}]
+## Search for a User [/1/users/search{?username}]
 
 ### Search [GET]
 
@@ -61,7 +61,8 @@ You can get a user object by email or username
 
 
 + Parameters
-    + username: `testuser` (required) - The username or email of the user.
+
+    + username: `testuser` (required, string) - The username or email of the user.
        
         
 + Response 200
@@ -76,7 +77,7 @@ You can get a user object by email or username
                 "email": "user_email",
                 "role": "student",
                 "username":"student2",
-                
+                "school_nces_id":"41322"
             }
         }
 
@@ -92,22 +93,35 @@ You can get a user object by email or username
 
 You can create other accounts to be used later.  These accounts must be created with an email and password. You can also specify role as 'teacher' or 'student'.  By default, a teacher user will be created.
 
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
 
   + Attributes
-        + email: email (required)
-        + password: user_password (required)
+        + email: email (string, required)
+        + first_name: user first name (string, optional)
+        + last_name: user last name (string, optional)
+        + password: user_password (string, required)
         + role: teacher or student  (string, optional)
         + promo: promo code (string, optional)
         + school_nces_id: NCES_ID (string, optional)
-        + client_id: yourclientid (required)
+        + client_id: yourclientid (string, required)
        
   + Headers 
   
             Authorization: Bearer TOKEN
+
+  + Body
+
+            {
+               
+                "email": "testuser@test.com",
+                "first_name": "test",
+                "last_name": "user",
+                "password": "password",
+                "role": 'teacher'
+            }
         
-+ Response 200
++ Response 200 (application/json; charset=utf-8)
 
         
         {
@@ -118,8 +132,7 @@ You can create other accounts to be used later.  These accounts must be created 
                 "full_name": "New Student 1",
                 "email": "user_email",
                 "role": "teacher",
-                "username":"student2",
-                
+                "username":"student2"
             }
         }
 
@@ -129,16 +142,65 @@ You can create other accounts to be used later.  These accounts must be created 
             "error": "error message"
         }
 
+## Update a User [/1/users/{id}]
+
+### Update [PUT]
+
+You can update an existing user account by passing the user id.
+
++ Parameters
+  + id: `34607` (required, number) the existing user id 
+
++ Request (application/json; charset=utf-8)
+
+  + Attributes
+        + first_name: (string, optional) - user first name (string, optional)
+        + last_name: (string, optional) - user last name
+        + school_nces_id: `1` (string, optional) - NCES_ID
+       
+  + Headers 
+  
+            Authorization: Bearer TOKEN
+
+  + Body
+
+            {
+                "first_name": "test",
+                "last_name": "user",
+                "school_nces_id": "1"
+            }
+        
++ Response 200 (application/json; charset=utf-8)
+
+        
+        {
+            "user":{
+                "id":16372,
+                "first_name":"New Student",
+                "last_name":"1",
+                "full_name": "New Student 1",
+                "email": "user_email",
+                "role": "teacher",
+                "username":"student2"
+            }
+        }
+
++ Response 400
+
+        {
+            "error": "error message"
+        }
 
 # Group Resources
 
 
-## Search Resources [/1/resources.json{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_types,contribution_name,license,enable_lrmi}]
+## Search Resources [/1/resources.json/{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_type,contribution_name,license,enable_lrmi}]
+]
 
 Search OpenEd's resource catalog using one or more of the parameters below.
 ### Search [GET]
 
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
     + Headers
 
@@ -162,7 +224,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
     + license: `free, premium, paid, all` (optional, string) - the resource license type
     + enable_lrmi: `true` (optional, boolean) - if set to true returns metada to lrmi specification
     
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "meta":
@@ -184,15 +246,10 @@ Search OpenEd's resource catalog using one or more of the parameters below.
               ],
               "area_ids": [1,3],
               "subject_ids": [2,4],
-              "grade_idents": [
-                "K",
-                "1"
-              ],
               "grades_range": "K-5",
-              "is_premium": false
+              "is_premium": false,
               "publisher": "Mr. Smith",
               "description": "Mr. Smith sings a cute song to teach kids 3D shapes. He helps build real world connections while students learn the cube, rectangular prism, cylinder, sphere, and pyramid. This is a good resource to help introduce and/or review this important skill.",
-              "featured": false,
               "effectiveness": 88,
               "resource_type": "video",
               "id": 178375,
@@ -213,7 +270,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
         }
 
        
-+ Response 201 (application/json)
++ Response 201 (application/json; charset=utf-8)
     If enable_lrmi is set to true your response will be specficed to lrml
     
     + Body
@@ -252,17 +309,16 @@ Search OpenEd's resource catalog using one or more of the parameters below.
             }
             ]
 
-## Get Resource [/1/resources/{id}.json]
+## Get Resource [/1/resources/{id}]
 
 Show specified resource
 
 ### GET
 
 + Parameters
-
-    + id (number, `110710`) - A unique identifier of the resource
+    + id: `185352` (required, number) - A unique identifier of the resource
         
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
     + Headers
     
@@ -280,18 +336,18 @@ Show specified resource
                 "grades_range":"K",
                 "contribution_name":"WatchKnowLearnCommonCore",
                 "publisher":"SamplePublisher",
-                "description":"In this classic Sesame Street cartoon, the Bellhop has to find the parents of two lost kids. \u00a0Betty and Bobby Blobby are lost in the lobby.\u00a0",
+                "description":"In this classic Sesame Street cartoon, the Bellhop has to find the parents of two lost kids. \u00a0Betty and Bobby Blobby are lost in the lobby.",
                 "duration":120,
                 "resource_type":"video",
                 "thumbnails": {
-                    "mini":https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
-                    "small":https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
-                    "medium":https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
-                    "large":https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449"
+                    "mini":"https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
+                    "small":"https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
+                    "medium":"https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449",
+                    "large":"https://opened.s3.amazonaws.com/pictures/110710/thumb/110710.jpg?1377325449"
                 },
                 "title":"The Bellhop Counts to 2",
-                "share_url":"http://www.opened.io/#/share/110710",
-                "student_url":"http://www.opened.io/#/share/110710?student_view=true",
+                "share_url":"https://www.opened.com/resources/178375?partner_id1&simplifiedView=true",
+                "student_url":"https://www.opened.com/resources/383255?partner_id=id&simplifiedView=true&student_view=true",
                 "rating":3,
                 "area_ids":[2],  
                 "subject_ids":[18],
@@ -306,7 +362,7 @@ Create a resource in the OpenEd catalog.
 
 ### Create [POST]
 
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
     + Headers
     
@@ -326,8 +382,24 @@ Create a resource in the OpenEd catalog.
         + image (optional,string) - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
         + contribution_name (optional, string) - the place where the resource was contributed from. Not neccessarily the publisher.
 
+  + Body
 
-+ Response 200
+            {
+                "url": "http://youtube.com/3455",
+                "title": "New Resource",
+                "description": "my new learning video",
+                "standard_idents": "K.CC.1",
+                "subject": "Math",
+                "grades_range": "K-2",
+                "publisher": "PBS",
+                "resource_type": 'video',
+                "image": "http://path_to_hosted_image.com",
+                "contribution_name": "OpenedEd"
+            }
+
+
+
++ Response 200 (application/json; charset=utf-8)
 
         {
             "notice": "Resource was added successfully",
@@ -343,7 +415,7 @@ Update an existing resource in the OpenEd catalog.
 + Parameters
     + id: `34521` (required, number) - the existing resource id
 
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
     + Headers
     
@@ -363,8 +435,23 @@ Update an existing resource in the OpenEd catalog.
         + image (optional,string) - An image that acts as a preview of the video. When possible with other resource types thumbnails are encouraged. This is a URL link.
         + contribution_name (optional, string) - the place where the resource was contributed from. Not neccessarily the publisher.
 
+    + Body
 
-+ Response 200
+            {
+                "url": "http://youtube.com/3455",
+                "title": "New Resource",
+                "description": "my new learning video",
+                "standard_idents": "K.CC.1",
+                "subject": "Math",
+                "grades_range": "K-2",
+                "publisher": "PBS",
+                "resource_type": 'video',
+                "image": "http://path_to_hosted_image.com",
+                "contribution_name": "OpenedEd"
+            }
+
+
++ Response 200 (application/json; charset=utf-8)
 
         {
             "notice": "Resource was updated successfully"
@@ -847,23 +934,22 @@ Retrieve list of publishers
 + Response 200 (application/json; charset=utf-8)
 
         {
-            "publishers": [
+          "meta": {
+            "pagination": {"offset":0,"total_entries":null,"entries":null,"limit":50}
+          },
+          "publishers": [
                 {
                     "id":32539,
-                    "title":"Smithsonian Institution",
-                    "count":1000,
-                    "featured":true
+                    "title":"Smithsonian Institution"
                 },
                 {
                     "id":32539,
-                    "title":"Sample Publisher",
-                    "count":2,
-                    "featured":false
+                    "title":"Sample Publisher"
                 }
             ]
         }
 
-## Get Publisher [/1/publisher/{id}.json]
+## Get Publisher [/1/publishers/{id}.json]
 
 Show specified publisher
 
@@ -871,7 +957,7 @@ Show specified publisher
 
 + Parameters
 
-    + id (number, `32539`) - A unique identifier of the publisher
+    + id (number, `1`) - A unique identifier of the publisher
         
 + Request (application/json)
 
@@ -886,9 +972,7 @@ Show specified publisher
         {
             "publisher": {
                 "id":32539,
-                "title":"Smithsonian Institution",
-                "count":1000,
-                "featured":true
+                "title":"Smithsonian Institution"
             }
         }
         
@@ -900,6 +984,60 @@ Partner's API endpoint is https://partner.opened.com/
 ## Teacher's Classes [/1/teachers/classes]
 
 `/teachers/classes` endpoint available for teachers only
+
+### Create a New Class [POST /1/teachers/classes]
+
+You may create your own class using this action. It takes a JSON object containing a title and grades_range.
++ title (string) - The class title, required
++ grades_range (string) - class grades_range, optional, in formats: '5', '5-5', '6-8'
++ teacher_id (integer) - teacher id to create class on
+
++ Request (application/json; charset=utf-8)
+
+    + Attributes
+        + class (object, required) - title (string), grades_range (string)
+            + title: `First Grade Class` (string, required) - The class title, required
+            + grades_range: `K-2` (string, optional) - dash separated grade range K-12
+            + teacher_id: (number, optional) - teacher id to create class on
+             
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+
+    + Body
+
+            {
+              "class": {
+                "title": "New Class",
+                "grades_range": "K-2"
+              }
+            }
+
++ Response 201 (application/json; charset=utf-8)
+
+    + Body
+
+            {
+                "class": {
+                    "id": 4812,
+                    "title": "My class",
+                    "created_at": "2015-09-18T22:30:03.142Z",
+                    "student_ids": [],
+                    "standard_area_ids": [],
+                    "grades_range": "5",
+                    "owner_id": 16370
+                },
+                "owners": [
+                    {
+                        "id": 16370,
+                        "first_name": "Leonid",
+                        "last_name": "Morozov",
+                        "username": "leonid.morozov"
+                    }
+                ],
+                "standard_areas": [],
+                "students": []
+            }
 
 ### List classes [GET /1/teachers/classes{?ids}]
 
@@ -949,9 +1087,7 @@ Response contains list of side-loaded objects:
 
 ### Get Class [GET /1/teachers/classes/{class_id}]
 
-The request should have the OAuth access token in the headers `Authorization: Bearer TOKEN`
-
-Response contains list of side-loaded objects:
+You can a user class.
 
 + class - Class object.
 + owners - An array of Owner (user) objects -- Class Owners.
@@ -959,7 +1095,7 @@ Response contains list of side-loaded objects:
 + students - An array of Student (user) objects in Class.
 
 + Parameters
-    + class_id (required, number, `1`) - Class `id`
+    + class_id (required, number, `123`) - Class `id`
 
 + Request
 
@@ -991,57 +1127,12 @@ Response contains list of side-loaded objects:
             "students": []
         }
 
-### Create a New Class [POST /1/teachers/classes]
-
-You may create your own class using this action. It takes a JSON object containing a title and grades_range.
-+ title (string) - The class title, required
-+ grades_range (string) - class grades_range, optional, in formats: '5', '5-5', '6-8'
-+ teacher_id (integer) - teacher id to create class on
-
-+ Request (application/json)
-    + Attributes
-        + user (object, required) - title (string), grades_range (string)
-            + title (string, required) - The class title, required
-            + grades_range: `K-2` (string, optional) - class grades_range, optional, in formats: '5', '5-5', '6-8'
-            + teacher_id (number, optional) - teacher id to create class on
-             
-    + Headers
-
-            Authorization: Bearer [TOKEN]
-
-
-+ Response 201 (application/json)
-
-    + Body
-
-            {
-                "class": {
-                    "id": 4812,
-                    "title": "My class",
-                    "created_at": "2015-09-18T22:30:03.142Z",
-                    "student_ids": [],
-                    "standard_area_ids": [],
-                    "grades_range": "5",
-                    "owner_id": 16370
-                },
-                "owners": [
-                    {
-                        "id": 16370,
-                        "first_name": "Leonid",
-                        "last_name": "Morozov",
-                        "username": "leonid.morozov"
-                    }
-                ],
-                "standard_areas": [],
-                "students": []
-            }
-
 
 ### Update Class [PUT /1/teachers/classes/{class_id}]
 
 You may update your own class using this action. It takes a JSON object containing a title and grades_range.
 
-+ title (string) - The class title, optional
++ title: `New Class Title` (string) - The class title, optional
 + grades_range (string) - class grades_range, optional, in formats: '5', '5-5', '6-8'
 
 Response contains list of side-loaded objects as on `get class` request.
@@ -1049,7 +1140,7 @@ Response contains list of side-loaded objects as on `get class` request.
 + Parameters
     + class_id (required, number, `123`) - Class `id`
 
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
     + Headers
 
@@ -1064,7 +1155,7 @@ Response contains list of side-loaded objects as on `get class` request.
                 }
             }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
     + Body
 
@@ -1091,14 +1182,14 @@ Response contains list of side-loaded objects as on `get class` request.
             }
 
 
-### Remove a Class [DELETE /teachers/classes/{class_id}]
+### Remove a Class [DELETE /1/teachers/classes/{class_id}]
 
 You may delete your own class using this action.
 
 + Parameters
     + class_id (required, number, `123`) - Class `id`
 
-+ Request (application/json)
++ Request
 
     + Headers
 
@@ -1106,15 +1197,63 @@ You may delete your own class using this action.
 
 + Response 204
 
+
+### Create a Student [POST /1/teachers/students]
+
+You may create your own student and add it to classes using this action. It takes a JSON object containing a first_name, last_name, username, password and list of class IDs.
+
++ first_name (string) - Student's first_name, required
++ last_name (string) - Student's last_name, required
++ username (string) - Student's username, required
++ password (string) - Student's password, required
++ class_ids (array[int]) - ids of classes new student needs to be added, optional
+
++ Request (application/json; charset=utf-8)
+
+    + Headers
+
+            Authorization: Bearer [TOKEN]
+
+    + Body
+
+            {
+                "student":{
+                    "first_name":"Student",
+                    "last_name":"2",
+                    "username":"student2",
+                    "password":"password",
+                    "class_ids":[4812]
+                }
+            }
+
++ Response 201 (application/json; charset=utf-8)
+
+    + Body
+
+            {
+                "student":{
+                    "id":16372,
+                    "first_name":"Student",
+                    "last_name":"2",
+                    "username":"student2",
+                    "password":"password",
+                    "class_ids":[4812]
+                }
+            }
+
 ### Add existing students to the Class [POST /1/teachers/classes/{class_id}/add_students]
 
 This allows you to manage existing students in the classes.
 Use `create student` action to create new students and add them to classes.
 
 + Parameters
-    + class_id (required, number, `1`) - Class `id`
+    + class_id (required, number, `123`) - Class `id`
 
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
+
+    + Attributes
+
+      + student_ids: (required, array, `16372`) - array of student ids
 
     + Headers
 
@@ -1126,7 +1265,7 @@ Use `create student` action to create new students and add them to classes.
                 "student_ids": [16372]
             }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
     + Body
 
@@ -1168,12 +1307,17 @@ Use `create student` action to create new students and add them to classes.
             }
 
 
+
 ### Remove students from the Class [POST /1/teachers/classes/{class_id}/remove_students]
 
 + Parameters
-    + class_id (required, number, `1`) - Class `id`
+    + class_id (required, number, `123`) - Class `id`
 
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
+
+    + Attributes
+    
+      + student_ids: (required, array, `16372`) - array of student ids
 
     + Headers
 
@@ -1185,7 +1329,7 @@ Use `create student` action to create new students and add them to classes.
                 "student_ids": [16372]
             }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
     + Body
 
@@ -1235,7 +1379,7 @@ Response contains objects:
 + Parameters
     + ids (optional, array[int]) - list of student `id`
 
-+ Request
++ Request (application/json; charset=utf-8)
 
     + Headers
 
@@ -1273,7 +1417,7 @@ Response contain object:
 + student - Student (user) object.
 
 + Parameters
-    + student_id (required, number, `1`) - Student `id`
+    + student_id (required, number, `123`) - Student `id`
 
 + Request
 
@@ -1294,51 +1438,6 @@ Response contain object:
             }
         }
 
-### Create a Student [POST /1/teachers/students]
-
-You may create your own student and add it to classes using this action. It takes a JSON object containing a first_name, last_name, username, password and list of class IDs.
-
-+ first_name (string) - Student's first_name, required
-+ last_name (string) - Student's last_name, required
-+ username (string) - Student's username, required
-+ password (string) - Student's password, required
-+ class_ids (array[int]) - ids of classes new student needs to be added, optional
-
-Response contains list of side-loaded objects as an `get student` request.
-
-+ Request (application/json)
-
-    + Headers
-
-            Authorization: Bearer [TOKEN]
-
-    + Body
-
-            {
-                "student":{
-                    "first_name":"Student",
-                    "last_name":"2",
-                    "username":"student2",
-                    "password":"password",
-                    "class_ids":[4812]
-                }
-            }
-
-+ Response 201 (application/json)
-
-    + Body
-
-            {
-                "student":{
-                    "id":16372,
-                    "first_name":"Student",
-                    "last_name":"2",
-                    "username":"student2",
-                    "password":"password",
-                    "class_ids":[4812]
-                }
-            }
-
 
 ### Update Student [PUT /1/teachers/students/{student_id}]
 
@@ -1351,9 +1450,16 @@ You may update your own student using this action. It takes a JSON object contai
 Response contains list of side-loaded objects as on `get student` request.
 
 + Parameters
-    + student_id (required, number, `1`) - Class `id`
+    + student_id (required, number, `123`) - Class `id`
 
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
+
+    + Attributes
+    
+      + student: (required, object)
+        + "first_name": (optional, string)
+        + "last_name": (optional, string)
+        + "password": (optional, string)
 
     + Headers
 
@@ -1369,7 +1475,7 @@ Response contains list of side-loaded objects as on `get student` request.
                 }
             }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
     + Body
 
@@ -1391,7 +1497,7 @@ Response contains list of side-loaded objects as on `get student` request.
 You may delete your own student using this action.
 
 + Parameters
-    + student_id (required, number, `1`) - Class `id`
+    + student_id (required, number, `123`) - Class `id`
 
 + Request (application/json)
 
@@ -1400,6 +1506,51 @@ You may delete your own student using this action.
             Authorization: Bearer [TOKEN]
 
 + Response 204
+
+# Group Assessment Results
+
+## Get Assessment Results [/1/assessment_runs.json{?resource_id}]
+
+### GET
+
+You can get a list of the last five assessment runs for a user.
+
++ Parameters
+    + resource_id (number, required, `1069949`) - The resource id of a resource with resource_type Assessment
+
++ Request (application/json; charset=utf-8)
+ 
+    + Headers
+    
+            Authorization: Bearer TOKEN
+   
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "assessment_runs": [
+              {
+                  "id": 7,
+                  "created_at": "2016-03-04T18:56:17.945Z",
+                  "finished_at": "2016-03-04T18:56:17.945Z",
+                  "score": 70.0,
+                  "assessment_id": 1069949,
+                  "user_id": 16759, 
+                  "mastery_level": 90, 
+                  "assessment_near_mastery_percent": 70, 
+                  "assessment_mastery_percent": 90, 
+                  "assessment_title": "HSS.CED.2: Create equations in two or more variables", 
+                  "score_description": ""
+              }
+            ]
+        }
+
++ Response 204 (application/json; charset=utf-8)
+
+      {
+          "assessment_runs": []
+      }
+     
 
 # Group School
 
@@ -1426,6 +1577,20 @@ You can create schools to be used later with user accounts.  These schools must 
   + Headers 
   
             Authorization: Bearer [TOKEN]
+
+   + Body
+
+            {
+                  "nces_id":"1",
+                  "name":"Union Middle School",
+                  "address":"123 Union Av",
+                  "city": "San Jose",
+                  "state": "Ca",
+                  "zip": "95124",
+                  "low_grade": "6",
+                  "high_grade": "8"
+                }
+            }
         
 + Response 200
 

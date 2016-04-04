@@ -1,24 +1,23 @@
 language: node_js
-
 node_js:
-  - 0.12
-
+- 0.12
 sudo: false
-
 cache:
   directories:
-    - node_modules
-
+  - node_modules
 before_install:
-  - "npm config set spin false"
-  - "npm install -g npm@^2"
-  - npm install -g dredd
-
-script: dredd ./apiary.apib http://localhost:3000 --dry-run
-
+- npm config set spin false
+- npm install -g npm@^2
+- npm install -g dredd
+script: dredd ./apiary.apib --hookfiles=./api_hooks.rb
 notifications:
   email: false
   slack:
     on_success: change
     on_failure: always
-    rooms: "u/oabSzY3o3mFM/q619fwqsDzUTeBsJgsukkhKwkSyKnOjdXG+XSklxusfsooCaCF2GadOaXzmVmM9TRP+fY7QKcT1t7iCEaa/TBcEF78K2mczSCCP9izFDzTgtIwsu8SYbAXlbQFR+DcjB/SMfhhIAUXnTO/GRVhV83tKSXdNQ="
+    rooms:
+      secure: u/oabSzY3o3mFM/q619fwqsDzUTeBsJgsukkhKwkSyKnOjdXG+XSklxusfsooCaCF2GadOaXzmVmM9TRP+fY7QKcT1t7iCEaa/TBcEF78K2mczSCCP9izFDzTgtIwsu8SYbAXlbQFR+DcjB/SMfhhIAUXnTO/GRVhV83tKSXdNQ=
+env:
+  global:
+  - secure: eCHuSoXl3NcdbigTJfJF61t4OxrokAClSsh4w/+/MRFPdcJ4Vc1j/kwVWO9PktL2A+6prqP8vXaOGAZQQ5iame1Q/C/OaHXO6+tYaYwMs+w9PNEArEBMYZIxq4IxCp7d+lEoLlTS8h/YVhGsJTADR46TYa0/WtVN/jTNAzn+A0w=
+  - secure: oMiDNChQ/6oVYY9f+K6dy6StsM+fqFwVzEi82O92gyNd0g29OATizK8fd3cP0Ut0WfXNvi2lIbkV1zJKWsObNbz3WdWihUSpbl6eIC6RmUTjOxsktxc+e3daArvfzXnKhU2wS1XgrO9epgz3Kt8XTlgVn3I31VGTl8Jxoiel75Y=
