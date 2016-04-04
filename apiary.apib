@@ -991,7 +991,7 @@ Partner's API endpoint is https://partner.opened.com/
 
 ## Teacher's Classes [/1/teachers/classes]
 
-`/teachers/classes` endpoint available for teachers only
+Available for teachers only
 
 ### Create a New Class [POST /1/teachers/classes]
 
@@ -1095,12 +1095,8 @@ Response contains list of side-loaded objects:
 
 ### Get Class [GET /1/teachers/classes/{class_id}]
 
-You can a user class.
+You can get a users class.
 
-+ class - Class object.
-+ owners - An array of Owner (user) objects -- Class Owners.
-+ standard_areas - An array of StandardArea objects.
-+ students - An array of Student (user) objects in Class.
 
 + Parameters
     + class_id (required, number, `123`) - Class `id`
@@ -1138,12 +1134,8 @@ You can a user class.
 
 ### Update Class [PUT /1/teachers/classes/{class_id}]
 
-You may update your own class using this action. It takes a JSON object containing a title and grades_range.
+You may update your own class using this action.
 
-+ title: `New Class Title` (string) - The class title, optional
-+ grades_range (string) - class grades_range, optional, in formats: '5', '5-5', '6-8'
-
-Response contains list of side-loaded objects as on `get class` request.
 
 + Parameters
     + class_id (required, number, `123`) - Class `id`
@@ -1153,6 +1145,11 @@ Response contains list of side-loaded objects as on `get class` request.
     + Headers
 
             Authorization: Bearer [TOKEN]
+            
+    + Attributes
+        + title: `New Class Title` (string, optional) - The class title
+        + grades_range: `K-3` (string, optional) - class grades_range, in formats: '5', '5-5', '6-8'
+
 
     + Body
 
@@ -1208,24 +1205,29 @@ You may delete your own class using this action.
 
 ### Create a Student [POST /1/teachers/students]
 
-You may create your own student and add it to classes using this action. It takes a JSON object containing a first_name, last_name, username, password and list of class IDs.
+You may create your own student and add it to your class. 
 
-+ first_name (string) - Student's first_name, required
-+ last_name (string) - Student's last_name, required
-+ username (string) - Student's username, required
-+ password (string) - Student's password, required
-+ class_ids (array[int]) - ids of classes new student needs to be added, optional
 
 + Request (application/json; charset=utf-8)
 
     + Headers
 
             Authorization: Bearer [TOKEN]
+            
+    + Attributes
+        + student (object)
+            + email: `student@email.com` (string, required) - students email, username or email is required
+            + first_name: `test first name` (optional, string) - student's first_name
+            + last_name:`test last name` (optional, string) - Student's last_name
+            + username: `test username` (optional, required) - student's username, username or email is required
+            + password: `password` (optional, string) - student's password
+            + class_ids: `[123]` (optional, array[number]) - ids of classes new student needs to be added
 
     + Body
 
             {
                 "student":{
+                    "email:": "student@email.com",
                     "first_name":"Student",
                     "last_name":"2",
                     "username":"student2",
@@ -1252,7 +1254,7 @@ You may create your own student and add it to classes using this action. It take
 ### Add existing students to the Class [POST /1/teachers/classes/{class_id}/add_students]
 
 This allows you to manage existing students in the classes.
-Use `create student` action to create new students and add them to classes.
+You can create students and then add them to an existing class.
 
 + Parameters
     + class_id (required, number, `123`) - Class `id`
@@ -1374,15 +1376,11 @@ Use `create student` action to create new students and add them to classes.
 
 ## Teacher's Students [/1/teachers/students]
 
-`/teachers/students` endpoint available for teachers only
+Available for teachers only.
 
 ### List students [GET /1/teachers/students{?ids}]
 
-The request should have the OAuth access token in the headers `Authorization: Bearer [TOKEN]`
-
-Response contains objects:
-
-+ students - An array of Student (user) objects.
+Get a list of your students passing an array of student ids.
 
 + Parameters
     + ids (optional, array[int]) - list of student `id`
@@ -1418,11 +1416,7 @@ Response contains objects:
 
 ### Get Student [GET /1/teachers/students/{student_id}]
 
-The request should have the OAuth access token in the headers `Authorization: Bearer [TOKEN]`
-
-Response contain object:
-
-+ student - Student (user) object.
+You can get an individual student object.
 
 + Parameters
     + student_id (required, number, `123`) - Student `id`
@@ -1449,13 +1443,7 @@ Response contain object:
 
 ### Update Student [PUT /1/teachers/students/{student_id}]
 
-You may update your own student using this action. It takes a JSON object containing a first_name, last_name and password.
-
-+ first_name (string) - Student's first_name, required
-+ last_name (string) - Student's last_name, required
-+ password (string) - Student's password, required
-
-Response contains list of side-loaded objects as on `get student` request.
+You can update a student object.
 
 + Parameters
     + student_id (required, number, `123`) - Class `id`
@@ -1521,7 +1509,7 @@ You may delete your own student using this action.
 
 ### GET
 
-You can get a list of the last five assessment runs for a user.
+You can get a list of the last five assessment runs for your current logged in user.
 
 + Parameters
     + resource_id (number, required, `1069949`) - The resource id of a resource with resource_type Assessment
@@ -1561,7 +1549,7 @@ You can get a list of the last five assessment runs for a user.
 
 ### Create [POST]
 
-You can create schools to be used later with user accounts.  These schools must be created with the NCES ID and school name. You can also specify the school's address, grade range and phone number.
+You can create schools to be used later with your user accounts.  These schools must be created with an NCES ID and school name.
 
 + Request (application/json)
 
