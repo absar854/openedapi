@@ -154,8 +154,8 @@ You can update an existing user account by passing the user id.
 + Request (application/json; charset=utf-8)
 
   + Attributes
-        + first_name: (string, optional) - user first name (string, optional)
-        + last_name: (string, optional) - user last name
+        + first_name: `test first name` (string, optional) - user first name (string, optional)
+        + last_name: `test last name` (string, optional) - user last name
         + school_nces_id: `1` (string, optional) - NCES_ID
        
   + Headers 
@@ -309,14 +309,14 @@ Search OpenEd's resource catalog using one or more of the parameters below.
             }
             ]
 
-## Get Resource [/1/resources/{id}]
+## Get Resource [/1/resources/{ids}]
 
 Show specified resource
 
 ### GET
 
 + Parameters
-    + id: `185352` (required, number) - A unique identifier of the resource
+    + ids: `185352` (required, array[int]) - An array of unique identifiers of the resources
         
 + Request (application/json; charset=utf-8)
 
@@ -998,7 +998,7 @@ You may create your own class using this action. It takes a JSON object containi
         + class (object, required) - title (string), grades_range (string)
             + title: `First Grade Class` (string, required) - The class title, required
             + grades_range: `K-2` (string, optional) - dash separated grade range K-12
-            + teacher_id: (number, optional) - teacher id to create class on
+            + teacher_id: `123` (number, optional) - teacher id to create class on
              
     + Headers
 
@@ -1253,7 +1253,7 @@ Use `create student` action to create new students and add them to classes.
 
     + Attributes
 
-      + student_ids: (required, array, `16372`) - array of student ids
+      + student_ids: [`16372`] (required, array) - array of student ids
 
     + Headers
 
@@ -1317,7 +1317,7 @@ Use `create student` action to create new students and add them to classes.
 
     + Attributes
     
-      + student_ids: (required, array, `16372`) - array of student ids
+      + student_ids: [`16372`] (required, array) - array of student ids
 
     + Headers
 
@@ -1456,10 +1456,10 @@ Response contains list of side-loaded objects as on `get student` request.
 
     + Attributes
     
-      + student: (required, object)
-        + "first_name": (optional, string)
-        + "last_name": (optional, string)
-        + "password": (optional, string)
+      + student (object, required)
+        + "first_name": `test first name` (optional, string)
+        + "last_name": `test last name` (optional, string)
+        + "password": `password` (optional, string)
 
     + Headers
 
@@ -1545,11 +1545,6 @@ You can get a list of the last five assessment runs for a user.
             ]
         }
 
-+ Response 204 (application/json; charset=utf-8)
-
-      {
-          "assessment_runs": []
-      }
      
 
 # Group School
