@@ -621,7 +621,6 @@ Show specified grade group.
 ### GET
 
 You can list the categories (also known as "strands") based on several criteria.
-It will also return a count of resources.
 
 
 + Parameters
@@ -705,7 +704,7 @@ Show specified category.
 
 ### GET
 
-Get the list of standards with the number of aligned resources based on parameters.
+Get the list of standards based on the category.
 
 
 + Parameters
@@ -713,6 +712,12 @@ Get the list of standards with the number of aligned resources based on paramete
     + category: `256` (required, number) - standards for a given standard category.
     + grades_range: `K-5` (optional, string) - just the standards relevant to a given grades range, generally combined with standard group or grade group.
 
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer TOKEN
+            
 + Response 200 (application/json; charset=utf-8)
 
         {
