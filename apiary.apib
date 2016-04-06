@@ -1052,14 +1052,7 @@ You may create your own class using this action.
 
 ### List classes [GET /1/teachers/classes{?ids}]
 
-The request should have the OAuth access token in the headers `Authorization: Bearer [TOKEN]`
-
-Response contains list of side-loaded objects:
-
-+ classes - An array of Class objects.
-+ owners - An array of Owner (user) objects -- Class Owners.
-+ standard_areas - An array of StandardArea objects.
-+ students - An array of Student (user) objects in Classes.
+You can get a list of your classes by passing an array of class ids.
 
 + Parameters
     + ids (optional, array[int]) - array of class `ids`
