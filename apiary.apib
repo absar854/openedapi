@@ -194,7 +194,7 @@ You can update an existing user account by passing the user id.
 # Group Resources
 
 
-## Search Resources [/1/resources.json/{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_type,contribution_name,license,enable_lrmi,effectiveness}]
+## Search Resources [/1/resources.json/{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_type,contribution_name,license,enable_lrmi,effectiveness,standard_ids}]
 
 ### Search [GET]
 
@@ -214,6 +214,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
     + grade_group: `46` (optional, number) - returns resources aligned to specified grade group.
     + category: `12` (optional, number) -  returns resources aligned to specified category.
     + standard: `K.G.2` (optional, string) - returns resources aligned to specified standard.
+    + standard_ids: `[123]` (optional, array[int]) - returns resources aligned to specific standard.
     + area: `11` (optional, number) - returns resources aligned to specified area.
     + subject: `110` (optional, number) - returns resources aligned to specified subject.
     + grades_range: `K-5` (optional, string) - restricts search to specified grade range. Can be specified as a single grade.
