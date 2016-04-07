@@ -194,7 +194,7 @@ You can update an existing user account by passing the user id.
 # Group Resources
 
 
-## Search Resources [/1/resources.json/{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_type,contribution_name,license,enable_lrmi,effectiveness,standard_ids}]
+## Search Resources [/1/resources.json/{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_type,contribution_name,license,enable_lrmi,effectiveness,standard_ids,featured}]
 
 ### Search [GET]
 
@@ -222,6 +222,7 @@ Search OpenEd's resource catalog using one or more of the parameters below.
     + resource_type: `video` (optional, string/array) - returns resources of a specific resource type. Possible types are: "video", "game", "assessment", "homework", "question", "audio", "other", "lesson plan"(lesson plan should be sent with underscore between lesson and plan). Can be specified as single entry, comma-seprated list of types or a URL-formatted array.
     + url: `http://youtube_video.com` (optional, string) - the underlying url of the resource
     + contribution_name: `LearningRegistry` (optional, string) - the place where the resource was contributed from. Not neccessarily the publisher.
+    + featured: `true` (optional, boolean) - returns only resources featured by our opened curators
     + license: `free, premium, paid, all` (optional, string) - the resource license type
     + enable_lrmi: `true` (optional, boolean) - if set to true returns metadata to lrmi specification
     + effectiveness: `60-80` (optional, string) - returns resources within an effectiveness range. If one value is set it will be assumed to be the minimum and 100% will be set as the maximum.
