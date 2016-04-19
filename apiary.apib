@@ -626,7 +626,7 @@ You can get a list of categories based on several criteria.
 
 
 + Parameters
-    + standard_group: `2` (requir, number) - shows all categories within a standard group.
+    + standard_group: `2` (required, number) - shows all categories within a standard group.
     + grade_group: `46` (optional, number) - restricts the categories to those associated with a specific grade group.
 
 + Request
@@ -1501,14 +1501,14 @@ You may delete your own student using this action.
 
 # Group Assessment Results
 
-## Get Assessment Results [/1/assessment_runs.json{?resource_id}]
+## Get Assessment Results [/1/assessment_runs.json{?id}]
 
 ### GET
 
 You can get a list of the last five assessment runs for your currently logged in user.
 
 + Parameters
-    + resource_id (number, required, `1069949`) - The resource id of a resource with resource_type Assessment
+    + id (number, required, `1069949`) - The resource id of a resource with resource_type Assessment
 
 + Request (application/json; charset=utf-8)
  
