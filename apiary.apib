@@ -98,6 +98,7 @@ You can create other accounts to be used later.  These accounts must be created 
 
   + Attributes
         + email: email (string, required)
+        + username: username (string, optional)
         + first_name: user first name (string, optional)
         + last_name: user last name (string, optional)
         + password: user_password (string, required)
@@ -118,7 +119,9 @@ You can create other accounts to be used later.  These accounts must be created 
                 "first_name": "test",
                 "last_name": "user",
                 "password": "password",
-                "role": 'teacher'
+                "role": "teacher",
+                "username": "testusername",
+                "client_id": your_client_id
             }
         
 + Response 200 (application/json; charset=utf-8)
