@@ -222,13 +222,6 @@ Below is a list of parameters you can use.
 <td>hideRelatedResources</td><td>true | false</td><td>This will hide the related resource list on the right side of the resource details pages.</td>
 </tr>
 </table>
-  
-  
-+ Request (application/json; charset=utf-8)
-
-    + Headers
-
-            Authorization: Bearer TOKEN
 
 + Parameters
     + descriptive: `World War II` (optional, string) - Perform full text search.
@@ -250,6 +243,12 @@ Below is a list of parameters you can use.
     + license: `free, premium, paid, all` (optional, string) - the resource license type
     + enable_lrmi: `false` (optional, boolean) - if set to true returns metadata to lrmi specification
     + effectiveness: `60-80` (optional, string) - returns resources within an effectiveness range. If one value is set it will be assumed to be the minimum and 100% will be set as the maximum.
+
++ Request (application/json; charset=utf-8)
+
+    + Headers
+
+            Authorization: Bearer TOKEN
     
 + Response 200 (application/json; charset=utf-8)
 
