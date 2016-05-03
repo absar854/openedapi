@@ -196,45 +196,12 @@ You can update an existing user account by passing the user id.
 
 # Group Resources
 
-
 ## Search Resources [/1/resources.json/{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_type,contribution_name,license,enable_lrmi,effectiveness,standard_ids,featured}]
 
 ### Search [GET]
 
 Search OpenEd's resource catalog using one or more of the parameters below.
 
-
-  <h3>Resource URL Parameters</h3>
-  <p>The resource search response will return two helper links which link to the resource details page on OpenEd.
-  These links are commonly used to iframe an OpenEd resource into a third party site.</p>
-  
-  <code>
-  <b>share_url</b>: This url is formated for teachers and optimized for an iframe.<br/>
-  <b>student_url</b>: This url is formated for students and optimized for an iframe.
-  </code>
-  Additional parameters can be appened to these urls in order to customize the users experience.
-  Below is a list of parameters you can use.
-  
-  <table>
-  <tr>
-  <th>Parameter</th>
-  <th>Values</th>
-  <th>Description</th>
-  </tr>
-  <tr>
-  <td>`simplifiedView`</td><td>true | false</td><td>This parameter removes header/footer on OpenEd page and optimizes for iframe.</td>
-  </tr>
-  <tr>
-  <td>`student_view`</td><td>true | false</td><td>This parameter removes teacher messaging and actions on OpenEd page.</td>
-  </tr>
-  <tr>
-  <td>`oauth_access_token`</td><td>{ACCESS_TOKEN}</td><td>This is the access token returned from the <a href="http://docs.opened.apiary.io/#reference/accounts/access-token/getting-your-access-token">`get_token`</a> API call. You will need to login each student by passing their username in the <a href="http://docs.opened.apiary.io/#reference/accounts/access-token/getting-your-access-token">`get_token`</a> API call. By then adding their ACCESS_TOKEN to the resource url, they will be automatically logged into OpenEd and resource usage data can be tracked. This is extremely valuable to track your students usage of resources for future recommendations.</td>
-  </tr>
-  <tr>
-  <td>hideRelatedResources</td><td>true | false</td><td>This will hide the related resource list on the right side of the resource details pages.</td>
-  </tr>
-  </table>
-  
   
 + Request (application/json; charset=utf-8)
 
@@ -274,7 +241,8 @@ Search OpenEd's resource catalog using one or more of the parameters below.
                 "total_entries":258213,
                 "entries":1,
                 "limit":1
-              }
+              },
+              "have_gallery":false
           },
           "resources": [
             {
