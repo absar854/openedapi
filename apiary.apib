@@ -186,7 +186,7 @@ You can update an existing user account by passing the user id.
 
 # Group Resources
 
-## Search Resources [/1/resources.json/{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_type,contribution_name,license,enable_lrmi,effectiveness,standard_ids,featured}]
+## Search Resources [/1/resources.json/{?descriptive,url,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_type,contribution_name,license,schema_org,effectiveness,standard_ids,featured}]
 
 ### Search [GET]
 
@@ -241,7 +241,7 @@ Below is a list of parameters you can use.
     + contribution_name: `LearningRegistry` (optional, string) - the place where the resource was contributed from. Not neccessarily the publisher.
     + featured: `true` (optional, boolean) - returns only resources featured by our opened curators
     + license: `free, premium, paid, all` (optional, string) - the resource license type
-    + enable_lrmi: `false` (optional, boolean) - if set to true returns metadata to lrmi specification
+    + schema_org: `false` (optional, boolean) - if set to true returns metadata to lrmi specification
     + effectiveness: `60-80` (optional, string) - returns resources within an effectiveness range. If one value is set it will be assumed to be the minimum and 100% will be set as the maximum.
 
 + Request (application/json; charset=utf-8)
@@ -299,33 +299,37 @@ Below is a list of parameters you can use.
           ]
         }
 
-       
-+ Response 201 (application/json; charset=utf-8)
-    If enable_lrmi is set to true your response will be specficed to lrml
-    
-        {
++ Request (application/json; charset=utf-8)
 
-            "total_pages": 200,
-            "current_page": 0,
+    + Headers
+
+            Authorization: Bearer TOKEN
+
+    {"schema_org": true}
+       
++ Response 200 (application/json; charset=utf-8)
+ 
+          {
             "resources": [
             {
               "resource_id": 178375,
               "name": "Learing about Parcc",
-              "effectiveness": 88,
+              "effectiveness": "88",
               "educationalAlignment": [
-                {
-                    targetName: "PARCC.ELA.RV3.1",
-                    alignmentType: 'teachers',
-                    educationalFramework: "PARCC Common Core ELA/Literacy Summative Assessments",
-                    targetDescription: "Use units as a way to understand problems",
-                    targetUrl: "https://common_core_ela_material.com
+              {
+                    "targetName": "PARCC.ELA.RV3.1",
+                    "alignmentType": "teachers",
+                    "educationalFramework": "PARCC Common Core ELA/Literacy Summative Assessments",
+                    "targetDescription": "Use units as a way to understand problems",
+                    "targetUrl": "https://common_core_ela_material.com"
+              }
               ],
               "publisher": "Mr. Smith",
               "author": "Mr. Smith",
               "description": "Mr. Smith sings a cute song to teach kids 3D shapes. He helps build real world connections while students learn the cube, rectangular prism, cylinder, sphere, and pyramid. This is a good resource to help introduce and/or review this important skill.",
               "thumbnailUrl": "https://opened.s3.amazonaws.com/pictures/178375/thumb/default.jpg?1359909018",
               "url": "https://www.opened.com/resources/178375?partner_id1&simplifiedView=true",
-              "dateCreated": nil,
+              "dateCreated": null,
               "inLanguage": "English", 
               "useRightsUrl": "free", 
               "timeRequired": 130.0, 
@@ -334,12 +338,25 @@ Below is a list of parameters you can use.
               "about": "Unknown/Unknown", 
               "intendedEndUserRole": "student", 
               "educationalUse": "Video", 
-              "learningResourceType": "Video", 
-              "effectiveness": 100.0
+              "learningResourceType": "Video"
             }
-            ]
+          ],
+          "meta":
+            {
+              "pagination":
+                {
+                  "offset":0,
+                  "total_entries":258213,
+                  "entries":1,
+                  "limit":1
+                },
+                "flags":
+                {
+                  "have_gallery":false
+                }
+            }
         }
-        
+
 ## Get Resource [/1/resources/{resource_id}]
 
 ### GET

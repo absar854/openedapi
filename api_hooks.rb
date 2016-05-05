@@ -49,9 +49,14 @@ before "Manage teacher's classes and students > Teacher's Students > Update Stud
   transaction['fullPath'].gsub! '123', stash['student_id']
 end
 
-before "Resources > Search Resources > Search" do |transaction|
+before "Resources > Search Resources > Search > Example 1" do |transaction|
   path = transaction['fullPath'].split("?")[0]
   transaction['fullPath'] =  "#{path}?license=free"
+end
+
+before "Resources > Search Resources > Search > Example 2" do |transaction|
+  path = transaction['fullPath'].split("?")[0]
+  transaction['fullPath'] =  "#{path}?limit=5&offset=0&license=free&schema_org=true"
 end
 
 after "Assessment Results > Get Assessment Results > GET" do |transaction|
