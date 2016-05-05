@@ -299,17 +299,16 @@ Below is a list of parameters you can use.
           ]
         }
 
-+ Request (application/json; charset=utf-8)
+  
+  
++ Response 201 (application/json; charset=utf-8)
+   
+        If enable_lrmi is set to true your response will be specficed to lrml
+    
+        {
 
-    + Headers
-
-            Authorization: Bearer TOKEN
-
-    {"schema_org": true}
-       
-+ Response 200 (application/json; charset=utf-8)
- 
-          {
+            "total_pages": 200,
+            "current_page": 0,
             "resources": [
             {
               "resource_id": 178375,
