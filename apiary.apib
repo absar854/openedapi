@@ -36,8 +36,7 @@ of all subsequent API requests.
         + client_id (required, string) - your opened client id
         + secret (required, string) - your opened secret
         + username (required, string) - chosen by you and will serve as the username of your account.
-      
-
+        
 + Response 200 (application/json; charset=utf-8)
 
         {
@@ -745,7 +744,7 @@ Show specified category.
             }
         }
 
-## Standards [/1/standards.json{?category,grades_range}]
+## Standards [/1/standards.json{?category,grades_range,key_words}]
 
 
 ### GET
@@ -757,7 +756,8 @@ Get the list of standards based on the category.
     
     + category: `256` (required, number) - standards for a given standard category.
     + grades_range: `K-5` (optional, string) - just the standards relevant to a given grades range, generally combined with standard group or grade group.
-
+    + key_words: `counting` (optional, array[string]) - an array of strings to search standard list by.
+    
 + Request (application/json)
 
     + Headers
@@ -1545,15 +1545,16 @@ You may delete your own student using this action.
 
 # Group Assessment Results
 
-## Get Assessment Results [/1/assessment_runs.json{?id}]
+## Get Assessment Results [/1/assessment_runs.json/{?resource_id}]
 
 ### GET
 
 You can get a list of the last five assessment runs for your currently logged in user.
 
 + Parameters
-    + id (number, required, `1069949`) - The resource id of a resource with resource_type Assessment
+    + resource_id (number, required, `1069949`) - The resource id of a resource with 
 
+ 
 + Request (application/json; charset=utf-8)
  
     + Headers
