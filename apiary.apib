@@ -32,6 +32,15 @@ For a comprehensive guide to integrating the OpenEd API into your application, <
 To use the OpenEd API you will first need to create an account to receive your ACCESS_TOKEN. Your ACCESS_TOKEN will be sent in the header
 of all subsequent API requests.
 
+
+###Configuring your Header
+
+Once you have received the token, note that your header needs to have the word "Bearer" in it.  For example, in Ruby, it would say:
+
+headers = {
+  :content_type => 'application/json',
+  :authorization => 'Bearer TOKEN'
+}
 + Request (application/json; charset=utf-8)
 
 
