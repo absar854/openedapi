@@ -8,7 +8,7 @@ cache:
 before_install:
 - npm config set spin false
 - npm install -g npm@^2
-- npm install -g dredd
+- npm install -g dredd@1.5.0
 - gem install dredd_hooks
 
 script: dredd ./apiary.apib --hookfiles=./api_hooks.rb
