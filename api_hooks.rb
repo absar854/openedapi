@@ -42,7 +42,7 @@ end
 
 after "User > Search for a User > Search" do |transaction|
   puts "inside after search for a user"
-  parsed_body = JSON.parse transaction['real']['body']
+  parsed_body =transaction['real']
   puts "body is #{parsed_body}"
 end
 
