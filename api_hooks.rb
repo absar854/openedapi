@@ -20,6 +20,7 @@ end
 # hook to retrieve session on a login
 after 'Accounts > Access Token > Getting your Access Token' do |transaction|
   parsed_body = JSON.parse transaction['real']['body']
+  puts "token is #{parsed_body['access_token']}"
   stash['token'] = parsed_body['access_token']
 end
 
