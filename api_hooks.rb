@@ -16,7 +16,7 @@ before 'Accounts > Access Token > Getting your Access Token' do |transaction|
   # until dredd lets me access request for all responses I will look for second call testing 400
   # here i remove token so request does not load user and then try to access a user from a different provider
   # this should result in 400
-  if transaction['request']['headers']['Authorization'].present?
+  if transaction['request']['headers']['Authorization']
     transaction['request']['headers']['Authorization'] = ""
     request_body['username']  = "lucastest1_original@opened.io"
   end 
