@@ -3,11 +3,9 @@ include DreddHooks::Methods
 
 stash     = {}
 stash['static_group_id'] = '31775'
-#CLIENT_ID = ENV['CLIENT_ID']
-#SECRET    = ENV['SECRET']
+CLIENT_ID = ENV['CLIENT_ID']
+SECRET    = ENV['SECRET']
 
-CLIENT_ID = '6e2649af76552a408fc96e231df1f4c2448c8089fbac77777ae11345628210d1'
-SECRET = '5fb34b2ccbe6832e537f6d0dd678709f2f3fb3a2df7e22457464845b419c43ce'
 
 before 'Accounts > Access Token > Getting your Access Token' do |transaction|
   request_body = JSON.parse transaction['request']['body']
@@ -28,9 +26,12 @@ end
 
 # hook to retrieve session on a login
 after 'Accounts > Access Token > Getting your Access Token' do |transaction|
-  parsed_body = JSON.parse transaction['real']['body']
-  puts "token is #{parsed_body['access_token']}"
-  stash['token'] = parsed_body['access_token']
+  #if token has been set then skip
+  unless stash['token']
+    parsed_body = JSON.parse transaction['real']['body']
+    puts "token is #{parsed_body['access_token']}"
+    stash['token'] = parsed_body['access_token']
+  end
 end
 
 # hook to set the session cookie in all following requests
