@@ -10,11 +10,19 @@ CLIENT_ID = '6e2649af76552a408fc96e231df1f4c2448c8089fbac77777ae11345628210d1'
 SECRET = '5fb34b2ccbe6832e537f6d0dd678709f2f3fb3a2df7e22457464845b419c43ce'
 
 before 'Accounts > Access Token > Getting your Access Token' do |transaction|
-  transaction['request']['headers']['Authorization'] = ""
   request_body = JSON.parse transaction['request']['body']
+  request_body['username']  = 'testuser' 
+
+  # until dredd lets me access request for all responses I will look for second call testing 400
+  # here i remove token so request does not load user and then try to access a user from a different provider
+  # this should result in 400
+  if transaction['request']['headers']['Authorization'].present?
+    transaction['request']['headers']['Authorization'] = ""
+    request_body['username']  = "lucastest1_original@opened.io"
+  end 
   request_body['client_id'] = CLIENT_ID
   request_body['secret']    = SECRET
-  request_body['username']  = 'testuser' 
+  
   transaction['request']['body'] = request_body.to_json
 end
 
