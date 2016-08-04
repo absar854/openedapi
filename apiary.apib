@@ -9,7 +9,7 @@ The **OpenEd Partner API** lets you use the capabilities of the OpenEd engine to
 
 All API access is over HTTPS, and accessed from the https://partner.opened.com host. All data is sent and received as JSON.
 
-Our public instance allows partners to make 15k requests every 30 days. Please contact us to discuss a higher rate limit.
+Our public instance allows partners to make 30k requests every 30 days. Please contact us to discuss a higher rate limit.
 
 All API calls require an OpenEd Access Token. Please write to us at api@opened.com to receive a Client ID and Secret which will allow you to generate an Access Token.
 
@@ -263,7 +263,7 @@ Below is a list of parameters you can use.
     + license: `free, premium, paid, all` (optional, string) - the resource license type
     + schema_org: `false` (optional, boolean) - if set to true returns metadata to lrmi specification
     + effectiveness: `60-80` (optional, string) - returns resources within an effectiveness range. If one value is set it will be assumed to be the minimum and 100% will be set as the maximum.
-    + embeddable: `true` (optional boolean) - returns only resources with embeddable links(relevant mostly to videos).
+    + embeddable: `true` (optional, boolean) - returns only resources with embeddable links(relevant mostly to videos).
     
 + Request (application/json; charset=utf-8)
 
