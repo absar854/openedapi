@@ -33,7 +33,10 @@ For a comprehensive guide to integrating the OpenEd API into your application, <
 ### Getting your Access Token [POST]
 
 To use the OpenEd API you will first need to create an account to receive your ACCESS_TOKEN. Your ACCESS_TOKEN will be sent in the header
-of all subsequent API requests.
+of all subsequent API requests.  
+
+get_token does a find or create to return a token. If you wish to create a student account, you must add role='student'. This is case sensitive.
+Teacher roles are created by default.
 
 
 ###Configuring your Header
