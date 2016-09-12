@@ -52,6 +52,7 @@ headers = {
         + client_id (required, string) - your opened client id
         + secret (required, string) - your opened secret
         + username (required, string) - chosen by you and will serve as the username of your account.
+        + role (optional, string) - teacher or student. default value is teacher.
         
 + Response 200 (application/json; charset=utf-8)
 
@@ -1283,7 +1284,7 @@ You may create your own student and add it to your class.
             + email: `student@email.com` (string, required) - students email, username or email is required
             + first_name: `test first name` (optional, string) - student's first_name
             + last_name:`test last name` (optional, string) - Student's last_name
-            + username: `test username` (optional, required) - student's username, username or email is required
+            + username: `test username` (optional, string) - student's username, username or email is required
             + password: `password` (optional, string) - student's password
             + class_ids: `[123]` (optional, array[number]) - ids of classes new student needs to be added
 
