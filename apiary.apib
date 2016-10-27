@@ -256,12 +256,12 @@ Below is a list of parameters you can use.
     + grade_group: `46` (optional, number) - returns resources aligned to specified grade group.
     + category: `12` (optional, number) -  returns resources aligned to specified category.
     + standard: `K.G.2` (optional, string) - returns resources aligned to specified standard.
-    + standard_ids: `[123]` (optional, array[int]) - returns resources aligned to specific standard.
+    + standard_ids: `20276,20277` (optional, array[int]) - returns resources aligned to specific standard.
     + area: `11` (optional, number) - returns resources aligned to specified area.
     + subject: `110` (optional, number) - returns resources aligned to specified subject.
     + grades_range: `K-5` (optional, string) - restricts search to specified grade range. Can be specified as a single grade.
-    + publisher: `BrightStorm` (optional, string/array) -  returns resources from the publisher(s) by publisher title(s). Can be specified as single entry, comma-seprated list of titles or a URL-formatted array.
-    + resource_type: `video` (optional, string/array) - returns resources of a specific resource type. Possible types are: "video", "game", "assessment", "homework", "question", "audio", "other", "lesson plan"(lesson plan should be sent with underscore between lesson and plan). Can be specified as single entry, comma-seprated list of types or a URL-formatted array.
+    + publisher: `BrightStorm` (optional, array[string]) -  returns resources from the publisher(s) by publisher title(s). Can be specified as single entry, comma-seprated list of titles or a URL-formatted array.
+    + resource_type: `video` (optional, array[string]) - returns resources of a specific resource type. Possible types are: "video", "game", "assessment", "homework", "question", "audio", "other", "lesson plan"(lesson plan should be sent with underscore between lesson and plan). Can be specified as single entry, comma-seprated list of types or a URL-formatted array.
     + contribution_name: `LearningRegistry` (optional, string) - the place where the resource was contributed from. Not neccessarily the publisher.
     + featured: `true` (optional, boolean) - returns only resources featured by our opened curators
     + license: `free, premium, paid, all` (optional, string) - the resource license type
