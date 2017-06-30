@@ -211,7 +211,7 @@ You can update an existing user account by passing the user id.
 
 # Group Resources
 
-## Search Resources [/1/resources.json/{?descriptive,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_type,contribution_name,license,schema_org,effectiveness,standard_ids,featured,embeddable}]
+## Search Resources [/1/resources.json/{?descriptive,limit,offset,standard_group,category,standard,area,subject,grades_range,grade_group,publisher,resource_type,contribution_name,license,schema_org,effectiveness,standard_ids,featured,embeddable,case_identifiers}]
 
 ### Search [GET]
 
@@ -268,7 +268,7 @@ Below is a list of parameters you can use.
     + schema_org: `false` (optional, boolean) - if set to true returns metadata to lrmi specification
     + effectiveness: `60-80` (optional, string) - returns resources within an effectiveness range. If one value is set it will be assumed to be the minimum and 100% will be set as the maximum.
     + embeddable: `true` (optional, boolean) - returns only resources with embeddable links(relevant mostly to videos).
-    
+    + case_identifiers: `358a58d9-3138-5fcc-ae91-6e54d277c91f` (optional, array[string]) - returns resources aligned to specfic case identifier.
 + Request (application/json; charset=utf-8)
 
     + Headers
